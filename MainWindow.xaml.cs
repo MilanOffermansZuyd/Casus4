@@ -20,4 +20,28 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
     }
+
+    private void BtnConcept_Click(object sender, RoutedEventArgs e)
+    {
+        ConceptPage conceptPage = new ConceptPage();
+        conceptPage.ShowDialog();
+    }
+
+    private void BtnModel_Click(object sender, RoutedEventArgs e)
+    {
+        ModelPage modelPage = new ModelPage();
+        modelPage.ShowDialog();
+    }
+
+    private void BtnProject_Click(object sender, RoutedEventArgs e)
+    {
+        ProjectPage projectPage = new ProjectPage();
+        projectPage.ShowDialog();
+    }
+
+    private void BtnPhotoshoot_Click(object sender, RoutedEventArgs e)
+    {
+        PhotoshootPage photoshootPage = new PhotoshootPage();
+        photoshootPage.ShowDialog();
+    }
 }

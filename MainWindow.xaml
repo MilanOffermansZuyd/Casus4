@@ -7,6 +7,11 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-
+        <StackPanel Width=" 250" HorizontalAlignment="Left">
+            <Button Content="Concepten" Click="BtnConcept_Click"/>
+            <Button Content="Modellen" Click="BtnModel_Click"/>
+            <Button Content="Fotoshoots" Click="BtnPhotoshoot_Click"/>
+            <Button Content="Projecten" Click="BtnProject_Click"/>
+        </StackPanel>
     </Grid>
 </Window>
