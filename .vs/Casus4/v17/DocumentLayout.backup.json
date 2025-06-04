@@ -7,6 +7,10 @@
       "RelativeMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|solutionrelative:mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|c:\\users\\kylel\\source\\repos\\casus4\\concept.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|solutionrelative:concept.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|c:\\users\\kylel\\source\\repos\\casus4\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
@@ -58,7 +62,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Contract.cs",
               "DocumentMoniker": "C:\\Users\\kylel\\source\\repos\\Casus4\\Contract.cs",
               "RelativeDocumentMoniker": "Contract.cs",
@@ -66,12 +70,11 @@
               "RelativeToolTip": "Contract.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-04T08:50:40.719Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-04T08:50:40.719Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "ConceptPage.xaml.cs",
               "DocumentMoniker": "C:\\Users\\kylel\\source\\repos\\Casus4\\ConceptPage.xaml.cs",
               "RelativeDocumentMoniker": "ConceptPage.xaml.cs",
@@ -83,19 +86,18 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "ProjectPage.xaml",
               "DocumentMoniker": "C:\\Users\\kylel\\source\\repos\\Casus4\\ProjectPage.xaml",
               "RelativeDocumentMoniker": "ProjectPage.xaml",
               "ToolTip": "C:\\Users\\kylel\\source\\repos\\Casus4\\ProjectPage.xaml",
               "RelativeToolTip": "ProjectPage.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-06-02T17:16:02.276Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-02T17:16:02.276Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "PhotoshootPage.xaml",
               "DocumentMoniker": "C:\\Users\\kylel\\source\\repos\\Casus4\\PhotoshootPage.xaml",
               "RelativeDocumentMoniker": "PhotoshootPage.xaml",
@@ -106,7 +108,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "ModelPage.xaml",
               "DocumentMoniker": "C:\\Users\\kylel\\source\\repos\\Casus4\\ModelPage.xaml",
               "RelativeDocumentMoniker": "ModelPage.xaml",
@@ -121,9 +123,9 @@
               "Title": "MainWindow.xaml.cs",
               "DocumentMoniker": "C:\\Users\\kylel\\source\\repos\\Casus4\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "MainWindow.xaml.cs",
-              "ToolTip": "C:\\Users\\kylel\\source\\repos\\Casus4\\MainWindow.xaml.cs*",
-              "RelativeToolTip": "MainWindow.xaml.cs*",
-              "ViewState": "AgIAABEAAAAAAAAAAAAuwBsAAAAYAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\kylel\\source\\repos\\Casus4\\MainWindow.xaml.cs",
+              "RelativeToolTip": "MainWindow.xaml.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAcwDAAAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-01T19:53:13.337Z",
               "EditorCaption": ""
@@ -131,6 +133,19 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "Concept.cs",
+              "DocumentMoniker": "C:\\Users\\kylel\\source\\repos\\Casus4\\Concept.cs",
+              "RelativeDocumentMoniker": "Concept.cs",
+              "ToolTip": "C:\\Users\\kylel\\source\\repos\\Casus4\\Concept.cs",
+              "RelativeToolTip": "Concept.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-04T12:30:53.834Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "MainWindow.xaml",
               "DocumentMoniker": "C:\\Users\\kylel\\source\\repos\\Casus4\\MainWindow.xaml",
               "RelativeDocumentMoniker": "MainWindow.xaml",
@@ -142,7 +157,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "Contact.cs",
               "DocumentMoniker": "C:\\Users\\kylel\\source\\repos\\Casus4\\Contact.cs",
               "RelativeDocumentMoniker": "Contact.cs",
@@ -150,8 +165,7 @@
               "RelativeToolTip": "Contact.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAuwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-04T08:51:39.336Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-04T08:51:39.336Z"
             }
           ]
         }

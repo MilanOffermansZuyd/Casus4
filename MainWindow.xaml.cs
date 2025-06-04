@@ -25,27 +25,27 @@ public partial class MainWindow : Window
     {
         ConceptPage conceptPage = new ConceptPage();
         conceptPage.Show();
-        this.Close();
+        //this.Close();
     }
 
     private void BtnModel_Click(object sender, RoutedEventArgs e)
     {
         ModelPage modelPage = new ModelPage();
         modelPage.Show();
-        this.Close();
+        //this.Close();
     }
 
     private void BtnProject_Click(object sender, RoutedEventArgs e)
     {
         ProjectPage projectPage = new ProjectPage();
         projectPage.Show();
-        this.Close();
+        //this.Close();
     }
 
     private void BtnPhotoshoot_Click(object sender, RoutedEventArgs e)
     {
         PhotoshootPage photoshootPage = new PhotoshootPage();
         photoshootPage.Show();
-        this.Close();
+        //this.Close();
     }
 }
