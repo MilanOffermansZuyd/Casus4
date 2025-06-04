@@ -24,24 +24,28 @@ public partial class MainWindow : Window
     private void BtnConcept_Click(object sender, RoutedEventArgs e)
     {
         ConceptPage conceptPage = new ConceptPage();
-        conceptPage.ShowDialog();
+        conceptPage.Show();
+        this.Close();
     }
 
     private void BtnModel_Click(object sender, RoutedEventArgs e)
     {
         ModelPage modelPage = new ModelPage();
-        modelPage.ShowDialog();
+        modelPage.Show();
+        this.Close();
     }
 
     private void BtnProject_Click(object sender, RoutedEventArgs e)
     {
         ProjectPage projectPage = new ProjectPage();
-        projectPage.ShowDialog();
+        projectPage.Show();
+        this.Close();
     }
 
     private void BtnPhotoshoot_Click(object sender, RoutedEventArgs e)
     {
         PhotoshootPage photoshootPage = new PhotoshootPage();
-        photoshootPage.ShowDialog();
+        photoshootPage.Show();
+        this.Close();
     }
 }
