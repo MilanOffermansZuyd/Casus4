@@ -86,7 +86,18 @@ nunit-*.xml
 .vs/Casus4/v17/.futdcache.v2
 .vs/Casus4/v17/.suo
 .vs/Casus4/DesignTimeBuild/.dtbcache.v2
+<<<<<<< HEAD
 *.bin
 /.vs/Casus4/v17
 /.vs/Casus4/FileContentIndex
 /.vs
+=======
+/.vs/Casus4/v17
+/.vs/ProjectEvaluation
+/.vs/Casus4/FileContentIndex
+/.vs/Casus4/DesignTimeBuild
+>>>>>>> main
+/.vs/Casus4/v17/.suo
+/.vs/ProjectEvaluation/casus4.metadata.v9.bin
+/.vs/ProjectEvaluation/casus4.projects.v9.bin
+/.vs/ProjectEvaluation/casus4.strings.v9.bin
