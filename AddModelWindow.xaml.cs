@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace Casus4
 {
     /// <summary>
-    /// Interaction logic for Project.xaml
+    /// Interaction logic for AddModelWindow.xaml
     /// </summary>
-    public partial class ProjectPage : Window
+    public partial class AddModelWindow : Window
     {
-        public ProjectPage()
+        public AddModelWindow()
         {
             InitializeComponent();
         }
