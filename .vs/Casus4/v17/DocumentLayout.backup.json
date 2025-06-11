@@ -1,42 +1,66 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\kylel\\source\\repos\\Casus4\\",
+  "WorkspaceRootPath": "C:\\Users\\juria\\source\\repos\\Casus4\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|c:\\users\\kylel\\source\\repos\\casus4\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|solutionrelative:mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|c:\\users\\kylel\\source\\repos\\casus4\\concept.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|solutionrelative:concept.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|c:\\users\\kylel\\source\\repos\\casus4\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|c:\\users\\kylel\\source\\repos\\casus4\\contract.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|solutionrelative:contract.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|c:\\users\\kylel\\source\\repos\\casus4\\contact.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|solutionrelative:contact.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|c:\\users\\kylel\\source\\repos\\casus4\\projectpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|solutionrelative:projectpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|c:\\users\\kylel\\source\\repos\\casus4\\photoshootpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|solutionrelative:photoshootpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|c:\\users\\kylel\\source\\repos\\casus4\\modelpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "AbsoluteMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|c:\\users\\juria\\source\\repos\\casus4\\modelpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|solutionrelative:modelpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|c:\\users\\kylel\\source\\repos\\casus4\\conceptpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|c:\\users\\juria\\source\\repos\\casus4\\photoshootpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|solutionrelative:photoshootpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|c:\\users\\juria\\source\\repos\\casus4\\homepage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|solutionrelative:homepage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|c:\\users\\juria\\source\\repos\\casus4\\project.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|solutionrelative:project.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|c:\\users\\juria\\source\\repos\\casus4\\addconceptwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|solutionrelative:addconceptwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|c:\\users\\juria\\source\\repos\\casus4\\conceptpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|solutionrelative:conceptpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|c:\\users\\juria\\source\\repos\\casus4\\addmodelwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|solutionrelative:addmodelwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|c:\\users\\juria\\source\\repos\\casus4\\addconceptwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|solutionrelative:addconceptwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|c:\\users\\juria\\source\\repos\\casus4\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|c:\\users\\juria\\source\\repos\\casus4\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|solutionrelative:mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|c:\\users\\juria\\source\\repos\\casus4\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|solutionrelative:app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|c:\\users\\juria\\source\\repos\\casus4\\contract.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|solutionrelative:contract.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|c:\\users\\juria\\source\\repos\\casus4\\conceptpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|solutionrelative:conceptpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|c:\\users\\juria\\source\\repos\\casus4\\concept.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|solutionrelative:concept.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|c:\\users\\juria\\source\\repos\\casus4\\contact.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|solutionrelative:contact.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -46,15 +70,19 @@
       "DocumentGroups": [
         {
           "DockedWidth": 298,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
-              "Name": "ST:128:0:{13b12e3e-c1b4-4539-9371-4fe9a0d523fc}"
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
             },
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{13b12e3e-c1b4-4539-9371-4fe9a0d523fc}"
             },
             {
               "$type": "Bookmark",
@@ -63,109 +91,186 @@
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "Contract.cs",
-              "DocumentMoniker": "C:\\Users\\kylel\\source\\repos\\Casus4\\Contract.cs",
-              "RelativeDocumentMoniker": "Contract.cs",
-              "ToolTip": "C:\\Users\\kylel\\source\\repos\\Casus4\\Contract.cs",
-              "RelativeToolTip": "Contract.cs",
+              "Title": "Project.cs",
+              "DocumentMoniker": "C:\\Users\\juria\\source\\repos\\Casus4\\Project.cs",
+              "RelativeDocumentMoniker": "Project.cs",
+              "ToolTip": "C:\\Users\\juria\\source\\repos\\Casus4\\Project.cs",
+              "RelativeToolTip": "Project.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-04T08:50:40.719Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "ConceptPage.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\kylel\\source\\repos\\Casus4\\ConceptPage.xaml.cs",
-              "RelativeDocumentMoniker": "ConceptPage.xaml.cs",
-              "ToolTip": "C:\\Users\\kylel\\source\\repos\\Casus4\\ConceptPage.xaml.cs",
-              "RelativeToolTip": "ConceptPage.xaml.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAArwBcAAAAWAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-02T17:16:19.657Z"
+              "WhenOpened": "2025-06-11T05:35:49.864Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "ProjectPage.xaml",
-              "DocumentMoniker": "C:\\Users\\kylel\\source\\repos\\Casus4\\ProjectPage.xaml",
-              "RelativeDocumentMoniker": "ProjectPage.xaml",
-              "ToolTip": "C:\\Users\\kylel\\source\\repos\\Casus4\\ProjectPage.xaml",
-              "RelativeToolTip": "ProjectPage.xaml",
+              "Title": "ConceptPage.xaml",
+              "DocumentMoniker": "C:\\Users\\juria\\source\\repos\\Casus4\\ConceptPage.xaml",
+              "RelativeDocumentMoniker": "ConceptPage.xaml",
+              "ToolTip": "C:\\Users\\juria\\source\\repos\\Casus4\\ConceptPage.xaml",
+              "RelativeToolTip": "ConceptPage.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-06-02T17:16:02.276Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "PhotoshootPage.xaml",
-              "DocumentMoniker": "C:\\Users\\kylel\\source\\repos\\Casus4\\PhotoshootPage.xaml",
-              "RelativeDocumentMoniker": "PhotoshootPage.xaml",
-              "ToolTip": "C:\\Users\\kylel\\source\\repos\\Casus4\\PhotoshootPage.xaml",
-              "RelativeToolTip": "PhotoshootPage.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-06-02T17:15:59.851Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "ModelPage.xaml",
-              "DocumentMoniker": "C:\\Users\\kylel\\source\\repos\\Casus4\\ModelPage.xaml",
-              "RelativeDocumentMoniker": "ModelPage.xaml",
-              "ToolTip": "C:\\Users\\kylel\\source\\repos\\Casus4\\ModelPage.xaml",
-              "RelativeToolTip": "ModelPage.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-06-02T17:15:57.314Z"
+              "WhenOpened": "2025-06-06T09:17:58.216Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "MainWindow.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\kylel\\source\\repos\\Casus4\\MainWindow.xaml.cs",
-              "RelativeDocumentMoniker": "MainWindow.xaml.cs",
-              "ToolTip": "C:\\Users\\kylel\\source\\repos\\Casus4\\MainWindow.xaml.cs",
-              "RelativeToolTip": "MainWindow.xaml.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAcwDAAAAAKAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-01T19:53:13.337Z",
+              "Title": "ModelPage.xaml",
+              "DocumentMoniker": "C:\\Users\\juria\\source\\repos\\Casus4\\ModelPage.xaml",
+              "RelativeDocumentMoniker": "ModelPage.xaml",
+              "ToolTip": "C:\\Users\\juria\\source\\repos\\Casus4\\ModelPage.xaml",
+              "RelativeToolTip": "ModelPage.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-06-06T06:35:22.02Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Concept.cs",
-              "DocumentMoniker": "C:\\Users\\kylel\\source\\repos\\Casus4\\Concept.cs",
-              "RelativeDocumentMoniker": "Concept.cs",
-              "ToolTip": "C:\\Users\\kylel\\source\\repos\\Casus4\\Concept.cs",
-              "RelativeToolTip": "Concept.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-04T12:30:53.834Z",
+              "Title": "PhotoshootPage.xaml",
+              "DocumentMoniker": "C:\\Users\\juria\\source\\repos\\Casus4\\PhotoshootPage.xaml",
+              "RelativeDocumentMoniker": "PhotoshootPage.xaml",
+              "ToolTip": "C:\\Users\\juria\\source\\repos\\Casus4\\PhotoshootPage.xaml",
+              "RelativeToolTip": "PhotoshootPage.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-06-06T06:35:22.018Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "MainWindow.xaml",
-              "DocumentMoniker": "C:\\Users\\kylel\\source\\repos\\Casus4\\MainWindow.xaml",
-              "RelativeDocumentMoniker": "MainWindow.xaml",
-              "ToolTip": "C:\\Users\\kylel\\source\\repos\\Casus4\\MainWindow.xaml",
-              "RelativeToolTip": "MainWindow.xaml",
+              "Title": "HomePage.xaml",
+              "DocumentMoniker": "C:\\Users\\juria\\source\\repos\\Casus4\\HomePage.xaml",
+              "RelativeDocumentMoniker": "HomePage.xaml",
+              "ToolTip": "C:\\Users\\juria\\source\\repos\\Casus4\\HomePage.xaml",
+              "RelativeToolTip": "HomePage.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-05-31T13:55:07.039Z",
+              "WhenOpened": "2025-06-06T10:09:11.976Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
+              "Title": "AddConceptWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\juria\\source\\repos\\Casus4\\AddConceptWindow.xaml.cs",
+              "RelativeDocumentMoniker": "AddConceptWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\juria\\source\\repos\\Casus4\\AddConceptWindow.xaml.cs",
+              "RelativeToolTip": "AddConceptWindow.xaml.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAcwCwAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-06T07:38:58.042Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "AddModelWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\juria\\source\\repos\\Casus4\\AddModelWindow.xaml",
+              "RelativeDocumentMoniker": "AddModelWindow.xaml",
+              "ToolTip": "C:\\Users\\juria\\source\\repos\\Casus4\\AddModelWindow.xaml",
+              "RelativeToolTip": "AddModelWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-06-06T09:38:09.224Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "AddConceptWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\juria\\source\\repos\\Casus4\\AddConceptWindow.xaml",
+              "RelativeDocumentMoniker": "AddConceptWindow.xaml",
+              "ToolTip": "C:\\Users\\juria\\source\\repos\\Casus4\\AddConceptWindow.xaml",
+              "RelativeToolTip": "AddConceptWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-06-06T07:32:47.6Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\juria\\source\\repos\\Casus4\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "MainWindow.xaml",
+              "ToolTip": "C:\\Users\\juria\\source\\repos\\Casus4\\MainWindow.xaml",
+              "RelativeToolTip": "MainWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-06-06T07:27:20.861Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "MainWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\juria\\Source\\Repos\\Casus4\\MainWindow.xaml.cs",
+              "RelativeDocumentMoniker": "MainWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\juria\\Source\\Repos\\Casus4\\MainWindow.xaml.cs",
+              "RelativeToolTip": "MainWindow.xaml.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAA3wB8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-06T07:31:42.989Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "App.xaml",
+              "DocumentMoniker": "C:\\Users\\juria\\Source\\Repos\\Casus4\\App.xaml",
+              "RelativeDocumentMoniker": "App.xaml",
+              "ToolTip": "C:\\Users\\juria\\Source\\Repos\\Casus4\\App.xaml",
+              "RelativeToolTip": "App.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-06-06T07:41:14.857Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "ConceptPage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\juria\\source\\repos\\Casus4\\ConceptPage.xaml.cs",
+              "RelativeDocumentMoniker": "ConceptPage.xaml.cs",
+              "ToolTip": "C:\\Users\\juria\\source\\repos\\Casus4\\ConceptPage.xaml.cs",
+              "RelativeToolTip": "ConceptPage.xaml.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAArwBcAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-06T06:35:22.014Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Contract.cs",
+              "DocumentMoniker": "C:\\Users\\juria\\source\\repos\\Casus4\\Contract.cs",
+              "RelativeDocumentMoniker": "Contract.cs",
+              "ToolTip": "C:\\Users\\juria\\source\\repos\\Casus4\\Contract.cs",
+              "RelativeToolTip": "Contract.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-06T06:35:21.997Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Concept.cs",
+              "DocumentMoniker": "C:\\Users\\juria\\source\\repos\\Casus4\\Concept.cs",
+              "RelativeDocumentMoniker": "Concept.cs",
+              "ToolTip": "C:\\Users\\juria\\source\\repos\\Casus4\\Concept.cs",
+              "RelativeToolTip": "Concept.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-06T06:35:22.023Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
               "Title": "Contact.cs",
-              "DocumentMoniker": "C:\\Users\\kylel\\source\\repos\\Casus4\\Contact.cs",
+              "DocumentMoniker": "C:\\Users\\juria\\source\\repos\\Casus4\\Contact.cs",
               "RelativeDocumentMoniker": "Contact.cs",
-              "ToolTip": "C:\\Users\\kylel\\source\\repos\\Casus4\\Contact.cs",
+              "ToolTip": "C:\\Users\\juria\\source\\repos\\Casus4\\Contact.cs",
               "RelativeToolTip": "Contact.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAuwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-04T08:51:39.336Z"
+              "WhenOpened": "2025-06-06T06:35:22.026Z"
             }
           ]
         }

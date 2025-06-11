@@ -7,6 +7,18 @@
         mc:Ignorable="d"
         Title="Photoshoot" Height="450" Width="800">
     <Grid>
-        
+        <ListView x:Name="PhotoShootListViewPhotoShootPage" HorizontalAlignment="Center" Height="322" VerticalAlignment="Top" Width="800" d:ItemsSource="{d:SampleData ItemCount=5}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Title" Width="150"/>
+                    <GridViewColumn Header="Description" Width="250"/>
+                    <GridViewColumn Header="Progress" Width="200"/>
+                    <GridViewColumn Header="Date" Width="200"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button x:Name="BackToHomeFromPhotoShoot" Content="Back to home" HorizontalAlignment="Left" Height="72" Margin="10,352,0,0" VerticalAlignment="Top" Width="144"/>
+        <Button x:Name="NewPhotoShootFromPhotoShoot" Content="New photoshoot" HorizontalAlignment="Left" Height="72" Margin="159,352,0,0" VerticalAlignment="Top" Width="144"/>
+
     </Grid>
 </Window>
