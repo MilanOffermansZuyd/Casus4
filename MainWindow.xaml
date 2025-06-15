@@ -5,13 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Casus4"
         mc:Ignorable="d"
-        Title="MainWindow" Height="250" Width="400">
+        Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <StackPanel Width=" 250" HorizontalAlignment="Left">
-            <Button Content="Concepten" Click="BtnConcept_Click"/>
-            <Button Content="Modellen" Click="BtnModel_Click"/>
-            <Button Content="Fotoshoots" Click="BtnPhotoshoot_Click"/>
-            <Button Content="Projecten" Click="BtnProject_Click"/>
-        </StackPanel>
+        <ListView x:Name="ProjectListViewHomePage" HorizontalAlignment="Left" Height="241" VerticalAlignment="Top" Width="742" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="ProjectListViewHomePage_SelectionChanged">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Project title" Width="260"/>
+                    <GridViewColumn Header="Deadline" Width="260"/>
+                    <GridViewColumn Header="Progress" Width="260"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button x:Name="ConceptButtonHomePage" Content="Concept" HorizontalAlignment="Center" Height="193" Margin="0,241,0,0" VerticalAlignment="Top" Width="800" Click="ConceptButtonHomePage_Click"/>
+        <Button x:Name="NewProjectHomePageButton" Content="New project" HorizontalAlignment="Left" Height="241" Margin="742,0,0,0" VerticalAlignment="Top" Width="58"/>
+
     </Grid>
 </Window>

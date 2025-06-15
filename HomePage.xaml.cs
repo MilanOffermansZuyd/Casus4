@@ -15,24 +15,13 @@ using System.Windows.Shapes;
 namespace Casus4
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for HomePage.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class HomePage : Window
     {
-        public MainWindow()
+        public HomePage()
         {
             InitializeComponent();
-        }
-
-        private void ConceptButtonHomePage_Click(object sender, RoutedEventArgs e)
-        {
-            AddConceptWindow addConceptWindow = new AddConceptWindow();
-            addConceptWindow.Show();
-        }
-
-        private void ProjectListViewHomePage_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
         }
     }
 }
