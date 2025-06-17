@@ -23,5 +23,19 @@ namespace Casus4
         {
             InitializeComponent();
         }
+
+        private void CreateNewModelFromModelPage_Click(object sender, RoutedEventArgs e)
+        {
+            AddModelWindow addModelWindow = new AddModelWindow();
+            addModelWindow.Show();
+            this.Close();
+        }
+
+        private void BackToHomePageFromModelsPage_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+            this.Close();
+        }
     }
 }

@@ -23,5 +23,19 @@ namespace Casus4
         {
             InitializeComponent();
         }
+
+        private void BackToMainMenuFromConceptPage_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+            this.Close();
+        }
+
+        private void CreateConceptFromConceptPage_Click(object sender, RoutedEventArgs e)
+        {
+            AddConceptWindow addConceptWindow = new AddConceptWindow();
+            addConceptWindow.Show();
+            this.Close();
+        }
     }
 }

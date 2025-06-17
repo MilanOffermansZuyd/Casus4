@@ -7,6 +7,17 @@
         mc:Ignorable="d"
         Title="Concept" Height="450" Width="800">
     <Grid>
-        
+        <ListView x:Name="ConceptPageListView" HorizontalAlignment="Center" Height="348" Margin="0,6,0,0" VerticalAlignment="Top" Width="800" d:ItemsSource="{d:SampleData ItemCount=5}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Title" Width="250"/>
+                    <GridViewColumn Header="Description" Width="300"/>
+                    <GridViewColumn Header="Progress" Width="250"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button x:Name="CreateConceptFromConceptPage" Content="Nieuw concept" HorizontalAlignment="Left" Height="57" Margin="10,367,0,0" VerticalAlignment="Top" Width="187" Click="CreateConceptFromConceptPage_Click"/>
+        <Button x:Name="BackToMainMenuFromConceptPage" Content="Terug naar menu" HorizontalAlignment="Left" Height="57" Margin="213,367,0,0" VerticalAlignment="Top" Width="187" Click="BackToMainMenuFromConceptPage_Click"/>
+
     </Grid>
 </Window>

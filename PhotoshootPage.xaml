@@ -6,7 +6,33 @@
         xmlns:local="clr-namespace:Casus4"
         mc:Ignorable="d"
         Title="Photoshoot" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+    <DockPanel>
+        <Border DockPanel.Dock="Top" Background="#EEE" Padding="10">
+            <DockPanel HorizontalAlignment="Right">
+                <Button x:Name="AddPhotoshoot" Content="Add Photoshoot" Width="100" Margin="5" Click="AddPhotoshoot_Click"/>
+                <Button x:Name="BackButton" Content="Back" Width="80" Margin="5" Click="BackButton_Click"/>
+            </DockPanel>
+        </Border>
+
+
+
+        <!-- DataGrid with Photoshoots -->
+        <Grid Margin="10">
+            <DataGrid x:Name="PhotoshootDataGrid"
+                      AutoGenerateColumns="False"
+                      CanUserAddRows="False"
+                      IsReadOnly="True"
+                      SelectionMode="Single">
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Title" Binding="{Binding Title}" Width="*"/>
+                    <DataGridTextColumn Header="Description" Binding="{Binding Description}" Width="2*"/>
+                    <DataGridTextColumn Header="Concepts" Binding="{Binding ConceptsAsString}" Width="*"/>
+                    <DataGridTextColumn Header="Contracts" Binding="{Binding ContractsAsString}" Width="*"/>
+                    <DataGridTextColumn Header="Models" Binding="{Binding ModelsAsString}" Width="*"/>
+                    <DataGridTextColumn Header="Volunteers" Binding="{Binding VolunteersAsString}" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </DockPanel>
 </Window>

@@ -1,30 +1,106 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\kylel\\source\\repos\\Casus4\\",
+  "WorkspaceRootPath": "C:\\Users\\milan\\source\\repos\\Casus4\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|c:\\users\\kylel\\source\\repos\\casus4\\projectpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|solutionrelative:projectpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|c:\\users\\kylel\\source\\repos\\casus4\\photoshootpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|solutionrelative:photoshootpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|c:\\users\\kylel\\source\\repos\\casus4\\modelpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|solutionrelative:modelpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|c:\\users\\kylel\\source\\repos\\casus4\\conceptpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|C:\\Users\\milan\\source\\repos\\Casus4\\conceptpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|solutionrelative:conceptpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|c:\\users\\kylel\\source\\repos\\casus4\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|c:\\users\\milan\\source\\repos\\casus4\\conceptpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|solutionrelative:conceptpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|c:\\users\\milan\\source\\repos\\casus4\\addprojectpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|solutionrelative:addprojectpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|c:\\users\\milan\\source\\repos\\casus4\\addprojectpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|solutionrelative:addprojectpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|C:\\Users\\milan\\source\\repos\\Casus4\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|solutionrelative:mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|c:\\users\\kylel\\source\\repos\\casus4\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "AbsoluteMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|C:\\Users\\milan\\source\\repos\\Casus4\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|c:\\users\\milan\\source\\repos\\casus4\\projectdetailspage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|solutionrelative:projectdetailspage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|c:\\users\\milan\\source\\repos\\casus4\\projectpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|solutionrelative:projectpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|c:\\users\\milan\\source\\repos\\casus4\\projectpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|solutionrelative:projectpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|c:\\users\\milan\\source\\repos\\casus4\\modelpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|solutionrelative:modelpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|C:\\Users\\milan\\source\\repos\\Casus4\\modelpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|solutionrelative:modelpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|c:\\users\\milan\\source\\repos\\casus4\\photoshootpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|solutionrelative:photoshootpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|c:\\users\\milan\\source\\repos\\casus4\\projectdetailspage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|solutionrelative:projectdetailspage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|c:\\users\\milan\\source\\repos\\casus4\\addphotoshoots.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|solutionrelative:addphotoshoots.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|c:\\users\\milan\\source\\repos\\casus4\\addconceptwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|solutionrelative:addconceptwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|c:\\users\\milan\\source\\repos\\casus4\\addconceptwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|solutionrelative:addconceptwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|c:\\users\\milan\\source\\repos\\casus4\\addmodelwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|solutionrelative:addmodelwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|c:\\users\\milan\\source\\repos\\casus4\\addmodelwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|solutionrelative:addmodelwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|c:\\users\\milan\\source\\repos\\casus4\\addphotoshoots.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|solutionrelative:addphotoshoots.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|c:\\users\\milan\\source\\repos\\casus4\\homepage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|solutionrelative:homepage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|C:\\Users\\milan\\source\\repos\\Casus4\\photoshootpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|solutionrelative:photoshootpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\milan\\source\\repos\\Casus4\\obj\\Debug\\net8.0-windows\\MainWindow.g.i.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:obj\\Debug\\net8.0-windows\\MainWindow.g.i.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|c:\\users\\milan\\source\\repos\\casus4\\photoshoot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|solutionrelative:photoshoot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|c:\\users\\milan\\source\\repos\\casus4\\images\\default.png||{58961B49-13E0-48C0-9258-13CBC4D40279}",
+      "RelativeMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|solutionrelative:images\\default.png||{58961B49-13E0-48C0-9258-13CBC4D40279}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|c:\\users\\milan\\source\\repos\\casus4\\concept.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{35C1793C-9FBC-498A-8752-CD161C1338B2}|Casus4.csproj|solutionrelative:concept.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,8 +110,16 @@
       "DocumentGroups": [
         {
           "DockedWidth": 298,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 25,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{13b12e3e-c1b4-4539-9371-4fe9a0d523fc}"
@@ -50,36 +134,276 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ProjectPage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\milan\\source\\repos\\Casus4\\ProjectPage.xaml.cs",
+              "RelativeDocumentMoniker": "ProjectPage.xaml.cs",
+              "ToolTip": "C:\\Users\\milan\\source\\repos\\Casus4\\ProjectPage.xaml.cs",
+              "RelativeToolTip": "ProjectPage.xaml.cs",
+              "ViewState": "AQIAABIAAAAAAAAAAAAjwCUAAAAZAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-17T23:28:09.783Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "ModelPage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\milan\\source\\repos\\Casus4\\ModelPage.xaml.cs",
+              "RelativeDocumentMoniker": "ModelPage.xaml.cs",
+              "ToolTip": "C:\\Users\\milan\\source\\repos\\Casus4\\ModelPage.xaml.cs",
+              "RelativeToolTip": "ModelPage.xaml.cs",
+              "ViewState": "AQIAABIAAAAAAAAAAAAjwCUAAAAZAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-17T23:27:26.587Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AddProjectPage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\milan\\source\\repos\\Casus4\\AddProjectPage.xaml.cs",
+              "RelativeDocumentMoniker": "AddProjectPage.xaml.cs",
+              "ToolTip": "C:\\Users\\milan\\source\\repos\\Casus4\\AddProjectPage.xaml.cs",
+              "RelativeToolTip": "AddProjectPage.xaml.cs",
+              "ViewState": "AQIAABwAAAAAAAAAAAArwDAAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-17T23:24:14.152Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ProjectPage.xaml",
+              "DocumentMoniker": "C:\\Users\\milan\\source\\repos\\Casus4\\ProjectPage.xaml",
+              "RelativeDocumentMoniker": "ProjectPage.xaml",
+              "ToolTip": "C:\\Users\\milan\\source\\repos\\Casus4\\ProjectPage.xaml",
+              "RelativeToolTip": "ProjectPage.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-06-17T23:21:23.34Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "AddProjectPage.xaml",
+              "DocumentMoniker": "C:\\Users\\milan\\source\\repos\\Casus4\\AddProjectPage.xaml",
+              "RelativeDocumentMoniker": "AddProjectPage.xaml",
+              "ToolTip": "C:\\Users\\milan\\source\\repos\\Casus4\\AddProjectPage.xaml",
+              "RelativeToolTip": "AddProjectPage.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-06-17T23:21:19.803Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "HomePage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\milan\\source\\repos\\Casus4\\HomePage.xaml.cs",
+              "RelativeDocumentMoniker": "HomePage.xaml.cs",
+              "ToolTip": "C:\\Users\\milan\\source\\repos\\Casus4\\HomePage.xaml.cs",
+              "RelativeToolTip": "HomePage.xaml.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-17T23:20:11.445Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "AddPhotoshoots.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\milan\\source\\repos\\Casus4\\AddPhotoshoots.xaml.cs",
+              "RelativeDocumentMoniker": "AddPhotoshoots.xaml.cs",
+              "ToolTip": "C:\\Users\\milan\\source\\repos\\Casus4\\AddPhotoshoots.xaml.cs",
+              "RelativeToolTip": "AddPhotoshoots.xaml.cs",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAnwCUAAAAZAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-17T23:09:15.405Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "AddPhotoshoots.xaml",
+              "DocumentMoniker": "C:\\Users\\milan\\source\\repos\\Casus4\\AddPhotoshoots.xaml",
+              "RelativeDocumentMoniker": "AddPhotoshoots.xaml",
+              "ToolTip": "C:\\Users\\milan\\source\\repos\\Casus4\\AddPhotoshoots.xaml",
+              "RelativeToolTip": "AddPhotoshoots.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-06-17T23:05:03.878Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ProjectDetailsPage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\milan\\source\\repos\\Casus4\\ProjectDetailsPage.xaml.cs",
+              "RelativeDocumentMoniker": "ProjectDetailsPage.xaml.cs",
+              "ToolTip": "C:\\Users\\milan\\source\\repos\\Casus4\\ProjectDetailsPage.xaml.cs",
+              "RelativeToolTip": "ProjectDetailsPage.xaml.cs",
+              "ViewState": "AQIAABEAAAAAAAAAAAAewCYAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-17T22:54:00.42Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "ProjectDetailsPage.xaml",
+              "DocumentMoniker": "C:\\Users\\milan\\source\\repos\\Casus4\\ProjectDetailsPage.xaml",
+              "RelativeDocumentMoniker": "ProjectDetailsPage.xaml",
+              "ToolTip": "C:\\Users\\milan\\source\\repos\\Casus4\\ProjectDetailsPage.xaml",
+              "RelativeToolTip": "ProjectDetailsPage.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-06-17T22:53:57.127Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "PhotoshootPage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\milan\\source\\repos\\Casus4\\PhotoshootPage.xaml.cs",
+              "RelativeDocumentMoniker": "PhotoshootPage.xaml.cs",
+              "ToolTip": "C:\\Users\\milan\\source\\repos\\Casus4\\PhotoshootPage.xaml.cs",
+              "RelativeToolTip": "PhotoshootPage.xaml.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAjwBkAAAAZAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-17T22:49:48.781Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "MainWindow.g.i.cs",
+              "DocumentMoniker": "C:\\Users\\milan\\source\\repos\\Casus4\\obj\\Debug\\net8.0-windows\\MainWindow.g.i.cs",
+              "RelativeDocumentMoniker": "obj\\Debug\\net8.0-windows\\MainWindow.g.i.cs",
+              "ToolTip": "C:\\Users\\milan\\source\\repos\\Casus4\\obj\\Debug\\net8.0-windows\\MainWindow.g.i.cs",
+              "RelativeToolTip": "obj\\Debug\\net8.0-windows\\MainWindow.g.i.cs",
+              "ViewState": "AQIAAGUAAAAAAAAAAADgv38AAAB+AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-17T22:34:12.459Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "PhotoShoot.cs",
+              "DocumentMoniker": "C:\\Users\\milan\\source\\repos\\Casus4\\PhotoShoot.cs",
+              "RelativeDocumentMoniker": "PhotoShoot.cs",
+              "ToolTip": "C:\\Users\\milan\\source\\repos\\Casus4\\PhotoShoot.cs",
+              "RelativeToolTip": "PhotoShoot.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-17T22:28:08.111Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "AddModelWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\milan\\source\\repos\\Casus4\\AddModelWindow.xaml.cs",
+              "RelativeDocumentMoniker": "AddModelWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\milan\\source\\repos\\Casus4\\AddModelWindow.xaml.cs",
+              "RelativeToolTip": "AddModelWindow.xaml.cs",
+              "ViewState": "AQIAABUAAAAAAAAAAIA8wCoAAAAZAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-17T22:26:08.658Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "AddModelWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\milan\\source\\repos\\Casus4\\AddModelWindow.xaml",
+              "RelativeDocumentMoniker": "AddModelWindow.xaml",
+              "ToolTip": "C:\\Users\\milan\\source\\repos\\Casus4\\AddModelWindow.xaml",
+              "RelativeToolTip": "AddModelWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-06-17T22:25:40.634Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "AddConceptWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\milan\\source\\repos\\Casus4\\AddConceptWindow.xaml",
+              "RelativeDocumentMoniker": "AddConceptWindow.xaml",
+              "ToolTip": "C:\\Users\\milan\\source\\repos\\Casus4\\AddConceptWindow.xaml",
+              "RelativeToolTip": "AddConceptWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-06-17T22:24:19.419Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "AddConceptWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\milan\\source\\repos\\Casus4\\AddConceptWindow.xaml.cs",
+              "RelativeDocumentMoniker": "AddConceptWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\milan\\source\\repos\\Casus4\\AddConceptWindow.xaml.cs",
+              "RelativeToolTip": "AddConceptWindow.xaml.cs",
+              "ViewState": "AQIAACMAAAAAAAAAAAAvwDkAAAAZAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-17T22:24:01.344Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "default.png",
+              "DocumentMoniker": "C:\\Users\\milan\\source\\repos\\Casus4\\Images\\default.png",
+              "RelativeDocumentMoniker": "Images\\default.png",
+              "ToolTip": "C:\\Users\\milan\\source\\repos\\Casus4\\Images\\default.png",
+              "RelativeToolTip": "Images\\default.png",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001533|",
+              "WhenOpened": "2025-06-17T22:23:42.151Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "Concept.cs",
+              "DocumentMoniker": "C:\\Users\\milan\\source\\repos\\Casus4\\Concept.cs",
+              "RelativeDocumentMoniker": "Concept.cs",
+              "ToolTip": "C:\\Users\\milan\\source\\repos\\Casus4\\Concept.cs",
+              "RelativeToolTip": "Concept.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAdAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-17T22:21:46.244Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ConceptPage.xaml",
+              "DocumentMoniker": "C:\\Users\\milan\\source\\repos\\Casus4\\ConceptPage.xaml",
+              "RelativeDocumentMoniker": "ConceptPage.xaml",
+              "ToolTip": "C:\\Users\\milan\\source\\repos\\Casus4\\ConceptPage.xaml*",
+              "RelativeToolTip": "ConceptPage.xaml*",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-06-17T22:21:06.721Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
               "Title": "ConceptPage.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\kylel\\source\\repos\\Casus4\\ConceptPage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\milan\\source\\repos\\Casus4\\ConceptPage.xaml.cs",
               "RelativeDocumentMoniker": "ConceptPage.xaml.cs",
-              "ToolTip": "C:\\Users\\kylel\\source\\repos\\Casus4\\ConceptPage.xaml.cs",
+              "ToolTip": "C:\\Users\\milan\\source\\repos\\Casus4\\ConceptPage.xaml.cs",
               "RelativeToolTip": "ConceptPage.xaml.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAArwBcAAAAWAAAAAAAAAA==",
+              "ViewState": "AQIAABIAAAAAAAAAAAAjwCUAAAAZAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-02T17:16:19.657Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ProjectPage.xaml",
-              "DocumentMoniker": "C:\\Users\\kylel\\source\\repos\\Casus4\\ProjectPage.xaml",
-              "RelativeDocumentMoniker": "ProjectPage.xaml",
-              "ToolTip": "C:\\Users\\kylel\\source\\repos\\Casus4\\ProjectPage.xaml",
-              "RelativeToolTip": "ProjectPage.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-06-02T17:16:02.276Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 20,
               "Title": "PhotoshootPage.xaml",
-              "DocumentMoniker": "C:\\Users\\kylel\\source\\repos\\Casus4\\PhotoshootPage.xaml",
+              "DocumentMoniker": "C:\\Users\\milan\\source\\repos\\Casus4\\PhotoshootPage.xaml",
               "RelativeDocumentMoniker": "PhotoshootPage.xaml",
-              "ToolTip": "C:\\Users\\kylel\\source\\repos\\Casus4\\PhotoshootPage.xaml",
+              "ToolTip": "C:\\Users\\milan\\source\\repos\\Casus4\\PhotoshootPage.xaml",
               "RelativeToolTip": "PhotoshootPage.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2025-06-02T17:15:59.851Z",
@@ -87,11 +411,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 10,
               "Title": "ModelPage.xaml",
-              "DocumentMoniker": "C:\\Users\\kylel\\source\\repos\\Casus4\\ModelPage.xaml",
+              "DocumentMoniker": "C:\\Users\\milan\\source\\repos\\Casus4\\ModelPage.xaml",
               "RelativeDocumentMoniker": "ModelPage.xaml",
-              "ToolTip": "C:\\Users\\kylel\\source\\repos\\Casus4\\ModelPage.xaml",
+              "ToolTip": "C:\\Users\\milan\\source\\repos\\Casus4\\ModelPage.xaml",
               "RelativeToolTip": "ModelPage.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2025-06-02T17:15:57.314Z",
@@ -101,24 +425,26 @@
               "$type": "Document",
               "DocumentIndex": 4,
               "Title": "MainWindow.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\kylel\\source\\repos\\Casus4\\MainWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\milan\\source\\repos\\Casus4\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "MainWindow.xaml.cs",
-              "ToolTip": "C:\\Users\\kylel\\source\\repos\\Casus4\\MainWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\milan\\source\\repos\\Casus4\\MainWindow.xaml.cs",
               "RelativeToolTip": "MainWindow.xaml.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAAAkwBsAAAAFAAAAAAAAAA==",
+              "ViewState": "AQIAABcAAAAAAAAAAAAvwB4AAAAZAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-01T19:53:13.337Z"
+              "WhenOpened": "2025-06-01T19:53:13.337Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
               "Title": "MainWindow.xaml",
-              "DocumentMoniker": "C:\\Users\\kylel\\source\\repos\\Casus4\\MainWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\milan\\source\\repos\\Casus4\\MainWindow.xaml",
               "RelativeDocumentMoniker": "MainWindow.xaml",
-              "ToolTip": "C:\\Users\\kylel\\source\\repos\\Casus4\\MainWindow.xaml",
+              "ToolTip": "C:\\Users\\milan\\source\\repos\\Casus4\\MainWindow.xaml",
               "RelativeToolTip": "MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-05-31T13:55:07.039Z"
+              "WhenOpened": "2025-05-31T13:55:07.039Z",
+              "EditorCaption": ""
             }
           ]
         }

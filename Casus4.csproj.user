@@ -2,7 +2,25 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
+    <Compile Update="AddConceptWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="AddModelWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="AddPhotoshoots.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="AddProjectPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="ConceptPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="HomePage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="MainWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="ModelPage.xaml.cs">
@@ -11,8 +29,19 @@
     <Compile Update="PhotoshootPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="ProjectPage.xaml.cs">
+    <Compile Update="ProjectDetailsPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="AddPhotoshoots.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="AddProjectPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ProjectDetailsPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
 </Project>

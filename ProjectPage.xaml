@@ -6,7 +6,27 @@
         xmlns:local="clr-namespace:Casus4"
         mc:Ignorable="d"
         Title="Project" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+    <DockPanel>
+
+        <!-- Top bar with Save and Back buttons -->
+        <Border DockPanel.Dock="Top" Background="#EEE" Padding="10">
+            <DockPanel HorizontalAlignment="Right">
+                <Button x:Name="AddButton" Content="Add concept" Width="100" Margin="5" Click="AddButton_Click"/>
+                <Button x:Name="BackButton" Content="Back" Width="80" Margin="5" Click="BackButton_Click"/>
+            </DockPanel>
+        </Border>
+
+        <!-- List of photoshoots -->
+        <Grid Margin="10">
+            <DataGrid x:Name="PhotoshootDataGrid" AutoGenerateColumns="False" CanUserAddRows="False"
+                      IsReadOnly="True" SelectionMode="Single">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Title" Binding="{Binding Title}" Width="*"/>
+                    <DataGridTextColumn Header="Description" Binding="{Binding Description}" Width="2*"/>
+                    <DataGridTextColumn Header="Deadline" Binding="{Binding Deadline}" Width="*"/>
+                    <DataGridCheckBoxColumn Header="Is Done" Binding="{Binding IsDone}" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </DockPanel>
 </Window>

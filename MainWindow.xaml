@@ -5,13 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Casus4"
         mc:Ignorable="d"
-        Title="MainWindow" Height="250" Width="400">
+        Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <StackPanel Width=" 250" HorizontalAlignment="Left">
-            <Button Content="Concepten" Click="BtnConcept_Click"/>
-            <Button Content="Modellen" Click="BtnModel_Click"/>
-            <Button Content="Fotoshoots" Click="BtnPhotoshoot_Click"/>
-            <Button Content="Projecten" Click="BtnProject_Click"/>
-        </StackPanel>
+        <ListView x:Name="ProjectListViewHomePage" HorizontalAlignment="Left" Height="241" VerticalAlignment="Top" Width="513" d:ItemsSource="{d:SampleData ItemCount=5}" MouseDoubleClick="ProjectListViewHomePage_MouseDoubleClick" Margin="188,0,0,0">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Project title" Width="160"/>
+                    <GridViewColumn Header="Deadline" Width="160"/>
+                    <GridViewColumn Header="Progress" Width="160"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button x:Name="ConceptButtonHomePage" Content="Concept" HorizontalAlignment="Center" Height="193" Margin="0,241,0,0" VerticalAlignment="Top" Width="800" Click="ConceptButtonHomePage_Click"/>
+        <Button x:Name="NewProjectHomePageButton" Content="New project" HorizontalAlignment="Left" Height="229" Margin="714,7,0,0" VerticalAlignment="Top" Width="76" Click="NewProjectHomePageButton_Click"/>
+        <Button Content="Concepten" HorizontalAlignment="Left" Height="57" Margin="10,10,0,0" VerticalAlignment="Top" Width="127" Click="ConceptButton_Click"/>
+        <Button Content="Modellen/ contacten" HorizontalAlignment="Left" Height="57" Margin="10,87,0,0" VerticalAlignment="Top" Width="127" Click="ContacsButton_Click"/>
+        <Button Content="Photoshoot" HorizontalAlignment="Left" Height="57" Margin="10,160,0,0" VerticalAlignment="Top" Width="127" Click="PhotoshootButton_Click"/>
+
     </Grid>
 </Window>

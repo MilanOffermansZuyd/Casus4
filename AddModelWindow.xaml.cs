@@ -15,26 +15,31 @@ using System.Windows.Shapes;
 namespace Casus4
 {
     /// <summary>
-    /// Interaction logic for Project.xaml
+    /// Interaction logic for AddModelWindow.xaml
     /// </summary>
-    public partial class ProjectPage : Window
+    public partial class AddModelWindow : Window
     {
-        public ProjectPage()
+        public AddModelWindow()
         {
             InitializeComponent();
         }
 
-        private void BackButton_Click(object sender, RoutedEventArgs e)
+        private void UploadImage_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.Show();
+
+        }
+
+        private void BackToModelPageFromCreate_Click(object sender, RoutedEventArgs e)
+        {
+            ModelPage modelPage = new ModelPage();
+            modelPage.Show();
             this.Close();
         }
 
-        private void AddButton_Click(object sender, RoutedEventArgs e)
+        private void SaveAddModel_Click(object sender, RoutedEventArgs e)
         {
-            AddProjectPage  addProjectPage = new AddProjectPage();
-            addProjectPage.Show();
+            ModelPage modelPage = new ModelPage();
+            modelPage.Show();
             this.Close();
         }
     }

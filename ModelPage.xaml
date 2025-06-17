@@ -7,6 +7,17 @@
         mc:Ignorable="d"
         Title="Model" Height="450" Width="800">
     <Grid>
-        
+        <ListView x:Name="ModellenListViewModelPage" HorizontalAlignment="Center" Height="359" VerticalAlignment="Top" Width="800" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,10,0,0">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Naam" Width="250"/>
+                    <GridViewColumn Header="Rol" Width="200"/>
+                    <GridViewColumn Header="Communicatie methode" Width="250"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button x:Name="CreateNewModelFromModelPage" Content="Nieuw model" HorizontalAlignment="Left" Height="50" Margin="0,374,0,0" VerticalAlignment="Top" Width="140" Click="CreateNewModelFromModelPage_Click"/>
+        <Button x:Name="BackToHomePageFromModelsPage" Content="Terug naar menu" HorizontalAlignment="Left" Height="50" Margin="145,374,0,0" VerticalAlignment="Top" Width="140" Click="BackToHomePageFromModelsPage_Click"/>
+
     </Grid>
 </Window>
