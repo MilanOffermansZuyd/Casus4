@@ -26,15 +26,15 @@ namespace Casus4
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            ProjectPage projectPage = new ProjectPage();
-            projectPage.Show();
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
             this.Close();
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            ProjectPage projectPage = new ProjectPage();
-            projectPage.Show();
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
             this.Close();
         }
 
