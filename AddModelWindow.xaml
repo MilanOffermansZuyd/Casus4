@@ -23,8 +23,8 @@
         <TextBox x:Name="TextContactMethodCreateModel" HorizontalAlignment="Left" Height="24" Margin="430,85,0,0" TextWrapping="Wrap" Text="Contact" VerticalAlignment="Top" Width="222"/>
         <TextBox x:Name="DescriptionCreateModel" HorizontalAlignment="Left" Height="110" Margin="326,139,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="428"/>
         <TextBlock HorizontalAlignment="Left" Height="23" Margin="327,123,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="73"><Run Language="nl-nl" Text="Beschrijving"/><LineBreak/><Run Language="nl-nl"/></TextBlock>
-        <Button x:Name="BackToModelPageFromCreate" Content="Back" HorizontalAlignment="Left" Height="27" Margin="726,0,0,0" VerticalAlignment="Top" Width="74"/>
-        <Button x:Name="SaveAddModel" Content="Save" HorizontalAlignment="Left" Height="27" Margin="652,0,0,0" VerticalAlignment="Top" Width="74"/>
+        <Button x:Name="BackToModelPageFromCreate" Content="Back" HorizontalAlignment="Left" Height="27" Margin="726,0,0,0" VerticalAlignment="Top" Width="74" Click="BackToModelPageFromCreate_Click"/>
+        <Button x:Name="SaveAddModel" Content="Save" HorizontalAlignment="Left" Height="27" Margin="652,0,0,0" VerticalAlignment="Top" Width="74" Click="SaveAddModel_Click"/>
 
     </Grid>
 </Window>

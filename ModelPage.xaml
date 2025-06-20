@@ -16,8 +16,8 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button x:Name="CreateNewModelFromModelPage" Content="Nieuw model" HorizontalAlignment="Left" Height="50" Margin="0,374,0,0" VerticalAlignment="Top" Width="140"/>
-        <Button x:Name="BackToHomePageFromModelsPage" Content="Terug naar menu" HorizontalAlignment="Left" Height="50" Margin="145,374,0,0" VerticalAlignment="Top" Width="140"/>
+        <Button x:Name="CreateNewModelFromModelPage" Content="Nieuw model" HorizontalAlignment="Left" Height="50" Margin="0,374,0,0" VerticalAlignment="Top" Width="140" Click="CreateNewModelFromModelPage_Click"/>
+        <Button x:Name="BackToHomePageFromModelsPage" Content="Terug naar menu" HorizontalAlignment="Left" Height="50" Margin="145,374,0,0" VerticalAlignment="Top" Width="140" Click="BackToHomePageFromModelsPage_Click"/>
 
     </Grid>
 </Window>

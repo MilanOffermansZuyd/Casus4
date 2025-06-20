@@ -15,26 +15,26 @@ using System.Windows.Shapes;
 namespace Casus4
 {
     /// <summary>
-    /// Interaction logic for Concept.xaml
+    /// Interaction logic for AddPhotoshoots.xaml
     /// </summary>
-    public partial class ConceptPage : Window
+    public partial class AddPhotoshoots : Window
     {
-        public ConceptPage()
+        public AddPhotoshoots()
         {
             InitializeComponent();
         }
 
-        private void BackToMainMenuFromConceptPage_Click(object sender, RoutedEventArgs e)
+        private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.Show();
+            PhotoshootPage photoshootPage = new PhotoshootPage();
+            photoshootPage.Show();
             this.Close();
         }
 
-        private void CreateConceptFromConceptPage_Click(object sender, RoutedEventArgs e)
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            AddConceptWindow addConceptWindow = new AddConceptWindow();
-            addConceptWindow.Show();
+            PhotoshootPage photoshootPage = new PhotoshootPage();
+            photoshootPage.Show();
             this.Close();
         }
     }

@@ -23,5 +23,24 @@ namespace Casus4
         {
             InitializeComponent();
         }
+
+        private void UploadImage_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BackToModelPageFromCreate_Click(object sender, RoutedEventArgs e)
+        {
+            ModelPage modelPage = new ModelPage();
+            modelPage.Show();
+            this.Close();
+        }
+
+        private void SaveAddModel_Click(object sender, RoutedEventArgs e)
+        {
+            ModelPage modelPage = new ModelPage();
+            modelPage.Show();
+            this.Close();
+        }
     }
 }

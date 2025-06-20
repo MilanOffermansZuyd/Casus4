@@ -8,6 +8,12 @@
     <Compile Update="AddModelWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="AddPhotoshoots.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="AddProjectPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="ConceptPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -23,5 +29,19 @@
     <Compile Update="PhotoshootPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="ProjectDetailsPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="AddPhotoshoots.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="AddProjectPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ProjectDetailsPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
 </Project>

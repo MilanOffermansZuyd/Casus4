@@ -28,11 +28,42 @@ namespace Casus4
         {
             AddConceptWindow addConceptWindow = new AddConceptWindow();
             addConceptWindow.Show();
+            this.Close();
         }
 
-        private void ProjectListViewHomePage_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void PhotoshootButton_Click(object sender, RoutedEventArgs e)
         {
+            PhotoshootPage photoshootPage = new PhotoshootPage();
+            photoshootPage.Show();
+            this.Close();
+        }
 
+        private void ProjectListViewHomePage_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            ProjectDetailsPage projectDetailsPage = new ProjectDetailsPage();
+            projectDetailsPage.Show();
+            this.Close();
+        }
+
+        private void ConceptButton_Click(object sender, RoutedEventArgs e)
+        {
+            ConceptPage conceptPage = new ConceptPage();
+            conceptPage.Show();
+            this.Close();
+        }
+
+        private void ContacsButton_Click(object sender, RoutedEventArgs e)
+        {
+            ModelPage modelPage = new ModelPage(); 
+            modelPage.Show();
+            this.Close();
+        }
+
+        private void NewProjectHomePageButton_Click(object sender, RoutedEventArgs e)
+        {
+            AddProjectPage addProjectPage = new AddProjectPage();
+            addProjectPage.Show();
+            this.Close();   
         }
     }
 }

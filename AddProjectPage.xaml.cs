@@ -15,27 +15,37 @@ using System.Windows.Shapes;
 namespace Casus4
 {
     /// <summary>
-    /// Interaction logic for Concept.xaml
+    /// Interaction logic for AddProjectPage.xaml
     /// </summary>
-    public partial class ConceptPage : Window
+    public partial class AddProjectPage : Window
     {
-        public ConceptPage()
+        public AddProjectPage()
         {
             InitializeComponent();
         }
 
-        private void BackToMainMenuFromConceptPage_Click(object sender, RoutedEventArgs e)
+        private void BackButton_Click(object sender, RoutedEventArgs e)
         {
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
             this.Close();
         }
 
-        private void CreateConceptFromConceptPage_Click(object sender, RoutedEventArgs e)
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            AddConceptWindow addConceptWindow = new AddConceptWindow();
-            addConceptWindow.Show();
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
             this.Close();
+        }
+
+        private void AddConcept_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void RemoveConcept_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

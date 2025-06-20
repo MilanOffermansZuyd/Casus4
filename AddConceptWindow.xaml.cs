@@ -35,13 +35,27 @@ namespace Casus4
                 {
                     var uri = new Uri(openFileDialog.FileName);
                     var bitmap = new BitmapImage(uri);
-                    UserImage.Source = bitmap;
+                    SketchAfbeeldingCreateConcept.Source = bitmap;
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show("Kon afbeelding niet laden: " + ex.Message);
                 }
             }
+        }
+
+        private void BackToConceptPageFromCreate_Click(object sender, RoutedEventArgs e)
+        {
+            ConceptPage conceptPage = new ConceptPage();
+            conceptPage.Show();
+            this.Close();
+        }
+
+        private void SaveAddConcept_Click(object sender, RoutedEventArgs e)
+        {
+            ConceptPage conceptPage = new ConceptPage();
+            conceptPage.Show();
+            this.Close();
         }
     }
 }
