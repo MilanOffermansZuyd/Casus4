@@ -2,6 +2,7 @@
 {
     public class Concept
     {
+        public int Id { get; set; }
         public string Location { get; set; }
         public List<Model>? Models{ get; set; }
         public List<Helper>? Extras{ get; set; }
@@ -9,7 +10,7 @@
         public string Title { get; set; }
         public List<PhotoShoot>? Photoshoots{ get; set; }
 
-        public Concept(string location, List<Model>? models, List<Helper>? extras, List<string>? props, string title, List<PhotoShoot>? photoShoots) 
+        public Concept(int Id, string location, List<Model>? models, List<Helper>? extras, List<string>? props, string title, List<PhotoShoot>? photoShoots) 
         {
             Location = location;
             Models = models ?? null;

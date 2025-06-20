@@ -102,3 +102,5 @@ nunit-*.xml
 /.vs/ProjectEvaluation/casus4.projects.v9.bin
 /.vs/ProjectEvaluation/casus4.strings.v9.bin
 /.vs/Casus4/v17/DocumentLayout.json
+/.vs/VSWorkspaceState.json
+/.vs/Casus4/v17/.suo
