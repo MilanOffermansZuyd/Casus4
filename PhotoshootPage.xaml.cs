@@ -7,9 +7,11 @@ namespace Casus4
     /// </summary>
     public partial class PhotoshootPage : Window
     {
+        DAL dal = new DAL();
         public PhotoshootPage()
         {
             InitializeComponent();
+            PhotoshootDataGrid.ItemsSource = dal.GetAllPhotoshoots();
         }
 
         private void AddPhotoshoot_Click(object sender, RoutedEventArgs e)
