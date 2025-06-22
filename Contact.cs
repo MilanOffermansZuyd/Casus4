@@ -1,16 +1,20 @@
-﻿public abstract class Contact
+﻿using Casus4;
+
+public abstract class Contact
 {
+    public int Id { get; set; }
     public string FirstName { get; set; }
     public string LastName { get; set; }
     public byte[] Picture { get; set; }
-    public int DistanceBetween { get; set; }
+    public Location Location { get; set; }
 
-    public Contact(string firstName, string lastName, byte[] picture, int distanceBetween)
+    public Contact(int? id,string firstName, string lastName, byte[] picture, Location location)
     {
+        Id = id ?? 0;
         FirstName = firstName;
         LastName = lastName;
         Picture = picture;
-        DistanceBetween = distanceBetween;
+        Location = location;
     }
 
 

@@ -10,9 +10,9 @@
         <ListView x:Name="ConceptPageListView" HorizontalAlignment="Center" Height="348" Margin="0,6,0,0" VerticalAlignment="Top" Width="800" d:ItemsSource="{d:SampleData ItemCount=5}">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Title" Width="250"/>
-                    <GridViewColumn Header="Description" Width="300"/>
-                    <GridViewColumn Header="Progress" Width="250"/>
+                    <GridViewColumn Header="Title" Width="250" DisplayMemberBinding="{Binding Title}"/>
+                    <GridViewColumn Header="Locatie" Width="300" DisplayMemberBinding="{Binding Location}"/>
+                    <GridViewColumn Header="Project" Width="250" DisplayMemberBinding="{Binding Project.Title}"/>
                 </GridView>
             </ListView.View>
         </ListView>
