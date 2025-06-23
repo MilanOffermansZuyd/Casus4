@@ -2,15 +2,16 @@
 
 public abstract class Contact
 {
+    public int Id { get; set; }
     public string FirstName { get; set; }
     public string LastName { get; set; }
     public byte[] Picture { get; set; }
     public int DistanceBetween { get; set; }
     public string Location { get; set; }
     public string Rol { get; set; }
-
-    public Contact(string firstName, string lastName, byte[] picture, int distanceBetween, string location, string rol)
+    public Contact(int? id, string firstName, string lastName, byte[] picture, int distanceBetween, string location, string rol)
     {
+        Id = id ?? 0;
         FirstName = firstName;
         LastName = lastName;
         Picture = picture;

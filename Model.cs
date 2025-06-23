@@ -1,10 +1,12 @@
-﻿public class Model : Contact
+﻿using Casus4;
+
+public class Model : Contact
 {
     public bool GetsPayed { get; set; }
     public bool IsModel { get; set; }
 
-    public Model(string firstName, string lastName, byte[] picture, int distanceBetween, bool getsPayed, bool isModel)
-        : base(firstName, lastName, picture, distanceBetween)
+    public Model(int? id,string firstName, string lastName, byte[] picture, Location location, bool getsPayed, bool isModel)
+        : base(id,firstName, lastName, picture, location)
     {
         GetsPayed = getsPayed;
         IsModel = isModel;
