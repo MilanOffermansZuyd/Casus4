@@ -2,23 +2,35 @@
 {
     public class Concept
     {
+        private DAL dal = new DAL();
         public int Id { get; set; }
-        public string Location { get; set; }
+        public string Title { get; set; }
+        public Location Location { get; set; }
+        public byte[] FotoSketch { get; set; }
+        public List<byte[]> FotoResult { get; set; }
         public List<Model>? Models{ get; set; }
         public List<Helper>? Extras{ get; set; }
-        public List<string>? Props { get; set; }
-        public string Title { get; set; }
-        public List<PhotoShoot>? Photoshoots{ get; set; }
+        public Project Project { get; set; }
 
-        public Concept(int Id, string location, List<Model>? models, List<Helper>? extras, List<string>? props, string title, List<PhotoShoot>? photoShoots) 
+        public Concept(int id, string title, Location location, byte[] fotoSketch , List<byte[]> fotoResult, Project project, List<Model>? models, List<Helper>? extras) 
         {
+            Id = id;
             Location = location;
-            Models = models ?? null;
-            Extras = extras ?? null;
-            Props = props ?? null;
+            FotoResult = fotoResult;
+            FotoSketch = fotoSketch;
+            Models = models;
+            Extras = extras;
+            Project = project;
             Title = title;
-            Photoshoots = photoShoots ?? null;
 
+        }
+        public Concept()
+        {
+            
+        }
+        public List<Concept> get()
+        {
+            return dal.GetAllConcepts();
         }
 
         public void Add(Concept concept) 
