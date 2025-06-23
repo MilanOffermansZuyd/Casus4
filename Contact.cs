@@ -1,30 +1,38 @@
-﻿public abstract class Contact
+﻿using Casus4;
+
+public abstract class Contact
 {
     public string FirstName { get; set; }
     public string LastName { get; set; }
     public byte[] Picture { get; set; }
     public int DistanceBetween { get; set; }
+    public string Location { get; set; }
+    public string Rol { get; set; }
 
-    public Contact(string firstName, string lastName, byte[] picture, int distanceBetween)
+    public Contact(string firstName, string lastName, byte[] picture, int distanceBetween, string location, string rol)
     {
         FirstName = firstName;
         LastName = lastName;
         Picture = picture;
         DistanceBetween = distanceBetween;
+        Location = location;
+        Rol = rol;
     }
 
+
+    DAL dal = new DAL();
 
     public virtual void Add(Contact contact)
     {
-        throw new NotImplementedException();
+        dal.AddContact(contact);
     }
     public virtual void Remove(int id)
     {
-        throw new NotImplementedException();
+        dal.DeleteContact(id);
     }
-    public virtual void Edit(Contact contact, int id)
+    public virtual void Edit(Contact contact)
     {
-        throw new NotImplementedException();
+        dal.UpdateContact(contact);
     }
     public virtual void FilterOn(string Filter)
     {
