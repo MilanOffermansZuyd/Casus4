@@ -1,11 +1,12 @@
 ﻿using Microsoft.Data.SqlClient;
+using System;
 
 namespace Casus4
 {
     public class DAL
     {
-        private readonly string connectionString = "Data Source=LAPTOP-T4RLVBV6;Initial Catalog=IdeaToGocCasus4;Integrated Security=True;Trust Server Certificate=True";
-
+        private readonly string connectionString = "Data Source=LAPTOP-T4RLVBV6;Initial Catalog=IdeaToGoCasus4;Integrated Security=True;Trust Server Certificate=True";
+        //CRUD for Photoshoot
         public List<PhotoShoot> GetAllPhotoshoots()
         {
             var photoshoots = new List<PhotoShoot>();
@@ -26,7 +27,7 @@ namespace Casus4
             return photoshoots;
         }
 
-        public void AddPhotoshoot(PhotoShoot photoshoot)
+        public void AddPhotoshoot(string Title, string Subtitle, int Contract, int Location)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             using (SqlCommand command = new SqlCommand("INSERT INTO Photoshoot (Title, Subtitle, FotoSketch, FotoResults, Contract, Location) VALUES (@Title, @Subtitle, @FotoSketch, @FotoResults, @Contract, @Location)", connection))
@@ -67,7 +68,84 @@ namespace Casus4
                 command.ExecuteNonQuery();
             }
         }
+        public void AddPhotoshootModels(int ModelId)
+        {
+            int PhotoShootId = 0;
 
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlCommand command = new SqlCommand("SELECT Id FROM Photoshoot ORDER BY Id DESC LIMIT 1", connection))
+            {
+                connection.Open();
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        PhotoShootId = reader.GetInt32(0);
+                    }
+                }
+            }
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlCommand command = new SqlCommand("INSERT INTO PhotoshootModels (ModelId, PhotoshootId) VALUES (@Model, @Photoshoot)", connection))
+            {
+                command.Parameters.AddWithValue("@Model", ModelId);
+                command.Parameters.AddWithValue("@Photoshoot", PhotoShootId);
+
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+        }
+        public void AddPhotoshootExtras(int VolunteerId)
+        {
+            int PhotoShootId = 0;
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlCommand command = new SqlCommand("SELECT Id FROM Photoshoot ORDER BY Id DESC LIMIT 1", connection))
+            {
+                connection.Open();
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        PhotoShootId = reader.GetInt32(0);
+                    }
+                }
+            }
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlCommand command = new SqlCommand("INSERT INTO PhotoshootExtras (ModelId, PhotoshootId) VALUES (@Model, @Photoshoot)", connection))
+            {
+                command.Parameters.AddWithValue("@Volunteer", VolunteerId);
+                command.Parameters.AddWithValue("@Photoshoot", PhotoShootId);
+
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+        }
+        //CRUD For Contracts
+        public List<Contract> GetAllContracts()
+        {
+            var contracts = new List<Contract>();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlCommand command = new SqlCommand("SELECT * FROM Contract", connection))
+            {
+                connection.Open();
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+
+                       string name = reader.getString(0);
+                       Byte[] foto = reader.getByte(1);
+                       Boolean isSigned = reader.GetBool(2);
+                        contracts.Add(new Contract(name, foto, isSigned, null));
+                    }
+                }
+            }
+
+            return contracts;
+        }
 
         // ----- CRUD METHODS FOR CONCEPT -----
         public List<Concept> GetAllConcepts()
@@ -127,6 +205,34 @@ namespace Casus4
                 command.ExecuteNonQuery();
             }
         }
+        public void AddConceptPhotoshoot(int ConceptId)
+        {
+            int PhotoShootId = 0;
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlCommand command = new SqlCommand("SELECT Id FROM Photoshoot ORDER BY Id DESC LIMIT 1", connection))
+            {
+                connection.Open();
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    { 
+                        PhotoShootId = reader.GetInt32(0);
+                    }
+                }
+            }
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlCommand command = new SqlCommand("INSERT INTO ConceptPhotoshoots (ConceptId, PhotoshootId) VALUES (@Concept, @Photoshoot)", connection))
+            {
+                command.Parameters.AddWithValue("@Concept", ConceptId);
+                command.Parameters.AddWithValue("@Photoshoot", PhotoShootId);
+
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+        }
+
 
         // ----- CRUD METHODS FOR CONTACT -----
         public List<Contact> GetAllContacts()

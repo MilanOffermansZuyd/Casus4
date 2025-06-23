@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,9 +20,26 @@ namespace Casus4
     /// </summary>
     public partial class AddPhotoshoots : Window
     {
+        DAL dal = new DAL();
         public AddPhotoshoots()
         {
             InitializeComponent();
+            PopulateListViews();
+        }
+
+        private void PopulateListViews()
+        {
+            ConceptsListBox.Items.Clear();
+            ContractsListBox.Items.Clear();
+            ModelsListBox.Items.Clear();
+            VolunteersListBox.Items.Clear();
+
+            List<Concept> Concepts = dal.GetAllConcepts();
+            List<Contract> Contracts = dal.GetAllContracts();
+            List<Contact> Models = dal.GetAllContacts();
+            ConceptsListBox.ItemsSource = Concepts;
+            ContractsListBox.ItemsSource = Contracts;
+            ModelsListBox.ItemsSource = Models;
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
@@ -33,6 +51,28 @@ namespace Casus4
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
+            string Title = TitleTextBox.Text;
+            string Description = DescriptionTextBox.Text;
+            int Contract = ContractsListBox.SelectedIndex;
+            int Location = 1;
+
+            dal.AddPhotoshoot(Title, Description, Contract, Location);
+            foreach (var ConceptId in ConceptsListBox.SelectedItems)
+            {
+                dal.AddConceptPhotoshoot((int)ConceptId);
+            }
+            //foreach (var ContractId in ConceptsListBox.SelectedItems)
+            //{
+            //    dal.AddConceptPhotoshoot((int)ContractId);
+            //}
+            foreach (var ModelId in ConceptsListBox.SelectedItems)
+            {
+                dal.AddPhotoshootModels((int)ModelId);
+            }
+            foreach (var VolunteerId in ConceptsListBox.SelectedItems)
+            {
+                dal.AddPhotoshootExtras((int)VolunteerId);
+            }
             PhotoshootPage photoshootPage = new PhotoshootPage();
             photoshootPage.Show();
             this.Close();
