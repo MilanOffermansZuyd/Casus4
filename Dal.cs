@@ -27,15 +27,15 @@ namespace Casus4
             return photoshoots;
         }
 
-        public void AddPhotoshoot(string Title, string Subtitle, int Contract, int Location)
+        public void AddPhotoshoot(PhotoShoot photoShoot)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             using (SqlCommand command = new SqlCommand("INSERT INTO Photoshoot (Title, Subtitle, FotoSketch, FotoResults, Contract, Location) VALUES (@Title, @Subtitle, @FotoSketch, @FotoResults, @Contract, @Location)", connection))
             {
-                command.Parameters.AddWithValue("@Title", photoshoot.Title);
-                command.Parameters.AddWithValue("@Subtitle", photoshoot.SubTitle);
-                command.Parameters.AddWithValue("@Contract", photoshoot.Contracts);
-                command.Parameters.AddWithValue("@Location", photoshoot.Concepts);
+                command.Parameters.AddWithValue("@Title", photoShoot.Title);
+                command.Parameters.AddWithValue("@Subtitle", photoShoot.SubTitle);
+                command.Parameters.AddWithValue("@Contract", photoShoot.Contracts);
+                command.Parameters.AddWithValue("@Location", photoShoot.Concepts);
 
                 connection.Open();
                 command.ExecuteNonQuery();
@@ -136,9 +136,9 @@ namespace Casus4
                     while (reader.Read())
                     {
 
-                       string name = reader.getString(0);
-                       Byte[] foto = reader.getByte(1);
-                       Boolean isSigned = reader.GetBool(2);
+                       string name = reader.GetString(0);
+                       byte[] foto = reader["Picture"] as byte[] ?? null;
+                       bool isSigned = reader.GetBoolean(2);
                         contracts.Add(new Contract(name, foto, isSigned, null));
                     }
                 }
