@@ -1,5 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
 using System;
+using System.Diagnostics;
 
 namespace Casus4
 {
@@ -30,12 +31,12 @@ namespace Casus4
         public void AddPhotoshoot(PhotoShoot photoShoot)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
-            using (SqlCommand command = new SqlCommand("INSERT INTO Photoshoot (Title, Subtitle, FotoSketch, FotoResults, Contract, Location) VALUES (@Title, @Subtitle, @FotoSketch, @FotoResults, @Contract, @Location)", connection))
+            using (SqlCommand command = new SqlCommand("INSERT INTO Photoshoot (Title, Subtitle, Contract, LocationId) VALUES (@Title, @Subtitle, @Contract, @Location)", connection))
             {
                 command.Parameters.AddWithValue("@Title", photoShoot.Title);
                 command.Parameters.AddWithValue("@Subtitle", photoShoot.SubTitle);
-                command.Parameters.AddWithValue("@Contract", photoShoot.Contracts);
-                command.Parameters.AddWithValue("@Location", photoShoot.Concepts);
+                command.Parameters.AddWithValue("@Contract", photoShoot.Contract.Id);
+                command.Parameters.AddWithValue("@Location", 1);
 
                 connection.Open();
                 command.ExecuteNonQuery();
@@ -45,13 +46,13 @@ namespace Casus4
         public void UpdatePhotoshoot(PhotoShoot photoshoot)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
-            using (SqlCommand command = new SqlCommand("UPDATE Photoshoot SET Title = @Title, Subtitle = @Subtitle, FotoSketch = @FotoSketch, FotoResults = @FotoResults, Contract = @Contract, Location = @Location WHERE Id = @Id", connection))
+            using (SqlCommand command = new SqlCommand("UPDATE Photoshoot SET Title = @Title, Subtitle = @Subtitle, Contract = @Contract, LocationId = @Location WHERE Id = @Id", connection))
             {
                 command.Parameters.AddWithValue("@Id", photoshoot.Id);
                 command.Parameters.AddWithValue("@Title", photoshoot.Title);
-                command.Parameters.AddWithValue("@Subtitle", photoshoot.Title);
-                command.Parameters.AddWithValue("@Contract", photoshoot.Contracts);
-                command.Parameters.AddWithValue("@Location", photoshoot.Concepts);
+                command.Parameters.AddWithValue("@Subtitle", photoshoot.SubTitle);
+                command.Parameters.AddWithValue("@Contract", photoshoot.Contract);
+                command.Parameters.AddWithValue("@Location", 1);
 
                 connection.Open();
                 command.ExecuteNonQuery();
@@ -68,28 +69,28 @@ namespace Casus4
                 command.ExecuteNonQuery();
             }
         }
-        public void AddPhotoshootModels(int ModelId)
+        public void AddPhotoshootModel(Model model)
         {
-            int PhotoShootId = 0;
+            int PhotoshootId = 0;
 
             using (SqlConnection connection = new SqlConnection(connectionString))
-            using (SqlCommand command = new SqlCommand("SELECT Id FROM Photoshoot ORDER BY Id DESC LIMIT 1", connection))
+            using (SqlCommand command = new SqlCommand("SELECT TOP 1 Id FROM Photoshoot ORDER BY Id DESC ", connection))
             {
                 connection.Open();
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        PhotoShootId = reader.GetInt32(0);
+                        PhotoshootId = reader.GetInt32(0);
                     }
                 }
             }
 
             using (SqlConnection connection = new SqlConnection(connectionString))
-            using (SqlCommand command = new SqlCommand("INSERT INTO PhotoshootModels (ModelId, PhotoshootId) VALUES (@Model, @Photoshoot)", connection))
+            using (SqlCommand command = new SqlCommand("INSERT INTO PhotoshootModels (ContactId, PhotoshootId) VALUES (@Model, @Photoshoot)", connection))
             {
-                command.Parameters.AddWithValue("@Model", ModelId);
-                command.Parameters.AddWithValue("@Photoshoot", PhotoShootId);
+                command.Parameters.AddWithValue("@Model", model.Id);
+                command.Parameters.AddWithValue("@Photoshoot", PhotoshootId);
 
                 connection.Open();
                 command.ExecuteNonQuery();
@@ -135,16 +136,40 @@ namespace Casus4
                 {
                     while (reader.Read())
                     {
-
-                       string name = reader.GetString(0);
-                       byte[] foto = reader["Picture"] as byte[] ?? null;
-                       bool isSigned = reader.GetBoolean(2);
-                        contracts.Add(new Contract(name, foto, isSigned, null));
+                        int id = reader.GetInt32(0);
+                        string name = reader.GetString(1);
+                        byte[] foto = reader["Picture"] as byte[] ?? null;
+                        bool isSigned = reader.GetBoolean(3);
+                        contracts.Add(new Contract(id, name, foto, isSigned, null));
                     }
                 }
             }
 
             return contracts;
+        }
+        public Contract GetContractByTitle(string Name)
+        {
+            Contract contract = new(0, null, null, false, null);
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlCommand command = new SqlCommand("SELECT * FROM Contract WHERE Name = @Name", connection))
+            {
+                command.Parameters.AddWithValue("@Name", Name);
+
+                connection.Open();
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        contract.Id = reader.GetInt32(0);
+                        contract.Name = reader.GetString(1);
+                        contract.Foto = reader["Picture"] as byte[] ?? null;
+                        contract.IsSigned = reader.GetBoolean(3);
+
+                    }
+                }
+            }
+            return contract;
         }
 
         // ----- CRUD METHODS FOR CONCEPT -----
@@ -160,7 +185,7 @@ namespace Casus4
                 {
                     while (reader.Read())
                     {
-                        concepts.Add(new Concept(reader.GetInt32(0), reader.GetString(1), reader["LocationId"] as Location ?? null, reader["FotoSketch"] as byte[] ?? null, [reader["FotoResults"] as byte[] ?? null], new Project("Test", "test", DateTime.Now, null), null, null));
+                        concepts.Add(new Concept(reader.GetInt32(0), reader.GetString(1), reader["LocationId"] as Location ?? null, reader["PhotoSketch"] as byte[] ?? null, [reader["PhotoResults"] as byte[] ?? null], new Project("Test", "test", DateTime.Now, null), null, null));
                     }
                 }
             }
@@ -168,12 +193,41 @@ namespace Casus4
             return concepts;
         }
 
+        public Concept GetConceptByTitle(string Title)
+        {
+            Concept concept = new();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlCommand command = new SqlCommand("SELECT * FROM Concept WHERE Title = @Title", connection))
+            {
+                command.Parameters.AddWithValue("@Title", Title);
+
+                connection.Open();
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        concept.Id = reader.GetInt32(0);
+                        concept.Title = reader.GetString(1);
+                        concept.Location = reader["LocationId"] as Location ?? null;
+                        concept.FotoSketch = reader["PhotoSketch"] as byte[] ?? null;
+                        concept.FotoResult = [reader["PhotoResults"] as byte[] ?? null];
+                        concept.Project = new Project("Test", "test", DateTime.Now, null);
+                        concept.Models = null;
+                        concept.Extras = null;
+                    }
+                }
+            }
+            return concept;
+        }
+
+
         public void AddConcept(Concept concept)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
-            using (SqlCommand command = new SqlCommand("INSERT INTO Concept (Location, Title) VALUES (@Location, @Title)", connection))
+            using (SqlCommand command = new SqlCommand("INSERT INTO Concept (LocationId, Title) VALUES (@Location, @Title)", connection))
             {
-                command.Parameters.AddWithValue("@Location", concept.Location);
+                command.Parameters.AddWithValue("@Location", concept.Location.Id);
                 command.Parameters.AddWithValue("@Title", concept.Title);
 
                 connection.Open();
@@ -184,10 +238,10 @@ namespace Casus4
         public void UpdateConcept(Concept concept)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
-            using (SqlCommand command = new SqlCommand("UPDATE Concept SET Location = @Location, Title = @Title WHERE Id = @Id", connection))
+            using (SqlCommand command = new SqlCommand("UPDATE Concept SET LocationId = @Location, Title = @Title WHERE Id = @Id", connection))
             {
                 command.Parameters.AddWithValue("@Id", concept.Id);
-                command.Parameters.AddWithValue("@Location", concept.Location);
+                command.Parameters.AddWithValue("@Location", concept.Location.Id);
                 command.Parameters.AddWithValue("@Title", concept.Title);
 
                 connection.Open();
@@ -205,19 +259,19 @@ namespace Casus4
                 command.ExecuteNonQuery();
             }
         }
-        public void AddConceptPhotoshoot(int ConceptId)
+        public void AddConceptPhotoshoot(Concept concept)
         {
-            int PhotoShootId = 0;
+            int PhotoshootId = 0;
 
             using (SqlConnection connection = new SqlConnection(connectionString))
-            using (SqlCommand command = new SqlCommand("SELECT Id FROM Photoshoot ORDER BY Id DESC LIMIT 1", connection))
+            using (SqlCommand command = new SqlCommand("SELECT TOP 1 Id FROM Photoshoot ORDER BY Id DESC ", connection))
             {
                 connection.Open();
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
-                    { 
-                        PhotoShootId = reader.GetInt32(0);
+                    {
+                        PhotoshootId = reader.GetInt32(0);
                     }
                 }
             }
@@ -225,8 +279,8 @@ namespace Casus4
             using (SqlConnection connection = new SqlConnection(connectionString))
             using (SqlCommand command = new SqlCommand("INSERT INTO ConceptPhotoshoots (ConceptId, PhotoshootId) VALUES (@Concept, @Photoshoot)", connection))
             {
-                command.Parameters.AddWithValue("@Concept", ConceptId);
-                command.Parameters.AddWithValue("@Photoshoot", PhotoShootId);
+                command.Parameters.AddWithValue("@Concept", concept.Id);
+                command.Parameters.AddWithValue("@Photoshoot", PhotoshootId);
 
                 connection.Open();
                 command.ExecuteNonQuery();
@@ -247,12 +301,49 @@ namespace Casus4
                 {
                     while (reader.Read())
                     {
-                        contacts.Add(new Helper ( reader.GetInt32(0), reader.GetString(1),reader.GetString(2), (byte[])reader["Picture"], (Location)reader["LocationId"] ));
+                        int Id = reader.GetInt32(0);
+                        string FirstName = reader.GetString(1);
+                        string LastName = reader.GetString(2);
+                        byte[] Picture = (byte[])reader["Picture"];
+                        Location location = GetLocationById(reader.GetInt32(4));
+
+                        contacts.Add(new Helper ( Id, FirstName, LastName, Picture, location));
                     }
                 }
             }
 
             return contacts;
+        }
+
+
+        public Model FindModelByName(string name)
+        {
+            
+            string[] Name = name.Split(' ');
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlCommand command = new SqlCommand("SELECT * FROM Contact WHERE FirstName = @First AND LastName = @Last", connection))
+            {
+                connection.Open();
+                command.Parameters.AddWithValue("@First", Name[0]);
+                command.Parameters.AddWithValue("@Last", Name[1]);
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int Id = reader.GetInt32(0);
+                        string FirstName = reader.GetString(1);
+                        string LastName = reader.GetString(2);
+                        byte[] Picture = (byte[])reader["Picture"];
+                        Location location = GetLocationById(reader.GetInt32(4));
+
+                        Model model = new(Id, FirstName, LastName, Picture, location, false, true);
+
+                        return model;
+                    }
+                }
+            }
+            throw new Exception(nameof(FindModelByName));
         }
 
         public Contact FindContacts(int id)
@@ -317,5 +408,32 @@ namespace Casus4
                 command.ExecuteNonQuery();
             }
         }
+
+        // CRUD for Location
+        public Location GetLocationById(int Id)
+        {
+            Location location = new Location(Id, null, null, null, null, null);
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlCommand command = new SqlCommand("SELECT * FROM Location WHERE Id = @Id", connection))
+            {
+                connection.Open();
+                command.Parameters.AddWithValue("@Id", Id);
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        location.Street = reader.GetString(1);
+                        location.HouseNumber = reader.GetString(2);
+                        location.PostalCode = reader.GetString(3);
+                        location.City = reader.GetString(4);
+                        location.Country = reader.GetString(5);
+                    }
+                    return location;
+                }
+            }
+            throw new Exception(nameof(GetLocationById));
+        }
+
     }
 }
