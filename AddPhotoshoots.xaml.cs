@@ -72,7 +72,8 @@ namespace Casus4
             var concepts = ConceptsListBox;
             var contracts = ContractsListBox;
             var models = ModelsListBox;
-
+            TitleTextBox.Text = photoshoot.Title;
+            DescriptionTextBox.Text = photoshoot.SubTitle;
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
