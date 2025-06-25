@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Diagnostics;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -74,6 +75,16 @@ namespace Casus4
             var models = ModelsListBox;
             TitleTextBox.Text = photoshoot.Title;
             DescriptionTextBox.Text = photoshoot.SubTitle;
+
+            Contract contract = dal.GetContractById(photoshoot.Contract.Id);
+
+            foreach (var item in ContractsListBox.Items)
+            {
+                if(item == contract.Name)
+                {
+                    ContractsListBox.SelectedItems.Add(item);
+                }
+            }
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
@@ -131,6 +142,12 @@ namespace Casus4
                     model = (Model)model.SearchOnName(ModelName);
                     photoshoot.AddPhotoshootModel(model);
                 }
+            }
+
+            if(NewPhotoshoot = false)
+            {
+                photoshoot.Title = Title;
+                photoshoot.SubTitle = Description;
             }
 
             PhotoshootPage photoshootPage = new PhotoshootPage();
