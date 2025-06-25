@@ -1,18 +1,31 @@
 ﻿using Microsoft.Data.SqlClient;
 using System.Windows;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace Casus4
 {
     /// <summary>
-    /// Interaction logic for AddConceptWindow.xaml
+    /// Interaction logic for UpdateConceptWindow.xaml
     /// </summary>
-    public partial class AddConceptWindow : Window
+    public partial class UpdateConceptWindow : Window
     {
-        public AddConceptWindow()
+        private Concept Concept = new Concept();
+        public UpdateConceptWindow(Concept concept)
         {
             InitializeComponent();
             AddProjectToCombox();
+            Concept = concept;
+            LoadDataConcept(Concept);
+        }
+
+        private void LoadDataConcept(Concept concept)
+        {
+            TextUpdateTitle.Text = concept.Title;
+            TextUpdateLocatie.Text = concept.Location?.City ?? "leeg";
+            TextUpdateModel.Text = concept?.Models?.ToString() ?? "leeg";
+            ComboBoxProjectUpdate.SelectedItem = concept.Project.Title;
+
         }
 
         Project project = new Project();
@@ -24,7 +37,7 @@ namespace Casus4
 
             foreach ( var item in projects ) 
             {
-                ComboBoxProject.Items.Add(item.Title);
+                ComboBoxProjectUpdate.Items.Add(item.Title);
             }
         }
 
@@ -39,7 +52,7 @@ namespace Casus4
                 {
                     var uri = new Uri(openFileDialog.FileName);
                     var bitmap = new BitmapImage(uri);
-                    SketchAfbeeldingCreateConcept.Source = bitmap;
+                    SketchAfbeeldingUpdateConcept.Source = bitmap;
                 }
                 catch (Exception ex)
                 {
@@ -48,26 +61,26 @@ namespace Casus4
             }
         }
 
-        private void BackToConceptPageFromCreate_Click(object sender, RoutedEventArgs e)
+        private void BackToConceptPageFromUpdate_Click(object sender, RoutedEventArgs e)
         {
             ConceptPage conceptPage = new ConceptPage();
             conceptPage.Show();
             this.Close();
         }
 
-        private void SaveAddConcept_Click(object sender, RoutedEventArgs e)
+        private void UpdateAddConcept_Click(object sender, RoutedEventArgs e)
         {
             var projects = project.Get();
             foreach (var item in projects)
             {
-                if (ComboBoxProject.SelectedItem.ToString() == item.Title)
+                if (ComboBoxProjectUpdate.SelectedItem.ToString() == item.Title)
                 {
-                    var title = TextTitle.Text;
+                    var title = TextUpdateTitle.Text;
 
 
-                    Concept concept = new Concept(null, title, null, null, null, item, null, null);
+                    Concept concept = new Concept(Concept.Id, title, null, null, null, item, null, null);
 
-                    concept.Add(concept);
+                    concept.Edit(concept);
 
                     ConceptPage conceptPage = new ConceptPage();
                     conceptPage.Show();

@@ -5,7 +5,29 @@ namespace Casus4
 {
     public class DAL
     {
-        private readonly string connectionString = "Data Source=LAPTOP-T4RLVBV6;Initial Catalog=IdeaToGoCasus4;Integrated Security=True;Trust Server Certificate=True";
+        private readonly string connectionString = "Data Source=LAPTOP-T4RLVBV6;Initial Catalog=IdeaToGocCasus4;Integrated Security=True;Trust Server Certificate=True";
+        
+        //CRUD for project
+        public List<Project> GetAllProjects() 
+        {
+            var projects = new List<Project>();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlCommand command = new SqlCommand("SELECT * FROM Project", connection))
+            {
+                connection.Open();
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        projects.Add(new Project(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), Convert.ToDateTime( reader.GetString(3)), null));
+                    }
+                }
+            }
+
+            return projects;
+        }
+        
         //CRUD for Photoshoot
         public List<PhotoShoot> GetAllPhotoshoots()
         {
@@ -160,7 +182,7 @@ namespace Casus4
                 {
                     while (reader.Read())
                     {
-                        concepts.Add(new Concept(reader.GetInt32(0), reader.GetString(1), reader["LocationId"] as Location ?? null, reader["FotoSketch"] as byte[] ?? null, [reader["FotoResults"] as byte[] ?? null], new Project("Test", "test", DateTime.Now, null), null, null));
+                        concepts.Add(new Concept(reader.GetInt32(0), reader.GetString(1), reader["LocationId"] as Location ?? null, reader["FotoSketch"] as byte[] ?? null, [reader["FotoResults"] as byte[] ?? null], new Project(0,"Test", "test", DateTime.Now, null), null, null));
                     }
                 }
             }
@@ -168,27 +190,32 @@ namespace Casus4
             return concepts;
         }
 
-        public void AddConcept(Concept concept)
+        public Concept AddConcept(Concept concept)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
-            using (SqlCommand command = new SqlCommand("INSERT INTO Concept (Location, Title) VALUES (@Location, @Title)", connection))
+            using (SqlCommand command = new SqlCommand("INSERT INTO Concept (Title, LocationId, ProjectId) VALUES (@Title, @LocationId, @ProjectId )",connection))
             {
-                command.Parameters.AddWithValue("@Location", concept.Location);
                 command.Parameters.AddWithValue("@Title", concept.Title);
+                _ = concept.Location == null ? command.Parameters.AddWithValue("@LocationId", 1) : command.Parameters.AddWithValue("@LocationId", concept.Location.Id);
+                command.Parameters.AddWithValue("@ProjectId", concept.Project.Id);
+
 
                 connection.Open();
                 command.ExecuteNonQuery();
+                    
+                return new Concept();
             }
         }
 
         public void UpdateConcept(Concept concept)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
-            using (SqlCommand command = new SqlCommand("UPDATE Concept SET Location = @Location, Title = @Title WHERE Id = @Id", connection))
+            using (SqlCommand command = new SqlCommand("UPDATE Concept SET LocationId = @LocationId, Title = @Title , ProjectId = @ProjectId WHERE Id = @Id", connection))
             {
                 command.Parameters.AddWithValue("@Id", concept.Id);
-                command.Parameters.AddWithValue("@Location", concept.Location);
                 command.Parameters.AddWithValue("@Title", concept.Title);
+                _ = concept.Location == null ? command.Parameters.AddWithValue("@LocationId", 1) : command.Parameters.AddWithValue("@LocationId", concept.Location.Id);
+                command.Parameters.AddWithValue("@ProjectId", concept.Project.Id);
 
                 connection.Open();
                 command.ExecuteNonQuery();
@@ -316,6 +343,11 @@ namespace Casus4
                 connection.Open();
                 command.ExecuteNonQuery();
             }
+        }
+
+        internal void UpdateConcept()
+        {
+            throw new NotImplementedException();
         }
     }
 }

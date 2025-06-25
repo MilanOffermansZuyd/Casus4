@@ -12,9 +12,9 @@
         public List<Helper>? Extras{ get; set; }
         public Project Project { get; set; }
 
-        public Concept(int id, string title, Location location, byte[] fotoSketch , List<byte[]> fotoResult, Project project, List<Model>? models, List<Helper>? extras) 
+        public Concept(int? id, string title, Location location, byte[] fotoSketch , List<byte[]> fotoResult, Project project, List<Model>? models, List<Helper>? extras) 
         {
-            Id = id;
+            Id = id ?? 0;
             Location = location;
             FotoResult = fotoResult;
             FotoSketch = fotoSketch;
@@ -33,17 +33,17 @@
             return dal.GetAllConcepts();
         }
 
-        public void Add(Concept concept) 
+        public Concept Add(Concept concept) 
         {
-            throw new NotImplementedException();    
+            return dal.AddConcept(concept);
         }
         public void Remove(int Id)
         {
             throw new NotImplementedException();
         }
-        public void Edit(Concept concept, int id)
+        public void Edit(Concept concept)
         {
-            throw new NotImplementedException();
+            dal.UpdateConcept(concept);
         }
         public void FilterOn(string Filter)
         {

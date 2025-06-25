@@ -56,7 +56,8 @@ namespace Casus4
             int Contract = ContractsListBox.SelectedIndex;
             int Location = 1;
 
-            dal.AddPhotoshoot(Title, Description, Contract, Location);
+            var photoschoot = new PhotoShoot(0, Title, Description, null, null);
+            dal.AddPhotoshoot(photoschoot);
             foreach (var ConceptId in ConceptsListBox.SelectedItems)
             {
                 dal.AddConceptPhotoshoot((int)ConceptId);
