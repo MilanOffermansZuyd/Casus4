@@ -34,9 +34,9 @@ public class PhotoShoot
     {
         dal.DeletePhotoshoot(id);
     }
-    public void Edit(PhotoShoot photoshoot, int id)
+    public void Edit(PhotoShoot photoshoot)
     {
-        throw new NotImplementedException();
+        dal.UpdatePhotoshoot(photoshoot);
     }
     public void FilterOn(string Filter)
     {

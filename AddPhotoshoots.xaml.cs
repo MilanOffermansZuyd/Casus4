@@ -133,6 +133,12 @@ namespace Casus4
                 }
             }
 
+            if(NewPhotoshoot = false)
+            {
+                photoshoot.Title = Title;
+                photoshoot.SubTitle = Description;
+            }
+
             PhotoshootPage photoshootPage = new PhotoshootPage();
             photoshootPage.Show();
             this.Close();
