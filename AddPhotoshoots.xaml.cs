@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,9 +23,9 @@ namespace Casus4
     {
         DAL dal = new DAL();
         bool NewPhotoshoot = false;
-        int PhotoshootId = 0;
+        PhotoShoot photoshoot = null;
 
-        public AddPhotoshoots(int State, int Id)
+        public AddPhotoshoots(int State, PhotoShoot SelectedPhotoshoot)
         {
             InitializeComponent();
             PopulateListViews();
@@ -35,7 +36,8 @@ namespace Casus4
             else if(State == 1)
             {
                 NewPhotoshoot = false;
-                PhotoshootId = Id;
+                photoshoot = SelectedPhotoshoot;
+                PreSelectItems();
             }
         }
 
@@ -63,6 +65,14 @@ namespace Casus4
             {
                 ModelsListBox.Items.Add(model.FirstName + " " + model.LastName);
             }
+        }
+
+        private void PreSelectItems()
+        {
+            var concepts = ConceptsListBox;
+            var contracts = ContractsListBox;
+            var models = ModelsListBox;
+
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)

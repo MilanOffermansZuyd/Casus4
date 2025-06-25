@@ -6,7 +6,7 @@ namespace Casus4
 {
     public class DAL
     {
-        private readonly string connectionString = "Data Source=LAPTOP-T4RLVBV6;Initial Catalog=IdeaToGoCasus4;Integrated Security=True;Trust Server Certificate=True";
+        private readonly string connectionString = "Data Source=asuskyle;Initial Catalog=IdeaToGoCasus4;Integrated Security=True;Encrypt=True;Trust Server Certificate=True";
         //CRUD for Photoshoot
         public List<PhotoShoot> GetAllPhotoshoots()
         {
@@ -27,6 +27,30 @@ namespace Casus4
 
             return photoshoots;
         }
+
+        public PhotoShoot GetPhotoshootByName(string name)
+        {
+            PhotoShoot photoshoot = new PhotoShoot(0, null,null,null,null);
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlCommand command = new SqlCommand("SELECT * FROM Photoshoot WHERE Title = @Title", connection))
+            {
+                command.Parameters.AddWithValue("@Title", name);
+                connection.Open();
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        photoshoot.Id = reader.GetInt32(0);
+                        photoshoot.Title = reader.GetString(1);
+                        photoshoot.SubTitle = reader.GetString(2);
+                    }
+                }
+                return photoshoot;
+            }
+        }
+
+
 
         public void AddPhotoshoot(PhotoShoot photoShoot)
         {
