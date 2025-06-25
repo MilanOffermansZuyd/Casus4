@@ -46,5 +46,4 @@ public class PhotoShoot
     {
         throw new NotImplementedException();
     }
-
 }
