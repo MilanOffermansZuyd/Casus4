@@ -16,7 +16,7 @@ namespace Casus4
 
         private void AddPhotoshoot_Click(object sender, RoutedEventArgs e)
         {
-            AddPhotoshoots addPhotoshoots = new AddPhotoshoots();
+            AddPhotoshoots addPhotoshoots = new AddPhotoshoots(0, 0);
             addPhotoshoots.Show();
             this.Close();
         }
@@ -25,6 +25,14 @@ namespace Casus4
         {
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
+            this.Close();
+        }
+
+        private void PhotoshootDataGrid_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+
+            AddPhotoshoots addPhotoshoots = new AddPhotoshoots(1, 0);
+            addPhotoshoots.Show();
             this.Close();
         }
     }
