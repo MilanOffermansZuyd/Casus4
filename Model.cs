@@ -4,13 +4,10 @@ public class Model : Contact
 {
     DAL dal = new DAL();
     public bool GetsPayed { get; set; }
-    public bool IsModel { get; set; }
 
-    public Model(int? id,string firstName, string lastName, byte[] picture, Location location, bool getsPayed, bool isModel)
-        : base(id,firstName, lastName, picture, location)
+    public Model(int? id, string firstName, string lastName, byte[] picture, Location location, string description, string extraInformation, bool naked)
+            : base(id, firstName, lastName, picture, 0, location, description, extraInformation, naked)
     {
-        GetsPayed = getsPayed;
-        IsModel = isModel;
     }
     public void Add(Model model)
     {

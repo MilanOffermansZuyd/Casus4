@@ -48,7 +48,7 @@ namespace Casus4
 
             List<Concept> Concepts = dal.GetAllConcepts();
             List<Contract> Contracts = dal.GetAllContracts();
-            List<Contact> Models = dal.GetAllContacts();
+            List<Contact> Models = dal.GetAllModels();
 
             foreach (Concept concept  in Concepts)
             {
@@ -115,7 +115,7 @@ namespace Casus4
 
                 foreach (string ModelName in ModelsListBox.SelectedItems)
                 {
-                    Model model = new(null, null, null, null, null, false, true);
+                    Model model = new(null, null, null, null, null, null, null, false);
 
                     model = (Model)model.SearchOnName(ModelName);
                     photoshoot.AddPhotoshootModel(model);

@@ -7,6 +7,7 @@ namespace Casus4
 {
     public class DAL
     {
+        DAL dal = new DAL();
         private readonly string connectionString = "Data Source=LAPTOP-T4RLVBV6;Initial Catalog=IdeaToGoCasus4;Integrated Security=True;Trust Server Certificate=True";
         //CRUD for Photoshoot
         public List<PhotoShoot> GetAllPhotoshoots()
@@ -290,7 +291,7 @@ namespace Casus4
 
 
         // ----- CRUD METHODS FOR CONTACT -----
-        public List<Contact> GetAllContacts()
+        public List<Contact> GetAllModels()
         {
             var contacts = new List<Contact>();
 
@@ -302,11 +303,19 @@ namespace Casus4
                 {
                     while (reader.Read())
                     {
-                        contacts.Add(new Contact(System.Convert.ToInt32(reader["Id"]), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), reader.GetString(5), reader.GetString(6), reader.GetBoolean(7), reader.GetString(8)));
+                        int? id = reader["Id"] as int?;
+                        string firstName = reader["FirstName"].ToString();
+                        string lastName = reader["LastName"].ToString();
+                        byte[] picture = reader["Picture"] as byte[];
+                        int locationId = (int)reader["LocationId"];
+                        Location location = dal.GetLocationById(locationId);
+                        string description = reader["Description"].ToString();
+                        string extraInformation = reader["ExtraInformation"].ToString();
+                        bool naked = (bool)reader["Naked"];
+                        contacts.Add(new Model(id, firstName, lastName, picture, location, description, extraInformation, naked));
                     }
                 }
             }
-
             return contacts;
         }
 
@@ -331,8 +340,10 @@ namespace Casus4
                         string LastName = reader.GetString(2);
                         byte[] Picture = (byte[])reader["Picture"];
                         Location location = GetLocationById(reader.GetInt32(4));
+                        string description = reader.GetString(5);
+                        string extraInformation = reader.GetString(6);
 
-                        Model model = new(Id, FirstName, LastName, Picture, location, false, true);
+                        Model model = new(Id, FirstName, LastName, Picture, location, description, extraInformation,false);
 
                         return model;
                     }
@@ -353,7 +364,7 @@ namespace Casus4
                 {
                     while (reader.Read())
                     {
-                        return new Helper(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), (byte[])reader["Picture"], (Location)reader["LocationId"]);
+                        return new Helper(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), (byte[])reader["Picture"], (Location)reader["Location"], reader.GetString(3), reader.GetString(4), (bool)reader["Naked"]);
                     }
                 }
             }
@@ -365,7 +376,7 @@ namespace Casus4
         public void AddContact(Contact contact)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
-            using (SqlCommand command = new SqlCommand("INSERT INTO Contact (FirstName, LastName, Picture, Location, Description, ExtraInformation, Naked, Rol) VALUES (@FirstName, @LastName, @Picture, @Location, @Description, @ExtraInformation, @Naked, @Rol)", connection))
+            using (SqlCommand command = new SqlCommand("INSERT INTO Contact (FirstName, LastName, Picture, Location, Description, ExtraInformation, Naked) VALUES (@FirstName, @LastName, @Picture, @Location, @Description, @ExtraInformation, @Naked)", connection))
             {
                 command.Parameters.AddWithValue("@FirstName", contact.FirstName);
                 command.Parameters.AddWithValue("@LastName", contact.LastName);
@@ -374,7 +385,6 @@ namespace Casus4
                 command.Parameters.AddWithValue("@Description", contact.Description);
                 command.Parameters.AddWithValue("@ExtraInformation", contact.ExtraInformation);
                 command.Parameters.AddWithValue("@Naked", contact.Naked);
-                command.Parameters.AddWithValue("@Rol", contact.Rol);
 
                 connection.Open();
                 command.ExecuteNonQuery();
@@ -384,17 +394,16 @@ namespace Casus4
         public void UpdateContact(Contact contact)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
-            using (SqlCommand command = new SqlCommand("UPDATE Contact SET FirstName = @FirstName, LastName = @LastName, Picture = @Picture, Location = @Location, Description = @Description, ExtraInformation = @ExtraInformation, Naked = @Naked, Rol = @Rol, WHERE Id = @Id", connection))
+            using (SqlCommand command = new SqlCommand("UPDATE Contact SET FirstName = @FirstName, LastName = @LastName, Picture = @Picture, Location = @Location, Description = @Description, ExtraInformation = @ExtraInformation, Naked = @Naked, WHERE Id = @Id", connection))
             {
                 command.Parameters.AddWithValue("@Id", contact.Id);
                 command.Parameters.AddWithValue("@FirstName", contact.FirstName);
                 command.Parameters.AddWithValue("@LastName", contact.LastName);
                 command.Parameters.AddWithValue("@Picture", contact.Picture);
                 command.Parameters.AddWithValue("@Location", contact.Location);
-                command.Parameters.AddWithValue("@Description", DescriptionCreateModel.txt);
+                command.Parameters.AddWithValue("@Description", contact.Description);
                 command.Parameters.AddWithValue("@ExtraInformation", contact.ExtraInformation);
                 command.Parameters.AddWithValue("@Naked", contact.Naked);
-                command.Parameters.AddWithValue("@Rol", contact.Rol);
 
                 connection.Open();
                 command.ExecuteNonQuery();
@@ -437,6 +446,5 @@ namespace Casus4
             }
             throw new Exception(nameof(GetLocationById));
         }
-
     }
 }
