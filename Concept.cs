@@ -33,9 +33,9 @@
             return dal.GetAllConcepts();
         }
 
-        public Concept Add(Concept concept) 
+        public void Add(Concept concept) 
         {
-            return dal.AddConcept(concept);
+            dal.AddConcept(concept);
         }
         public void Remove(int Id)
         {

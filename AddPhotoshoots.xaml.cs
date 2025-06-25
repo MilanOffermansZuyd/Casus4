@@ -125,7 +125,7 @@ namespace Casus4
 
                 foreach (string ModelName in ModelsListBox.SelectedItems)
                 {
-                    Model model = new(null, null, null, null, null, false, true);
+                    Model model = new(null,"", "", null, 0, null, null,null,null, true, false);
 
                     model = (Model)model.SearchOnName(ModelName);
                     photoshoot.AddPhotoshootModel(model);

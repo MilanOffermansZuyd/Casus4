@@ -9,9 +9,9 @@
         public DateTime Deadline { get; set; }
         public List<Concept>? Concepts { get; set; }
 
-        public Project (int id, string title, string subTitle, DateTime deadline, List<Concept>? concepts) 
+        public Project (int? id, string title, string subTitle, DateTime deadline, List<Concept>? concepts) 
         {
-            Id = id;
+            Id = id ?? 0;
             Title = title;
             SubTitle = subTitle;    
             Deadline = deadline;

@@ -1,16 +1,15 @@
 ﻿using Casus4;
+using static Azure.Core.HttpHeader;
 
 public class Model : Contact
 {
     DAL dal = new DAL();
     public bool GetsPayed { get; set; }
-    public bool IsModel { get; set; }
 
-    public Model(int? id,string firstName, string lastName, byte[] picture, Location location, bool getsPayed, bool isModel)
-        : base(id,firstName, lastName, picture, location)
+    public Model(int? id, string firstName, string lastName, byte[] picture, int distanceBetween, Location location, string rol, string description, string extrainformation, bool naked, bool getsPayed)
+        : base(id, firstName, lastName, picture, distanceBetween, location, rol, description, extrainformation, naked)
     {
         GetsPayed = getsPayed;
-        IsModel = isModel;
     }
     public void Add(Model model)
     {
@@ -32,8 +31,8 @@ public class Model : Contact
     {
         throw new NotImplementedException();
     }
-    public override Model SearchOnName(string searchCriteria)
-    {
-        return dal.FindModelByName(searchCriteria);
-    }
+    //public override Model SearchOnName(string searchCriteria)
+    //{
+    //    return dal.FindModelByName(searchCriteria);
+    //}
 }
