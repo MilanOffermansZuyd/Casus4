@@ -1,6 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
 using System;
 using System.Diagnostics;
+using Microsoft.Identity.Client;
 
 namespace Casus4
 {
@@ -301,13 +302,7 @@ namespace Casus4
                 {
                     while (reader.Read())
                     {
-                        int Id = reader.GetInt32(0);
-                        string FirstName = reader.GetString(1);
-                        string LastName = reader.GetString(2);
-                        byte[] Picture = (byte[])reader["Picture"];
-                        Location location = GetLocationById(reader.GetInt32(4));
-
-                        contacts.Add(new Helper ( Id, FirstName, LastName, Picture, location));
+                        contacts.Add(new Contact(System.Convert.ToInt32(reader["Id"]), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), reader.GetString(5), reader.GetString(6), reader.GetBoolean(7), reader.GetString(8)));
                     }
                 }
             }
@@ -370,12 +365,16 @@ namespace Casus4
         public void AddContact(Contact contact)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
-            using (SqlCommand command = new SqlCommand("INSERT INTO Contact (FirstName, LastName, Picture, Location) VALUES (@FirstName, @LastName, @Picture, @Location)", connection))
+            using (SqlCommand command = new SqlCommand("INSERT INTO Contact (FirstName, LastName, Picture, Location, Description, ExtraInformation, Naked, Rol) VALUES (@FirstName, @LastName, @Picture, @Location, @Description, @ExtraInformation, @Naked, @Rol)", connection))
             {
                 command.Parameters.AddWithValue("@FirstName", contact.FirstName);
                 command.Parameters.AddWithValue("@LastName", contact.LastName);
                 command.Parameters.AddWithValue("@Picture", contact.Picture);
-                command.Parameters.AddWithValue("@Location", contact.Location.Id);
+                command.Parameters.AddWithValue("@Location", contact.Location);
+                command.Parameters.AddWithValue("@Description", contact.Description);
+                command.Parameters.AddWithValue("@ExtraInformation", contact.ExtraInformation);
+                command.Parameters.AddWithValue("@Naked", contact.Naked);
+                command.Parameters.AddWithValue("@Rol", contact.Rol);
 
                 connection.Open();
                 command.ExecuteNonQuery();
@@ -385,13 +384,17 @@ namespace Casus4
         public void UpdateContact(Contact contact)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
-            using (SqlCommand command = new SqlCommand("UPDATE Contact SET FirstName = @FirstName, LastName = @LastName, Picture = @Picture, Location = @Location WHERE Id = @Id", connection))
+            using (SqlCommand command = new SqlCommand("UPDATE Contact SET FirstName = @FirstName, LastName = @LastName, Picture = @Picture, Location = @Location, Description = @Description, ExtraInformation = @ExtraInformation, Naked = @Naked, Rol = @Rol, WHERE Id = @Id", connection))
             {
                 command.Parameters.AddWithValue("@Id", contact.Id);
                 command.Parameters.AddWithValue("@FirstName", contact.FirstName);
                 command.Parameters.AddWithValue("@LastName", contact.LastName);
                 command.Parameters.AddWithValue("@Picture", contact.Picture);
-                command.Parameters.AddWithValue("@Location", contact.Location.Id);
+                command.Parameters.AddWithValue("@Location", contact.Location);
+                command.Parameters.AddWithValue("@Description", DescriptionCreateModel.txt);
+                command.Parameters.AddWithValue("@ExtraInformation", contact.ExtraInformation);
+                command.Parameters.AddWithValue("@Naked", contact.Naked);
+                command.Parameters.AddWithValue("@Rol", contact.Rol);
 
                 connection.Open();
                 command.ExecuteNonQuery();
