@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,10 +22,23 @@ namespace Casus4
     public partial class AddPhotoshoots : Window
     {
         DAL dal = new DAL();
-        public AddPhotoshoots()
+        bool NewPhotoshoot = false;
+        PhotoShoot photoshoot = null;
+
+        public AddPhotoshoots(int State, PhotoShoot SelectedPhotoshoot)
         {
             InitializeComponent();
             PopulateListViews();
+            if (State == 0)
+            {
+                NewPhotoshoot = true;
+            }
+            else if(State == 1)
+            {
+                NewPhotoshoot = false;
+                photoshoot = SelectedPhotoshoot;
+                PreSelectItems();
+            }
         }
 
         private void PopulateListViews()
@@ -37,9 +51,28 @@ namespace Casus4
             List<Concept> Concepts = dal.GetAllConcepts();
             List<Contract> Contracts = dal.GetAllContracts();
             List<Contact> Models = dal.GetAllContacts();
-            ConceptsListBox.ItemsSource = Concepts;
-            ContractsListBox.ItemsSource = Contracts;
-            ModelsListBox.ItemsSource = Models;
+
+            foreach (Concept concept  in Concepts)
+            {
+                ConceptsListBox.Items.Add(concept.Title);
+            }
+
+            foreach (Contract contract in Contracts)
+            {
+                ContractsListBox.Items.Add(contract.Name);
+            }
+            foreach (Contact model in Models)
+            {
+                ModelsListBox.Items.Add(model.FirstName + " " + model.LastName);
+            }
+        }
+
+        private void PreSelectItems()
+        {
+            var concepts = ConceptsListBox;
+            var contracts = ContractsListBox;
+            var models = ModelsListBox;
+
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
@@ -51,29 +84,54 @@ namespace Casus4
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
+            //setup data
             string Title = TitleTextBox.Text;
             string Description = DescriptionTextBox.Text;
-            int Contract = ContractsListBox.SelectedIndex;
+            Contract contract = null;
+            if(ContractsListBox.SelectedItem != null)
+            {
+                contract = dal.GetContractByTitle(ContractsListBox.SelectedItem.ToString());
+            }
+            else
+            {
+                contract = new Contract(0, null,null,false,null);
+            }
+            //todo: get actual location id
             int Location = 1;
 
-            var photoschoot = new PhotoShoot(0, Title, Description, null, null);
-            dal.AddPhotoshoot(photoschoot);
-            foreach (var ConceptId in ConceptsListBox.SelectedItems)
+            //grab concepts
+            List<Concept> Concepts = new List<Concept>();
+            if(ConceptsListBox.SelectedItems != null)
             {
-                dal.AddConceptPhotoshoot((int)ConceptId);
+                foreach (string ConceptTitle in ConceptsListBox.SelectedItems)
+                {
+                    Concept concept = dal.GetConceptByTitle(ConceptTitle);
+                    Concepts.Add(concept);
+                }
             }
-            //foreach (var ContractId in ConceptsListBox.SelectedItems)
-            //{
-            //    dal.AddConceptPhotoshoot((int)ContractId);
-            //}
-            foreach (var ModelId in ConceptsListBox.SelectedItems)
+            //setup Photoshoot
+            PhotoShoot photoshoot = new PhotoShoot(0, Title, Description, Concepts, contract);
+
+
+            if (NewPhotoshoot = true)
             {
-                dal.AddPhotoshootModels((int)ModelId);
+                //add Photoshoot
+                photoshoot.Add(photoshoot);
+                //add concept-photshoot link to database
+                foreach (Concept concept in photoshoot.Concepts)
+                {
+                    photoshoot.AddConceptPhotoshoot(concept);
+                }
+
+                foreach (string ModelName in ModelsListBox.SelectedItems)
+                {
+                    Model model = new(null, null, null, null, null, false, true);
+
+                    model = (Model)model.SearchOnName(ModelName);
+                    photoshoot.AddPhotoshootModel(model);
+                }
             }
-            foreach (var VolunteerId in ConceptsListBox.SelectedItems)
-            {
-                dal.AddPhotoshootExtras((int)VolunteerId);
-            }
+
             PhotoshootPage photoshootPage = new PhotoshootPage();
             photoshootPage.Show();
             this.Close();
