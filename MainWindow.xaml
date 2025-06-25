@@ -10,9 +10,9 @@
         <ListView x:Name="ProjectListViewHomePage" HorizontalAlignment="Left" Height="241" VerticalAlignment="Top" Width="513" d:ItemsSource="{d:SampleData ItemCount=5}" MouseDoubleClick="ProjectListViewHomePage_MouseDoubleClick" Margin="188,0,0,0">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Project title" Width="160"/>
-                    <GridViewColumn Header="Deadline" Width="160"/>
-                    <GridViewColumn Header="Progress" Width="160"/>
+                    <GridViewColumn Header="Project title" Width="160" DisplayMemberBinding="{Binding Title}" />
+                    <GridViewColumn Header="Deadline" Width="160" DisplayMemberBinding="{Binding Deadline}" />
+                    <GridViewColumn Header="Progress" Width="160" DisplayMemberBinding="{Binding Progress}" />
                 </GridView>
             </ListView.View>
         </ListView>

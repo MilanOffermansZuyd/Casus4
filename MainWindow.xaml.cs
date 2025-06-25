@@ -22,6 +22,14 @@ namespace Casus4
         public MainWindow()
         {
             InitializeComponent();
+            getAllProject();
+        }
+
+        private void getAllProject()
+        {
+            Project project= new Project();
+
+            ProjectListViewHomePage.ItemsSource = project.Get();
         }
 
         private void ConceptButtonHomePage_Click(object sender, RoutedEventArgs e)

@@ -33,5 +33,16 @@ namespace Casus4
             addConceptWindow.Show();
             this.Close();
         }
+
+        private void ConceptPageListView_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (ConceptPageListView.SelectedItem is Concept concept)
+            {
+                UpdateConceptWindow updateConceptWindow = new UpdateConceptWindow(concept);
+
+                updateConceptWindow.Show();
+                this.Close();
+            }
+        }
     }
 }

@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Concept" Height="450" Width="800">
     <Grid>
-        <ListView x:Name="ConceptPageListView" HorizontalAlignment="Center" Height="348" Margin="0,6,0,0" VerticalAlignment="Top" Width="800" d:ItemsSource="{d:SampleData ItemCount=5}">
+        <ListView x:Name="ConceptPageListView" HorizontalAlignment="Center" Height="348" Margin="0,6,0,0" VerticalAlignment="Top" Width="800" d:ItemsSource="{d:SampleData ItemCount=5}" MouseDoubleClick="ConceptPageListView_MouseDoubleClick">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Title" Width="250" DisplayMemberBinding="{Binding Title}"/>

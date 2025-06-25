@@ -8,12 +8,12 @@ public abstract class Contact
     public string LastName { get; set; }
     public byte[] Picture { get; set; }
     public int DistanceBetween { get; set; }
-    public string Location { get; set; }
+    public Location Location { get; set; }
     public string Rol { get; set; }
     public string Description { get; set; }
     public string ExtraInformation { get; set; }
     public bool Naked { get; set; }
-    public Contact(int? id, string firstName, string lastName, byte[] picture, int distanceBetween, string location, string rol, string description, string extrainformation, bool naked)
+    public Contact(int? id, string firstName, string lastName, byte[] picture, int distanceBetween, Location location, string rol, string description, string extrainformation, bool naked)
     {
         Id = id ?? 0;
         FirstName = firstName;

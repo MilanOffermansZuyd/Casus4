@@ -34,6 +34,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="UpdateConceptWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="AddPhotoshoots.xaml">
       <SubType>Designer</SubType>
     </Page>
