@@ -2,6 +2,7 @@
 
 public class Model : Contact
 {
+    DAL dal = new DAL();
     public bool GetsPayed { get; set; }
     public bool IsModel { get; set; }
 
@@ -30,5 +31,9 @@ public class Model : Contact
     public override void SearchOn(string searchCriteria)
     {
         throw new NotImplementedException();
+    }
+    public override Model SearchOnName(string searchCriteria)
+    {
+        return dal.FindModelByName(searchCriteria);
     }
 }

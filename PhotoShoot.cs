@@ -2,29 +2,39 @@
 
 public class PhotoShoot 
 {
+    DAL dal = new DAL();
     public int Id { get; set; }
     public string Title { get; set; }
     public string SubTitle { get; set; }
     public List<Concept> Concepts { get; set; }
-    public List<Contract> Contracts { get; set; }
+    public Contract Contract { get; set; }
 
-    public PhotoShoot(int id,string title, string subTitle, List<Concept> concepts, List<Contract> contracts)
+    public PhotoShoot(int id,string title, string subTitle, List<Concept> concepts, Contract contract)
     {
         Id = id;
         Title = title;
         SubTitle = subTitle;
         Concepts = concepts;
-        Contracts = contracts;
+        Contract = contract;
     }
-    public void Add(PhotoShoot fotoShoot)
+    public void Add(PhotoShoot photoshoot)
     {
-        throw new NotImplementedException();
+        dal.AddPhotoshoot(photoshoot);
     }
+    public void AddConceptPhotoshoot(Concept concept)
+    {
+        dal.AddConceptPhotoshoot(concept);
+    }
+    public void AddPhotoshootModel(Model model)
+    {
+        dal.AddPhotoshootModel(model);
+    }
+
     public void Remove(int id)
     {
-        throw new NotImplementedException();
+        dal.DeletePhotoshoot(id);
     }
-    public void Edit(PhotoShoot fotoShoot, int id)
+    public void Edit(PhotoShoot photoshoot, int id)
     {
         throw new NotImplementedException();
     }

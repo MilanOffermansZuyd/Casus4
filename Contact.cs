@@ -2,6 +2,7 @@
 
 public abstract class Contact
 {
+    DAL dal = new DAL();
     public int Id { get; set; }
     public string FirstName { get; set; }
     public string LastName { get; set; }
@@ -26,9 +27,6 @@ public abstract class Contact
         Naked = naked;
     }
 
-
-    DAL dal = new DAL();
-
     public virtual void Add(Contact contact)
     {
         dal.AddContact(contact);
@@ -46,6 +44,10 @@ public abstract class Contact
         throw new NotImplementedException();
     }
     public virtual void SearchOn(string searchCriteria)
+    {
+        throw new NotImplementedException();
+    }
+    public virtual object SearchOnName(string searchCriteria)
     {
         throw new NotImplementedException();
     }

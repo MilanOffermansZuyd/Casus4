@@ -22,13 +22,13 @@
                       AutoGenerateColumns="False"
                       CanUserAddRows="False"
                       IsReadOnly="True"
-                      SelectionMode="Single">
+                      SelectionMode="Single" SelectionChanged="PhotoshootDataGrid_SelectionChanged">
 
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Title" Binding="{Binding Title}" Width="*"/>
-                    <DataGridTextColumn Header="Description" Binding="{Binding Description}" Width="2*"/>
+                    <DataGridTextColumn Header="Description" Binding="{Binding SubTitle}" Width="2*"/>
                     <DataGridTextColumn Header="Concepts" Binding="{Binding ConceptsAsString}" Width="*"/>
-                    <DataGridTextColumn Header="Contracts" Binding="{Binding ContractsAsString}" Width="*"/>
+                    <DataGridTextColumn Header="Contract" Binding="{Binding Contract.Title}" Width="*"/>
                     <DataGridTextColumn Header="Models" Binding="{Binding ModelsAsString}" Width="*"/>
                     <DataGridTextColumn Header="Volunteers" Binding="{Binding VolunteersAsString}" Width="*"/>
                 </DataGrid.Columns>
