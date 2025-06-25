@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
 
 namespace Casus4
 {
@@ -16,7 +17,7 @@ namespace Casus4
 
         private void AddPhotoshoot_Click(object sender, RoutedEventArgs e)
         {
-            AddPhotoshoots addPhotoshoots = new AddPhotoshoots(0, 0);
+            AddPhotoshoots addPhotoshoots = new AddPhotoshoots(0, null);
             addPhotoshoots.Show();
             this.Close();
         }
@@ -28,10 +29,14 @@ namespace Casus4
             this.Close();
         }
 
-        private void PhotoshootDataGrid_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        private void PhotoshootDataGrid_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
+            object item = PhotoshootDataGrid.SelectedItem;
+            string name = (PhotoshootDataGrid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
 
-            AddPhotoshoots addPhotoshoots = new AddPhotoshoots(1, 0);
+            PhotoShoot photoshoot = dal.GetPhotoshootByName(name);
+
+            AddPhotoshoots addPhotoshoots = new AddPhotoshoots(1, photoshoot);
             addPhotoshoots.Show();
             this.Close();
         }

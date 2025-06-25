@@ -1,4 +1,5 @@
 ﻿using Casus4;
+using static Azure.Core.HttpHeader;
 
 public class Model : Contact
 {
@@ -29,8 +30,8 @@ public class Model : Contact
     {
         throw new NotImplementedException();
     }
-    public override Model SearchOnName(string searchCriteria)
-    {
-        return dal.FindModelByName(searchCriteria);
-    }
+    //public override Model SearchOnName(string searchCriteria)
+    //{
+    //    return dal.FindModelByName(searchCriteria);
+    //}
 }

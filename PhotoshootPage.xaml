@@ -22,7 +22,7 @@
                       AutoGenerateColumns="False"
                       CanUserAddRows="False"
                       IsReadOnly="True"
-                      SelectionMode="Single" SelectionChanged="PhotoshootDataGrid_SelectionChanged">
+                      SelectionMode="Single" MouseDoubleClick="PhotoshootDataGrid_MouseDoubleClick">
 
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Title" Binding="{Binding Title}" Width="*"/>

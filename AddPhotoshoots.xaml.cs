@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Diagnostics;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,9 +24,9 @@ namespace Casus4
     {
         DAL dal = new DAL();
         bool NewPhotoshoot = false;
-        int PhotoshootId = 0;
+        PhotoShoot photoshoot = null;
 
-        public AddPhotoshoots(int State, int Id)
+        public AddPhotoshoots(int State, PhotoShoot SelectedPhotoshoot)
         {
             InitializeComponent();
             PopulateListViews();
@@ -35,7 +37,8 @@ namespace Casus4
             else if(State == 1)
             {
                 NewPhotoshoot = false;
-                PhotoshootId = Id;
+                photoshoot = SelectedPhotoshoot;
+                PreSelectItems();
             }
         }
 
@@ -62,6 +65,25 @@ namespace Casus4
             foreach (Contact model in Models)
             {
                 ModelsListBox.Items.Add(model.FirstName + " " + model.LastName);
+            }
+        }
+
+        private void PreSelectItems()
+        {
+            var concepts = ConceptsListBox;
+            var contracts = ContractsListBox;
+            var models = ModelsListBox;
+            TitleTextBox.Text = photoshoot.Title;
+            DescriptionTextBox.Text = photoshoot.SubTitle;
+
+            Contract contract = dal.GetContractById(photoshoot.Contract.Id);
+
+            foreach (var item in ContractsListBox.Items)
+            {
+                if(item == contract.Name)
+                {
+                    ContractsListBox.SelectedItems.Add(item);
+                }
             }
         }
 
@@ -120,6 +142,12 @@ namespace Casus4
                     model = (Model)model.SearchOnName(ModelName);
                     photoshoot.AddPhotoshootModel(model);
                 }
+            }
+
+            if(NewPhotoshoot = false)
+            {
+                photoshoot.Title = Title;
+                photoshoot.SubTitle = Description;
             }
 
             PhotoshootPage photoshootPage = new PhotoshootPage();
