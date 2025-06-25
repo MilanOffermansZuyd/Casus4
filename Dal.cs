@@ -171,6 +171,31 @@ namespace Casus4
 
             return contracts;
         }
+        public Contract GetContractById(int Id)
+        {
+            Contract contract = new(0, null, null, false, null);
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlCommand command = new SqlCommand("SELECT * FROM Contract WHERE Id = @Id", connection))
+            {
+                command.Parameters.AddWithValue("@Id", Id);
+
+                connection.Open();
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        contract.Id = reader.GetInt32(0);
+                        contract.Name = reader.GetString(1);
+                        contract.Foto = reader["Picture"] as byte[] ?? null;
+                        contract.IsSigned = reader.GetBoolean(3);
+
+                    }
+                }
+            }
+            return contract;
+        }
+
         public Contract GetContractByTitle(string Name)
         {
             Contract contract = new(0, null, null, false, null);
