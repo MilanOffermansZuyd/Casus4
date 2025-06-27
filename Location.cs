@@ -8,6 +8,7 @@
         public string PostalCode { get; set; }
         public string City { get; set; }
         public string Country { get; set; }
+
         public Location(int? id, string street, string houseNumber, string postalCode, string city, string country) 
         {
             Id = id ?? 0;
