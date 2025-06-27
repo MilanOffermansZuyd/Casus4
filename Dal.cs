@@ -381,7 +381,7 @@ namespace Casus4
                         string lastName = reader["LastName"].ToString();
                         byte[] picture = reader["Picture"] as byte[];
                         int locationId = (int)reader["LocationId"];
-                        Location location = dal.GetLocationById(locationId);
+                        Location location = GetLocationById(locationId);
                         string description = reader["Description"].ToString();
                         string extraInformation = reader["ExtraInformation"].ToString();
                         bool naked = (bool)reader["Naked"];
@@ -393,10 +393,10 @@ namespace Casus4
         }
 
 
-        //public Model FindModelByName(string name)
-        //{
+        public Model FindModelByName(string name)
+        {
             
-        //    string[] Name = name.Split(' ');
+            string[] Name = name.Split(' ');
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             using (SqlCommand command = new SqlCommand("SELECT * FROM Contact WHERE FirstName = @First AND LastName = @Last", connection))
@@ -418,15 +418,15 @@ namespace Casus4
 
                         Model model = new(Id, FirstName, LastName, Picture, location, description, extraInformation,false);
 
-        //                return model;
-        //            }
-        //        }
-        //    }
-        //    throw new Exception(nameof(FindModelByName));
-        //}
+                        return model;
+                    }
+                }
+            }
+            throw new Exception(nameof(FindModelByName));
+        }
 
-        //public Contact FindContacts(int id)
-        //{
+        public Contact FindContacts(int id)
+        {
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             using (SqlCommand command = new SqlCommand("SELECT * FROM Contact WHERE Id = @Id", connection))
@@ -523,6 +523,30 @@ namespace Casus4
                 }
             }
             throw new Exception(nameof(GetLocationById));
+        }
+
+        //CRUD for Props
+        internal List<Prop> GetAllProps()
+        {
+
+            var props = new List<Prop>();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlCommand command = new SqlCommand("SELECT * FROM Prop", connection))
+            {
+                connection.Open();
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int id = reader.GetInt32(0);
+                        string Name = reader.GetString(1);
+                        string Description = reader.GetString(2);
+                        props.Add(new Prop(id, Name, Description));
+                    }
+                }
+            }
+            return props;
         }
     }
 }

@@ -47,11 +47,12 @@ namespace Casus4
             ConceptsListBox.Items.Clear();
             ContractsListBox.Items.Clear();
             ModelsListBox.Items.Clear();
-            VolunteersListBox.Items.Clear();
+            PropsListBox.Items.Clear();
 
             List<Concept> Concepts = dal.GetAllConcepts();
             List<Contract> Contracts = dal.GetAllContracts();
             List<Contact> Models = dal.GetAllModels();
+            List<Prop> Props = dal.GetAllProps();
 
             foreach (Concept concept  in Concepts)
             {
@@ -66,6 +67,10 @@ namespace Casus4
             {
                 ModelsListBox.Items.Add(model.FirstName + " " + model.LastName);
             }
+            foreach (Prop prop in Props)
+            {
+                PropsListBox.Items.Add(prop.Name);
+            }
         }
 
         private void PreSelectItems()
@@ -73,8 +78,7 @@ namespace Casus4
             var concepts = ConceptsListBox;
             var contracts = ContractsListBox;
             var models = ModelsListBox;
-            TitleTextBox.Text = photoshoot.Title;
-            DescriptionTextBox.Text = photoshoot.SubTitle;
+            var props = PropsListBox;
 
             Contract contract = dal.GetContractById(photoshoot.Contract.Id);
 
@@ -97,8 +101,9 @@ namespace Casus4
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
             //setup data
-            string Title = TitleTextBox.Text;
-            string Description = DescriptionTextBox.Text;
+            DateTime date = (DateTime)DatePicker.SelectedDate;
+            
+
             Contract contract = null;
             if(ContractsListBox.SelectedItem != null)
             {
@@ -121,8 +126,9 @@ namespace Casus4
                     Concepts.Add(concept);
                 }
             }
+
             //setup Photoshoot
-            PhotoShoot photoshoot = new PhotoShoot(0, Title, Description, Concepts, contract);
+            //PhotoShoot photoshoot = new PhotoShoot(0, Concepts, contract);
 
 
             if (NewPhotoshoot = true)
@@ -144,11 +150,11 @@ namespace Casus4
                 }
             }
 
-            if(NewPhotoshoot = false)
-            {
-                photoshoot.Title = Title;
-                photoshoot.SubTitle = Description;
-            }
+            //if(NewPhotoshoot = false)
+            //{
+            //    photoshoot.Title = Title;
+            //    photoshoot.SubTitle = Description;
+            //}
 
             PhotoshootPage photoshootPage = new PhotoshootPage();
             photoshootPage.Show();
