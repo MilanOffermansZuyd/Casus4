@@ -8,6 +8,7 @@ namespace Casus4
     public partial class ConceptPage : Window
     {
         private Concept Concept = new Concept();
+        private DAL dal = new DAL();
         public ConceptPage()
         {
             InitializeComponent();
@@ -44,5 +45,15 @@ namespace Casus4
                 this.Close();
             }
         }
+
+        private void RemoveConcept_Click(object sender, RoutedEventArgs e)
+        {
+            if (ConceptPageListView.SelectedItem is Concept concept) 
+            {
+                dal.DeleteConcept(concept.Id);
+            }
+            initializeConcept();
+        }
+
     }
 }

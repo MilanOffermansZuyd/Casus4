@@ -9,10 +9,7 @@
     <Grid RenderTransformOrigin="1.146,0.369">
         <Image x:Name="SketchAfbeeldingCreateConcept" Stretch="UniformToFill" Source="pack://application:,,,/Images/default.png" Margin="0,27,478,221"/>
         <Button x:Name="AddSketchCreateConcept" Content="+" Width="30" Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Right" Click="UploadImage_Click" Background="LightGray" Foreground="Black" FontSize="20" ToolTip="Klik om een afbeelding te uploaden" Margin="0,0,624,307" RenderTransformOrigin="-0.383,-0.32"/>
-        <Image x:Name="FotoAfbeeldingCreateConcept" Stretch="UniformToFill" Source="/Images/default.png" Margin="0,217,478,31"/>
         <TextBlock HorizontalAlignment="Left" Height="17" Margin="26,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="267"><Run Language="nl-nl" Text="Sketch"/></TextBlock>
-        <TextBlock HorizontalAlignment="Left" Height="17" Margin="26,217,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="267"><Run Language="nl-nl" Text="Foto"/></TextBlock>
-        <Button x:Name="AddFotoCreateConcept" Content="+" Width="30" Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Right" Click="UploadImage_Click" Background="LightGray" Foreground="Black" FontSize="20" ToolTip="Klik om een afbeelding te uploaden" Margin="0,0,626,90" RenderTransformOrigin="-0.383,-0.32"/>
 
         <TextBox x:Name="TextTitleCreateConcept" HorizontalAlignment="Left" Height="24" Margin="430,27,0,0" TextWrapping="Wrap" Text="Title" VerticalAlignment="Top" Width="221"/>
         <TextBox x:Name="TextLocatieCreateConcept" HorizontalAlignment="Left" Height="24" Margin="430,56,0,0" TextWrapping="Wrap" Text="Locatie" VerticalAlignment="Top" Width="221"/>
@@ -25,16 +22,8 @@
             <ComboBoxItem Content="Project B" />
             <ComboBoxItem Content="Project C" />
         </ComboBox>
-
-        <ListView HorizontalAlignment="Left" Height="102" Margin="327,160,0,0" VerticalAlignment="Top" Width="428" d:ItemsSource="{d:SampleData ItemCount=5}">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn/>
-                </GridView>
-            </ListView.View>
-        </ListView>
-
-        <TextBox HorizontalAlignment="Left" Height="50" Margin="322,287,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="428"/>
+        
+        <TextBox HorizontalAlignment="Left" Height="50" x:Name="Description_TextBox" Margin="322,287,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="428"/>
         <TextBlock HorizontalAlignment="Left" Height="23" Margin="322,271,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="73"><Run Language="nl-nl" Text="Beschrijving"/></TextBlock>
 
         <Button x:Name="NewPropCreateConcept" Content="Nieuwe prop" HorizontalAlignment="Left" Height="24" Margin="327,85,0,0" VerticalAlignment="Top" Width="73"/>
@@ -47,10 +36,7 @@
         <Grid RenderTransformOrigin="1.146,0.369">
             <Image x:Name="SketchAfbeelding" Stretch="UniformToFill" Source="/Images/default.png" Margin="0,27,478,221"/>
             <Button x:Name="AddSketch" Content="+" Width="30" Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Right" Click="UploadImage_Click" Background="LightGray" Foreground="Black" FontSize="20" ToolTip="Klik om een afbeelding te uploaden" Margin="0,0,624,307" RenderTransformOrigin="-0.383,-0.32"/>
-            <Image x:Name="FotoAfbeelding" Stretch="UniformToFill" Source="/Images/default.png" Margin="0,217,478,31"/>
             <TextBlock HorizontalAlignment="Left" Height="17" Margin="26,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="267"><Run Language="nl-nl" Text="Sketch"/></TextBlock>
-            <TextBlock HorizontalAlignment="Left" Height="17" Margin="26,217,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="267"><Run Language="nl-nl" Text="Foto"/></TextBlock>
-            <Button x:Name="AddFoto" Content="+" Width="30" Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Right" Click="UploadImage_Click" Background="LightGray" Foreground="Black" FontSize="20" ToolTip="Klik om een afbeelding te uploaden" Margin="0,0,626,90" RenderTransformOrigin="-0.383,-0.32"/>
 
             <TextBox x:Name="TextTitle" HorizontalAlignment="Left" Height="24" Margin="430,27,0,0" TextWrapping="Wrap" Text="Title" VerticalAlignment="Top" Width="221"/>
             <TextBox x:Name="TextLocatie" HorizontalAlignment="Left" Height="24" Margin="430,56,0,0" TextWrapping="Wrap" Text="Locatie" VerticalAlignment="Top" Width="221"/>
@@ -59,14 +45,6 @@
             <TextBlock Text="Project" HorizontalAlignment="Left" Margin="430,114,0,0" VerticalAlignment="Top"/>
             <ComboBox x:Name="ComboBoxProject" HorizontalAlignment="Left" Height="24" Margin="430,130,0,0" VerticalAlignment="Top" Width="222">
             </ComboBox>
-
-            <ListView HorizontalAlignment="Left" Height="102" Margin="327,160,0,0" VerticalAlignment="Top" Width="428" d:ItemsSource="{d:SampleData ItemCount=5}">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn/>
-                    </GridView>
-                </ListView.View>
-            </ListView>
 
             <Button x:Name="NewPropCreateConcept1" Content="Nieuwe prop" HorizontalAlignment="Left" Height="24" Margin="327,85,0,0" VerticalAlignment="Top" Width="73"/>
             <Button x:Name="NewLocationCreateConcept1" Content="Nieuwe locatie" HorizontalAlignment="Left" Height="24" Margin="661,56,0,0" VerticalAlignment="Top" Width="129"/>
