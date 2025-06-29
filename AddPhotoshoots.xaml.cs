@@ -101,24 +101,10 @@ namespace Casus4
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
             //setup data
-            DateTime date = (DateTime)DatePicker.SelectedDate;
-            
 
-            Contract contract = null;
-            if(ContractsListBox.SelectedItem != null)
-            {
-                contract = dal.GetContractByTitle(ContractsListBox.SelectedItem.ToString());
-            }
-            else
-            {
-                contract = new Contract(0, null,null,false,null);
-            }
-            //todo: get actual location id
-            int Location = 1;
-
-            //grab concepts
-            List<Concept> Concepts = new List<Concept>();
-            if(ConceptsListBox.SelectedItems != null)
+            //concepts
+            List<Concept> concepts = new List<Concept>();
+            if (ConceptsListBox.SelectedItems != null)
             {
                 foreach (string ConceptTitle in ConceptsListBox.SelectedItems)
                 {
@@ -126,35 +112,106 @@ namespace Casus4
                     Concepts.Add(concept);
                 }
             }
+            //models
+            List<Model> models = new List<Model>();
+
+            if (ModelsListBox.SelectedItems != null)
+            {
+                foreach (string modelString in ModelsListBox.SelectedItems)
+                {
+                    Model model = null;
+
+                    model = dal.GetModelByName(modelString);
+
+                    models.Add(model);
+                }
+
+            }
+            else
+            {
+                Contract contract = new Contract(0, null, null, false, null);
+            }
+
+            //contracts
+            List<Contract> contracts = new List<Contract>();
+
+            if (ContractsListBox.SelectedItems != null)
+            {
+                foreach (string contractString in ContractsListBox.SelectedItems)
+                {
+                    Contract contract = null;
+
+                    contract = dal.GetContractByTitle(contractString);
+
+                    contracts.Add(contract);
+                }
+
+            }
+            else
+            {
+                Contract contract = new Contract(0, null, null, false, null);
+            }
+
+            //props
+            List<Prop> props = new List<Prop >();
+
+            if (PropsListBox.SelectedItems != null)
+            {
+                foreach (string propString in PropsListBox.SelectedItems)
+                {
+                    Prop prop = null;
+
+                    prop = dal.GetPropByName(propString);
+
+                    props.Add(prop);
+                }
+
+            }
+            else
+            {
+                Prop prop = new Prop(null, null);
+            }
+
+            //date
+            DateTime date = (DateTime)DatePicker.SelectedDate;
+            //location
+            string locationString = LocationsListBox.SelectedItem.ToString();
+            Location location = dal.GetLocationByString(locationString);
 
             //setup Photoshoot
-            //PhotoShoot photoshoot = new PhotoShoot(0, Concepts, contract);
+            PhotoShoot photoshoot = new PhotoShoot(0, date, location, concepts, contracts, models, props);
 
 
             if (NewPhotoshoot = true)
             {
                 //add Photoshoot
-                photoshoot.Add(photoshoot);
+                photoshoot.Add();
                 //add concept-photshoot link to database
-                foreach (Concept concept in photoshoot.Concepts)
-                {
-                    photoshoot.AddConceptPhotoshoot(concept);
-                }
+                //foreach (Concept concept in photoshoot.Concepts)
+                //{
+                //    photoshoot.AddConceptPhotoshoot(concept);
+                //}
 
-                foreach (string ModelName in ModelsListBox.SelectedItems)
-                {
-                    Model model = new(null, null, null, null, null, null, null, false);
+                //foreach (string ModelName in ModelsListBox.SelectedItems)
+                //{
+                //    Model model = new(null, null, null, null, null, null, null, false);
 
-                    model = (Model)model.SearchOnName(ModelName);
-                    photoshoot.AddPhotoshootModel(model);
-                }
+                //    model = (Model)model.SearchOnName(ModelName);
+                //    photoshoot.AddPhotoshootModel(model);
+                //}
             }
 
-            //if(NewPhotoshoot = false)
-            //{
-            //    photoshoot.Title = Title;
-            //    photoshoot.SubTitle = Description;
-            //}
+            if(NewPhotoshoot = false)
+            {
+                photoshoot.Date = date;
+                photoshoot.Location = location;
+                photoshoot.Concepts = concepts;
+                photoshoot.Models = models;
+                photoshoot.Contracts = contracts;
+                photoshoot.Props = props;
+
+                photoshoot.UpdatePhotoshoot();
+            }
 
             PhotoshootPage photoshootPage = new PhotoshootPage();
             photoshootPage.Show();

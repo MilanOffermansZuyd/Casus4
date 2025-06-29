@@ -25,12 +25,13 @@
                       SelectionMode="Single" MouseDoubleClick="PhotoshootDataGrid_MouseDoubleClick">
 
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Title" Binding="{Binding Title}" Width="*"/>
-                    <DataGridTextColumn Header="Description" Binding="{Binding SubTitle}" Width="2*"/>
-                    <DataGridTextColumn Header="Concepts" Binding="{Binding ConceptsAsString}" Width="*"/>
-                    <DataGridTextColumn Header="Contract" Binding="{Binding Contract.Title}" Width="*"/>
-                    <DataGridTextColumn Header="Models" Binding="{Binding ModelsAsString}" Width="*"/>
-                    <DataGridTextColumn Header="Volunteers" Binding="{Binding VolunteersAsString}" Width="*"/>
+                    <DataGridTextColumn Header="Date" Binding="{Binding Date}" Width="*"/>
+                    <DataGridTextColumn Header="Location" Binding="{Binding Location}" Width="*"/>
+
+                    <DataGridComboBoxColumn x:Name="ConceptsCombo" Header="Concepts" Width="*" SelectedItemBinding="{Binding Concepts}"/>
+                    <DataGridComboBoxColumn x:Name="ContractsCombo" Header="Contract" Width="*" SelectedItemBinding="{Binding Contracts}"/>
+                    <DataGridComboBoxColumn x:Name="ModelsCombo" Header="Models" Width="*" SelectedItemBinding="{Binding Models}"/>
+                    <DataGridComboBoxColumn x:Name="PropsCombo" Header="Props" Width="*" SelectedItemBinding="{Binding Props}"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>

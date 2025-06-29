@@ -4,39 +4,45 @@ public class PhotoShoot
 {
     DAL dal = new DAL();
     public int Id { get; set; }
-    public string Title { get; set; }
-    public string SubTitle { get; set; }
+    public DateTime Date { get; set; }
+    public Location Location { get; set; }
     public List<Concept> Concepts { get; set; }
-    public Contract Contract { get; set; }
+    public List<Contract> Contracts { get; set; }
+    public List<Model> Models { get; set; }
+    public List<Prop> Props { get; set; }
 
-    public PhotoShoot(int id,string title, string subTitle, List<Concept> concepts, Contract contract)
+    public PhotoShoot(int id, DateTime date, Location location, List<Concept> concepts, List<Contract> contracts, List<Model> models, List<Prop> props)
     {
         Id = id;
-        Title = title;
-        SubTitle = subTitle;
+        Date = date;
+        Location = location;
         Concepts = concepts;
-        Contract = contract;
+        Contracts = contracts;
+        Models = models;
+        Props = props;
     }
-    public void Add(PhotoShoot photoshoot)
+    public void Add()
     {
+        PhotoShoot photoshoot = this;
         dal.AddPhotoshoot(photoshoot);
-    }
-    public void AddConceptPhotoshoot(Concept concept)
-    {
-        dal.AddConceptPhotoshoot(concept);
-    }
-    public void AddPhotoshootModel(Model model)
-    {
-        dal.AddPhotoshootModel(model);
+        //dal.AddPhotoshootContracts(photoshoot);
+        //dal.AddPhotoshootConcepts(photoshoot);
+        //dal.AddPhotoshootModels(photoshoot);
+        //dal.AddPhotoshootProps(photoshoot);
     }
 
     public void Remove(int id)
     {
         dal.DeletePhotoshoot(id);
     }
-    public void Edit(PhotoShoot photoshoot)
+    public void Edit()
     {
-        dal.UpdatePhotoshoot(photoshoot);
+        PhotoShoot photoshoot = this;
+        dal.EditPhotoshoot(photoshoot);
+        //dal.EditPhotoshootContracts(photoshoot);
+        //dal.EditPhotoshootConcepts(photoshoot);
+        //dal.EditPhotoshootModels(photoshoot);
+        //dal.EditPhotoshootProps(photoshoot);
     }
     public void FilterOn(string Filter)
     {

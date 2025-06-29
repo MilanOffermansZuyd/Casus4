@@ -12,7 +12,16 @@ namespace Casus4
         public PhotoshootPage()
         {
             InitializeComponent();
-            PhotoshootDataGrid.ItemsSource = dal.GetAllPhotoshoots();
+            PopulateDataGrid();
+        }
+
+        public void PopulateDataGrid()
+        {
+            List<PhotoShoot> photoshoots = new List<PhotoShoot>();
+            foreach (PhotoShoot photoshoot in photoshoots){
+                PhotoshootDataGrid.Items.Add(photoshoot);
+
+            }
         }
 
         private void AddPhotoshoot_Click(object sender, RoutedEventArgs e)

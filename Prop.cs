@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Casus4
 {
-    class Prop
+    public class Prop
     {
         public int Id { get; set; }
         public string Name { get; set; }
