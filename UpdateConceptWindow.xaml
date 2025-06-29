@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Casus4"
         mc:Ignorable="d"
-        Title="UpdateConceptWindow" Height="450" Width="800">
+        Title="UpdateConceptWindow" Height="468" Width="800">
     <Grid RenderTransformOrigin="1.146,0.369">
         <Image x:Name="SketchAfbeeldingUpdateConcept" Stretch="UniformToFill" Source="pack://application:,,,/Images/default.png" Margin="0,27,478,221"/>
-        <Button x:Name="AddSketchUpdateConcept" Content="+" Width="30" Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Right" Click="UploadImage_Click" Background="LightGray" Foreground="Black" FontSize="20" ToolTip="Klik om een afbeelding te uploaden" Margin="0,0,624,307" RenderTransformOrigin="-0.383,-0.32"/>
+        <Button x:Name="AddSketchUpdateConcept" Content="+" Width="30" Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Right" Click="UploadSketchImage_Click" Background="LightGray" Foreground="Black" FontSize="20" ToolTip="Klik om een afbeelding te uploaden" Margin="0,0,624,307" RenderTransformOrigin="-0.383,-0.32"/>
         <Image x:Name="FotoAfbeeldingUpdateConcept" Stretch="UniformToFill" Source="/Images/default.png" Margin="0,217,478,31"/>
         <TextBlock HorizontalAlignment="Left" Height="17" Margin="26,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="267"><Run Language="nl-nl" Text="Sketch"/></TextBlock>
         <TextBlock HorizontalAlignment="Left" Height="17" Margin="26,217,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="267"><Run Language="nl-nl" Text="Foto"/></TextBlock>
-        <Button x:Name="AddFotoUpdateConcept" Content="+" Width="30" Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Right" Click="UploadImage_Click" Background="LightGray" Foreground="Black" FontSize="20" ToolTip="Klik om een afbeelding te uploaden" Margin="0,0,626,90" RenderTransformOrigin="-0.383,-0.32"/>
+        <Button x:Name="AddFotoUpdateConcept" Content="+" Width="30" Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Right" Click="UploadSketchImage_Click" Background="LightGray" Foreground="Black" FontSize="20" ToolTip="Klik om een afbeelding te uploaden" Margin="0,0,626,90" RenderTransformOrigin="-0.383,-0.32"/>
 
         <TextBox x:Name="TextTitleUpdateConcept" HorizontalAlignment="Left" Height="24" Margin="430,27,0,0" TextWrapping="Wrap" Text="Title" VerticalAlignment="Top" Width="221"/>
         <TextBox x:Name="TextLocatieUpdateConcept" HorizontalAlignment="Left" Height="24" Margin="430,56,0,0" TextWrapping="Wrap" Text="Locatie" VerticalAlignment="Top" Width="221"/>
@@ -34,7 +34,7 @@
             </ListView.View>
         </ListView>
 
-        <TextBox HorizontalAlignment="Left" Height="50" Margin="322,287,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="428"/>
+        <TextBox HorizontalAlignment="Left" Height="50" x:Name="Description_TextBox" Margin="322,287,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="428"/>
         <TextBlock HorizontalAlignment="Left" Height="23" Margin="322,271,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="73"><Run Language="nl-nl" Text="Beschrijving"/></TextBlock>
 
         <Button x:Name="NewPropUpdateConcept" Content="Nieuwe prop" HorizontalAlignment="Left" Height="24" Margin="327,85,0,0" VerticalAlignment="Top" Width="73"/>
@@ -44,11 +44,12 @@
         <!-- Tweede Grid -->
         <Grid RenderTransformOrigin="1.146,0.369">
             <Image x:Name="SketchAfbeelding" Stretch="UniformToFill" Source="/Images/default.png" Margin="0,27,478,221"/>
-            <Button x:Name="UpdateSketch" Content="+" Width="30" Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Right" Click="UploadImage_Click" Background="LightGray" Foreground="Black" FontSize="20" ToolTip="Klik om een afbeelding te uploaden" Margin="0,0,624,307" RenderTransformOrigin="-0.383,-0.32"/>
-            <Image x:Name="FotoAfbeelding" Stretch="UniformToFill" Source="/Images/default.png" Margin="0,217,478,31"/>
+            <Button x:Name="UpdateSketch" Content="+" Width="30" Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Right" Click="UploadSketchImage_Click" Background="LightGray" Foreground="Black" FontSize="20" ToolTip="Klik om een afbeelding te uploaden" Margin="0,0,624,307" RenderTransformOrigin="-0.383,-0.32"/>
+            <Image x:Name="FotoAfbeelding" Stretch="UniformToFill" Source="/Images/default.png" Margin="0,217,478,25"/>
+
             <TextBlock HorizontalAlignment="Left" Height="17" Margin="26,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="267"><Run Language="nl-nl" Text="Sketch"/></TextBlock>
             <TextBlock HorizontalAlignment="Left" Height="17" Margin="26,217,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="267"><Run Language="nl-nl" Text="Foto"/></TextBlock>
-            <Button x:Name="UpdateFoto" Content="+" Width="30" Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Right" Click="UploadImage_Click" Background="LightGray" Foreground="Black" FontSize="20" ToolTip="Klik om een afbeelding te uploaden" Margin="0,0,626,90" RenderTransformOrigin="-0.383,-0.32"/>
+            <Button x:Name="UpdateFoto" Content="+" Width="30" Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Right" Click="UploadResultImages_Click" Background="LightGray" Foreground="Black" FontSize="20" ToolTip="Klik om een afbeelding te uploaden" Margin="0,0,626,90" RenderTransformOrigin="-0.383,-0.32"/>
 
             <TextBox x:Name="TextUpdateTitle" HorizontalAlignment="Left" Height="24" Margin="430,27,0,0" TextWrapping="Wrap" Text="Title" VerticalAlignment="Top" Width="221"/>
             <TextBox x:Name="TextUpdateLocatie" HorizontalAlignment="Left" Height="24" Margin="430,56,0,0" TextWrapping="Wrap" Text="Locatie" VerticalAlignment="Top" Width="221"/>
@@ -58,7 +59,7 @@
             <ComboBox x:Name="ComboBoxProjectUpdate" HorizontalAlignment="Left" Height="24" Margin="430,130,0,0" VerticalAlignment="Top" Width="222">
             </ComboBox>
 
-            <ListView HorizontalAlignment="Left" Height="102" Margin="327,160,0,0" VerticalAlignment="Top" Width="428" d:ItemsSource="{d:SampleData ItemCount=5}">
+            <ListView HorizontalAlignment="Left" Height="102" Margin="327,160,0,0" x:Name="FotoshootsGridView" VerticalAlignment="Top" Width="428" d:ItemsSource="{d:SampleData ItemCount=5}">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn/>
@@ -71,6 +72,11 @@
             <Button x:Name="NewModelUpdateConcept1" Content="Nieuw model" HorizontalAlignment="Left" Height="24" Margin="661,85,0,0" VerticalAlignment="Top" Width="129"/>
             <Button x:Name="BackToConceptPageFromUpdate" Content="Back" HorizontalAlignment="Left" Height="27" Margin="726,0,0,0" VerticalAlignment="Top" Width="74" Click="BackToConceptPageFromUpdate_Click"/>
             <Button x:Name="UpdateConcept1" Content="Update" HorizontalAlignment="Left" Height="27" Margin="652,0,0,0" VerticalAlignment="Top" Width="74" Click="UpdateAddConcept_Click"/>
+            <TextBlock HorizontalAlignment="Left" Height="15" Margin="327,139,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="98"><Run Language="nl-nl" Text="Foto shoot"/></TextBlock>
         </Grid>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="69,400,0,0" VerticalAlignment="Top">
+            <Button Content="Vorige" Width="80" Height="30" Click="VorigeButton_Click"/>
+            <Button Content="Volgende" Width="80" Height="30" Click="VolgendeButton_Click" RenderTransformOrigin="0.534,-0.895"/>
+        </StackPanel>
     </Grid>
 </Window>

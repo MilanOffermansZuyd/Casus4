@@ -17,6 +17,14 @@ public class PhotoShoot
         Concepts = concepts;
         Contract = contract;
     }
+    public PhotoShoot()
+    {
+        
+    }
+    public List<PhotoShoot> Get() 
+    {
+       return dal.GetAllPhotoshoots();
+    }
     public void Add(PhotoShoot photoshoot)
     {
         dal.AddPhotoshoot(photoshoot);
