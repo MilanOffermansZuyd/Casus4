@@ -385,7 +385,7 @@ namespace Casus4
                         string description = reader["Description"].ToString();
                         string extraInformation = reader["ExtraInfo"].ToString();
                         bool naked = (bool)reader["Naked"];
-                        contacts.Add(new Model(id, firstName, lastName, picture, location, description, extraInformation, naked));
+                        contacts.Add(new Model(id, firstName, lastName, picture, location, description, extraInformation, naked, null, null));
                     }
                 }
             }
@@ -412,8 +412,8 @@ namespace Casus4
                         Location location = dal.GetLocationById(locationId);
                         string description = reader["Description"].ToString();
                         string extraInformation = reader["ExtraInfo"].ToString();
-                        bool naked = (bool)reader["Naked"];
-                        contacts.Add(new Model(id, firstName, lastName, picture, location, description, extraInformation, naked));
+                        bool getsResourcesPayed = (bool)reader["GetsResourcesPayed"];
+                        contacts.Add(new MakeUpArtist(id, firstName, lastName, picture, location, description, extraInformation, null, null, getsResourcesPayed));
                     }
                 }
             }
@@ -440,8 +440,8 @@ namespace Casus4
                         Location location = dal.GetLocationById(locationId);
                         string description = reader["Description"].ToString();
                         string extraInformation = reader["ExtraInfo"].ToString();
-                        bool naked = (bool)reader["Naked"];
-                        contacts.Add(new Model(id, firstName, lastName, picture, location, description, extraInformation, naked));
+                        bool getsPayed = (bool)reader["GetsPayed"];
+                        contacts.Add(new Helper(id, firstName, lastName, picture, location, description, extraInformation, null, getsPayed, null));
                     }
                 }
             }
@@ -471,8 +471,9 @@ namespace Casus4
                         Location location = GetLocationById(reader.GetInt32(4));
                         string description = reader.GetString(5);
                         string extraInformation = reader.GetString(6);
+                        bool naked = (bool)reader["@Naked"];
 
-                        Model model = new(Id, FirstName, LastName, Picture, location, description, extraInformation, false);
+                        Model model = new Model(Id, FirstName, LastName, Picture, location, description, extraInformation, naked, null, null);
 
                         return model;
                     }
@@ -481,7 +482,7 @@ namespace Casus4
             throw new Exception(nameof(FindModelByName));
         }
 
-        public Contact FindContacts(int id)
+        public Contact FindModel(int id)
         {
 
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -493,11 +494,49 @@ namespace Casus4
                 {
                     while (reader.Read())
                     {
-                        return new Helper(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), (byte[])reader["Picture"], (Location)reader["Location"], reader.GetString(3), reader.GetString(4), (bool)reader["Naked"]);
+                        return new Model(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), (byte[])reader["Picture"], (Location)reader["Location"], reader.GetString(3), reader.GetString(4), (bool)reader["Naked"], (bool)reader["GetsPayed"], (bool)reader["GetsResourcesPayed"]);
                     }
                 }
             }
-            throw new Exception(nameof(FindContacts));
+            throw new Exception(nameof(FindModel));
+        }
+
+        public Contact FindMakeUpArtist(int id)
+        {
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlCommand command = new SqlCommand("SELECT * FROM Contact WHERE Id = @Id", connection))
+            {
+                connection.Open();
+                command.Parameters.AddWithValue("@Id", id);
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        return new MakeUpArtist(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), (byte[])reader["Picture"], (Location)reader["Location"], reader.GetString(3), reader.GetString(4), (bool)reader["Naked"], (bool)reader["GetsPayed"], (bool)reader["GetsResourcesPayed"]);
+                    }
+                }
+            }
+            throw new Exception(nameof(FindMakeUpArtist));
+        }
+
+        public Contact FindHelper(int id)
+        {
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlCommand command = new SqlCommand("SELECT * FROM Contact WHERE Id = @Id", connection))
+            {
+                connection.Open();
+                command.Parameters.AddWithValue("@Id", id);
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        return new Helper(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), (byte[])reader["Picture"], (Location)reader["Location"], reader.GetString(3), reader.GetString(4), (bool)reader["Naked"], (bool)reader["GetsPayed"], (bool)reader["GetsResourcesPayed"]);
+                    }
+                }
+            }
+            throw new Exception(nameof(FindHelper));
         }
 
 

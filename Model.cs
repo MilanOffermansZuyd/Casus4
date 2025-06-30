@@ -4,10 +4,9 @@ using static Azure.Core.HttpHeader;
 public class Model : Contact
 {
     DAL dal = new DAL();
-    public bool GetsPayed { get; set; }
 
-    public Model(int? id, string firstName, string lastName, byte[] picture, Location location, string description, string extraInformation, bool naked)
-            : base(id, firstName, lastName, picture, 0, location, description, extraInformation, naked)
+    public Model(int? id, string firstName, string lastName, byte[] picture, Location location, string description, string extraInformation, bool? naked, bool? getsPayed, bool? getsResourcesPayed)
+            : base(id, firstName, lastName, picture, 0, location, description, extraInformation, naked, getsPayed, getsResourcesPayed)
     {
     }
     public void Add(Model model)
