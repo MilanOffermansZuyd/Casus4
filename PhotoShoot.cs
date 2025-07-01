@@ -4,46 +4,36 @@ public class PhotoShoot
 {
     DAL dal = new DAL();
     public int Id { get; set; }
-    public string Title { get; set; }
-    public string SubTitle { get; set; }
+    public DateTime Date { get; set; }
+    public Location Location { get; set; }
     public List<Concept> Concepts { get; set; }
-    public Contract Contract { get; set; }
+    public List<Contract> Contracts { get; set; }
+    public List<Model> Models { get; set; }
+    public List<Prop> Props { get; set; }
 
-    public PhotoShoot(int id,string title, string subTitle, List<Concept> concepts, Contract contract)
+    public PhotoShoot(int id, DateTime date, Location location, List<Concept> concepts, List<Contract> contracts, List<Model> models, List<Prop> props)
     {
         Id = id;
-        Title = title;
-        SubTitle = subTitle;
+        Date = date;
+        Location = location;
         Concepts = concepts;
-        Contract = contract;
+        Contracts = contracts;
+        Models = models;
+        Props = props;
     }
-    public PhotoShoot()
-    {
-        
-    }
-    public List<PhotoShoot> Get() 
-    {
-       return dal.GetAllPhotoshoots();
-    }
-    public void Add(PhotoShoot photoshoot)
-    {
+    public void Add()    {
+        PhotoShoot photoshoot = this;
         dal.AddPhotoshoot(photoshoot);
     }
-    public void AddConceptPhotoshoot(Concept concept)
-    {
-        dal.AddConceptPhotoshoot(concept);
-    }
-    public void AddPhotoshootModel(Model model)
-    {
-        dal.AddPhotoshootModel(model);
-    }
 
-    public void Remove(int id)
+    public void Remove()
     {
-        dal.DeletePhotoshoot(id);
+        PhotoShoot photoshoot = this;
+        dal.DeletePhotoshoot(photoshoot);
     }
-    public void Edit(PhotoShoot photoshoot)
+    public void Edit()
     {
+        PhotoShoot photoshoot = this;
         dal.UpdatePhotoshoot(photoshoot);
     }
     public void FilterOn(string Filter)

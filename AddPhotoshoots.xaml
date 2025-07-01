@@ -30,50 +30,60 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <!-- Title -->
-                <TextBlock Grid.Row="0" Grid.Column="0" Margin="5" Text="Title:" VerticalAlignment="Center"/>
-                <TextBox Grid.Row="0" Grid.Column="1" Margin="5" x:Name="TitleTextBox"/>
-
-                <!-- Description -->
-                <TextBlock Grid.Row="1" Grid.Column="0" Margin="5" Text="Description:" VerticalAlignment="Top"/>
-                <TextBox Grid.Row="1" Grid.Column="1" Margin="5" Height="60" TextWrapping="Wrap" AcceptsReturn="True" x:Name="DescriptionTextBox"/>
-
                 <!-- Concepts List -->
-                <TextBlock Grid.Row="2" Grid.Column="0" Margin="5" Text="Concepts:" VerticalAlignment="Top"/>
-                <ListBox Grid.Row="2" Grid.Column="1" Margin="5" Height="80" x:Name="ConceptsListBox" SelectionMode="Multiple">
+                <TextBlock Grid.Row="0" Grid.Column="0" Margin="5" Text="Concepts:" VerticalAlignment="Top"/>
+                <ListBox Grid.Row="0" Grid.Column="1" Margin="5" Height="80" x:Name="ConceptsListBox" SelectionMode="Multiple">
                     <ListBox.Items>
                         <ListBoxItem Content="Concept A"/>
                         <ListBoxItem Content="Concept B"/>
                     </ListBox.Items>
                 </ListBox>
 
-                <!-- Contracts List -->
-                <TextBlock Grid.Row="3" Grid.Column="0" Margin="5" Text="Contracts:" VerticalAlignment="Top"/>
-                <ListBox Grid.Row="3" Grid.Column="1" Margin="5" Height="80" x:Name="ContractsListBox" SelectionMode="Multiple">
-                    <ListBox.Items>
-                        <ListBoxItem Content="Contract X"/>
-                        <ListBoxItem Content="Contract Y"/>
-                    </ListBox.Items>
-                </ListBox>
-
                 <!-- Models List -->
-                <TextBlock Grid.Row="4" Grid.Column="0" Margin="5" Text="Models:" VerticalAlignment="Top"/>
-                <ListBox Grid.Row="4" Grid.Column="1" Margin="5" Height="80" x:Name="ModelsListBox" SelectionMode="Multiple">
+                <TextBlock Grid.Row="0" Grid.Column="2" Margin="5" Text="Models:" VerticalAlignment="Top"/>
+                <ListBox Grid.Row="0" Grid.Column="3" Margin="5" Height="80" x:Name="ModelsListBox" SelectionMode="Multiple">
                     <ListBox.Items>
                         <ListBoxItem Content="Model 1"/>
                         <ListBoxItem Content="Model 2"/>
                     </ListBox.Items>
                 </ListBox>
 
-                <!-- Volunteers List -->
-                <TextBlock Grid.Row="5" Grid.Column="0" Margin="5" Text="Volunteers:" VerticalAlignment="Top"/>
-                <ListBox Grid.Row="5" Grid.Column="1" Margin="5" Height="80" x:Name="VolunteersListBox" SelectionMode="Multiple">
+                <!-- Contracts List -->
+                <TextBlock Grid.Row="1" Grid.Column="0" Margin="5" Text="Contracts:" VerticalAlignment="Top"/>
+                <ListBox Grid.Row="1" Grid.Column="1" Margin="5" Height="80" x:Name="ContractsListBox" SelectionMode="Multiple">
                     <ListBox.Items>
-                        <ListBoxItem Content="Jan"/>
-                        <ListBoxItem Content="Piet"/>
-                        <ListBoxItem Content="Klaas"/>
+                        <ListBoxItem Content="Contract X"/>
+                        <ListBoxItem Content="Contract Y"/>
+                    </ListBox.Items>
+                </ListBox>
+
+                
+
+                <!-- Props List -->
+                <TextBlock Grid.Row="1" Grid.Column="2" Margin="5" Text="Props:" VerticalAlignment="Top"/>
+                <ListBox Grid.Row="1" Grid.Column="3" Margin="5" Height="80" x:Name="PropsListBox" SelectionMode="Multiple">
+                    <ListBox.Items>
+                        <ListBoxItem Content="Paraplu"/>
+                        <ListBoxItem Content="Jas"/>
+                        <ListBoxItem Content="Beach ball"/>
+                    </ListBox.Items>
+                </ListBox>
+
+                <!-- Date -->
+                <TextBlock Grid.Row="2" Grid.Column="0" Margin="5" Text="Date:" VerticalAlignment="Center"/>
+                <Calendar x:Name="DatePicker" Grid.Row="2" Grid.Column="1" Margin="5" HorizontalAlignment="Left"/>
+
+                <!-- Location -->
+                <TextBlock Grid.Row="2" Grid.Column="2" Margin="5" Text="Location:" VerticalAlignment="Top"/>
+                <ListBox Grid.Row="2" Grid.Column="3" Margin="5" Height="80" x:Name="LocationsListBox" SelectionMode="Multiple">
+                    <ListBox.Items>
+                        <ListBoxItem Content="Basic Fit"/>
+                        <ListBoxItem Content="Kasteel Hoensbroek"/>
+                        <ListBoxItem Content="Haselt"/>
                     </ListBox.Items>
                 </ListBox>
 
