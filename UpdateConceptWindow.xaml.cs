@@ -1,4 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
+using System.IO;
+using System.Security.Cryptography.Xml;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -11,6 +13,15 @@ namespace Casus4
     public partial class UpdateConceptWindow : Window
     {
         private Concept Concept = new Concept();
+        private PhotoShoot  PhotoShoot = new PhotoShoot();
+
+        private byte[] sketchImage;
+
+        private List<BitmapImage> _images = new List<BitmapImage>();
+        private int _currentIndex = 0;
+
+        private List<byte[]> _imageBytesList = new List<byte[]>();
+
         public UpdateConceptWindow(Concept concept)
         {
             InitializeComponent();
@@ -24,7 +35,13 @@ namespace Casus4
             TextUpdateTitle.Text = concept.Title;
             TextUpdateLocatie.Text = concept.Location?.City ?? "leeg";
             TextUpdateModel.Text = concept?.Models?.ToString() ?? "leeg";
+            ComboBoxProjectUpdate.Text = concept.Project.Title;
             ComboBoxProjectUpdate.SelectedItem = concept.Project.Title;
+            Description_TextBox.Text = concept.Description;
+            foreach (var item in PhotoShoot.Get())
+            {
+                FotoshootsGridView.Items.Add(item);
+            }
 
             if (concept.FotoSketch != null)
             {
@@ -63,6 +80,7 @@ namespace Casus4
 
         Project project = new Project();
 
+
         private void AddProjectToCombox()
         {
 
@@ -74,7 +92,7 @@ namespace Casus4
             }
         }
 
-        private void UploadImage_Click(object sender, RoutedEventArgs e)
+        private void UploadSketchImage_Click(object sender, RoutedEventArgs e)
         {
             var openFileDialog = new Microsoft.Win32.OpenFileDialog();
             openFileDialog.Filter = "Afbeeldingen (*.png;*.jpg;*.jpeg)|*.png;*.jpg;*.jpeg";
@@ -85,11 +103,49 @@ namespace Casus4
                 {
                     var uri = new Uri(openFileDialog.FileName);
                     var bitmap = new BitmapImage(uri);
-                    SketchAfbeeldingUpdateConcept.Source = bitmap;
+                    SketchAfbeelding.Source = bitmap;
+                    sketchImage = ConceptImageHelper.ImageSourceToByteArray(bitmap);
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show("Kon afbeelding niet laden: " + ex.Message);
+                }
+            }
+        }
+
+        private void UploadResultImages_Click(object sender, RoutedEventArgs e)
+        {
+            var openFileDialog = new Microsoft.Win32.OpenFileDialog
+            {
+                Multiselect = true,
+                Filter = "Afbeeldingen (*.png;*.jpg;*.jpeg)|*.png;*.jpg;*.jpeg"
+            };
+
+            if (openFileDialog.ShowDialog() == true)
+            {
+                try
+                {
+                    _images.Clear();
+                    _imageBytesList.Clear();
+
+                    foreach (string filePath in openFileDialog.FileNames)
+                    {
+                        var bitmap = new BitmapImage(new Uri(filePath));
+                        _images.Add(bitmap);
+
+                        byte[] bytes = ConceptImageHelper.ImageSourceToByteArray(bitmap);
+                        _imageBytesList.Add(bytes);
+                    }
+
+                    if (_images.Any())
+                    {
+                        _currentIndex = 0;
+                        FotoAfbeelding.Source = _images[_currentIndex];
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Kon afbeeldingen niet laden: " + ex.Message);
                 }
             }
         }
