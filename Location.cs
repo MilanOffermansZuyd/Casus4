@@ -19,6 +19,11 @@
             Country = country;
         }
 
+        public Location()
+        {
+            
+        }
+
 
         public List<Location> GetAll()
         {

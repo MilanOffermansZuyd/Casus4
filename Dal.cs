@@ -1,5 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
 using System.Data;
+using System.Xml.Linq;
 
 namespace Casus4
 {
@@ -693,8 +694,8 @@ namespace Casus4
                         int locationId = (int)reader["LocationId"];
                         Location location = GetLocationById(locationId);
                         string description = reader["Description"].ToString();
-                        string extraInformation = reader["ExtraInformation"].ToString();
-                        bool naked = (bool)reader["Naked"];
+                        string extraInformation = reader["ExtraInfo"].ToString();
+                        bool naked = reader.GetBoolean(7);
                         contacts.Add(new Model(id, firstName, lastName, picture, location, description, extraInformation, naked));
                     }
                 }
@@ -814,6 +815,31 @@ namespace Casus4
             {
                 connection.Open();
                 command.Parameters.AddWithValue("@Id", Id);
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        location.Street = reader.GetString(1);
+                        location.HouseNumber = reader.GetString(2);
+                        location.PostalCode = reader.GetString(3);
+                        location.City = reader.GetString(4);
+                        location.Country = reader.GetString(5);
+                    }
+                    return location;
+                }
+            }
+            throw new Exception(nameof(GetLocationById));
+        }
+
+        public Location GetLocationByString(string street)
+        {
+            Location location = new Location();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlCommand command = new SqlCommand("SELECT * FROM Location WHERE Street = @Street", connection))
+            {
+                connection.Open();
+                command.Parameters.AddWithValue("@Street", street);
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
