@@ -25,6 +25,7 @@
                       SelectionMode="Single" MouseDoubleClick="PhotoshootDataGrid_MouseDoubleClick">
 
                 <DataGrid.Columns>
+                    <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="0"/>
                     <DataGridTextColumn Header="Date" Binding="{Binding Date}" Width="*"/>
                     <DataGridTextColumn Header="Location" Binding="{Binding Location}" Width="*"/>
 

@@ -25,10 +25,6 @@ public class PhotoShoot
     {
         PhotoShoot photoshoot = this;
         dal.AddPhotoshoot(photoshoot);
-        //dal.AddPhotoshootContracts(photoshoot);
-        //dal.AddPhotoshootConcepts(photoshoot);
-        //dal.AddPhotoshootModels(photoshoot);
-        //dal.AddPhotoshootProps(photoshoot);
     }
 
     public void Remove(int id)
@@ -38,11 +34,7 @@ public class PhotoShoot
     public void Edit()
     {
         PhotoShoot photoshoot = this;
-        dal.EditPhotoshoot(photoshoot);
-        //dal.EditPhotoshootContracts(photoshoot);
-        //dal.EditPhotoshootConcepts(photoshoot);
-        //dal.EditPhotoshootModels(photoshoot);
-        //dal.EditPhotoshootProps(photoshoot);
+        dal.UpdatePhotoshoot(photoshoot);
     }
     public void FilterOn(string Filter)
     {

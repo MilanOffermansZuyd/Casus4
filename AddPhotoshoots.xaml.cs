@@ -80,15 +80,15 @@ namespace Casus4
             var models = ModelsListBox;
             var props = PropsListBox;
 
-            Contract contract = dal.GetContractById(photoshoot.Contract.Id);
+            //Contract contract = dal.GetContractById(photoshoot.Contracts.contract.Id);
 
-            foreach (var item in ContractsListBox.Items)
-            {
-                if(item == contract.Name)
-                {
-                    ContractsListBox.SelectedItems.Add(item);
-                }
-            }
+            //foreach (var item in ContractsListBox.Items)
+            //{
+            //    if(item == contract.Name)
+            //    {
+            //        ContractsListBox.SelectedItems.Add(item);
+            //    }
+            //}
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
@@ -121,7 +121,7 @@ namespace Casus4
                 {
                     Model model = null;
 
-                    model = dal.GetModelByName(modelString);
+                    //model = dal.GetModelByName(modelString);
 
                     models.Add(model);
                 }
@@ -153,7 +153,7 @@ namespace Casus4
                 {
                     Prop prop = null;
 
-                    prop = dal.GetPropByName(propString);
+                    //prop = dal.GetPropByName(propString);
 
                     props.Add(prop);
                 }
@@ -199,7 +199,7 @@ namespace Casus4
                 photoshoot.Contracts = contracts;
                 photoshoot.Props = props;
 
-                photoshoot.UpdatePhotoshoot();
+                photoshoot.Edit();
             }
 
             PhotoshootPage photoshootPage = new PhotoshootPage();

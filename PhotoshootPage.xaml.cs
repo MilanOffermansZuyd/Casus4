@@ -20,8 +20,8 @@ namespace Casus4
             List<PhotoShoot> photoshoots = new List<PhotoShoot>();
             foreach (PhotoShoot photoshoot in photoshoots){
                 PhotoshootDataGrid.Items.Add(photoshoot);
-
             }
+            PhotoshootDataGrid.Columns[0].Visibility = Visibility.Collapsed;
         }
 
         private void AddPhotoshoot_Click(object sender, RoutedEventArgs e)

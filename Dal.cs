@@ -43,7 +43,14 @@ namespace Casus4
                 {
                     while (reader.Read())
                     {
-                        photoshoots.Add(new PhotoShoot ( reader.GetInt32(0), reader.GetString(1), reader.GetString(2),  null,  null ));
+                        PhotoShoot photoshoot = new PhotoShoot(0, new DateTime(2000, 1, 1), null, null, null, null, null);
+                        photoshoot.Id = reader.GetInt32(0);
+                        photoshoot.Location = GetLocationById(reader.GetInt32(1));
+                        photoshoot.Date = reader.GetDateTime(2);
+                        photoshoot.Concepts = GetPhotoshootConcepts(reader.GetInt32(0));
+                        photoshoot.Contracts = GetPhotoshootContracts(reader.GetInt32(0));
+                        photoshoot.Models = GetPhotoshootModels(reader.GetInt32(0));
+                        photoshoot.Props = GetPhotoshootProps(reader.GetInt32(0));
                     }
                 }
             }
@@ -53,7 +60,7 @@ namespace Casus4
 
         public PhotoShoot GetPhotoshootByName(string name)
         {
-            PhotoShoot photoshoot = new PhotoShoot(0, null,null,null,null);
+            PhotoShoot photoshoot = new PhotoShoot(0, new DateTime(2000, 1, 1), null, null, null, null, null);
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             using (SqlCommand command = new SqlCommand("SELECT * FROM Photoshoot WHERE Title = @Title", connection))
@@ -65,15 +72,107 @@ namespace Casus4
                     while (reader.Read())
                     {
                         photoshoot.Id = reader.GetInt32(0);
-                        photoshoot.Title = reader.GetString(1);
-                        photoshoot.SubTitle = reader.GetString(2);
+                        photoshoot.Location = GetLocationById(reader.GetInt32(1));
+                        photoshoot.Date = reader.GetDateTime(2);
+                        photoshoot.Concepts = GetPhotoshootConcepts(reader.GetInt32(0));
+                        photoshoot.Contracts = GetPhotoshootContracts(reader.GetInt32(0));
+                        photoshoot.Models = GetPhotoshootModels(reader.GetInt32(0));
+                        photoshoot.Props = GetPhotoshootProps(reader.GetInt32(0));
                     }
                 }
                 return photoshoot;
             }
         }
 
+        public List<Concept> GetPhotoshootConcepts(int PhotoshootId)
+        {
+            List<Concept> concepts = new List<Concept>();
 
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlCommand command = new SqlCommand("SELECT C.ID, C.Title FROM CONCEPT C, ConceptPhotoshoots P WHERE C.Id = P.ConceptId AND P.PhotoshootId = @Id", connection))
+            {
+                command.Parameters.AddWithValue("@Id", PhotoshootId);
+                connection.Open();
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Concept concept = new Concept();
+                        concept.Id = reader.GetInt32(0);
+                        concept.Title = reader.GetString(1);
+                        concepts.Add(concept);
+                    }
+                }
+                return concepts;
+            }
+        }
+        public List<Contract> GetPhotoshootContracts(int PhotoshootId)
+        {
+            List<Contract> contracts = new List<Contract>();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlCommand command = new SqlCommand("SELECT ID, Name FROM Contract WHERE ForPhotoshoot = @Id", connection))
+            {
+                command.Parameters.AddWithValue("@Id", PhotoshootId);
+                connection.Open();
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Contract contract = new Contract(0, null,null,false,null);
+                        contract.Id = reader.GetInt32(0);
+                        contract.Name = reader.GetString(1);
+                        contracts.Add(contract);
+                    }
+                }
+                return contracts;
+            }
+        }
+        public List<Model> GetPhotoshootModels(int PhotoshootId)
+        {
+            List<Model> models = new List<Model>();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlCommand command = new SqlCommand("SELECT C.Id, C.FirstName, C.LastName FROM CONTACT C, PhotoshootContact P WHERE C.Id = P.ContactId AND P.PhotoshootId = @Id AND C.Naked IS NOT NULL", connection))
+            {
+                command.Parameters.AddWithValue("@Id", PhotoshootId);
+                connection.Open();
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Model model = new Model(0, null,null,null,null,null,null,false);
+                        model.Id = reader.GetInt32(0);
+                        model.FirstName = reader.GetString(1);
+                        model.LastName = reader.GetString(2);
+                        model.Add(model);
+                    }
+                }
+                return models;
+            }
+        }
+        public List<Prop> GetPhotoshootProps(int PhotoshootId)
+        {
+            List<Prop> props = new List<Prop>();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlCommand command = new SqlCommand("SELECT P.ID, P.Name FROM Prop P, PhotoShootProps A WHERE P.Id = A.PropId AND A.PhotoshootId = @Id", connection))
+            {
+                command.Parameters.AddWithValue("@Id", PhotoshootId);
+                connection.Open();
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Prop prop = new Prop(0, null, null);
+                        prop.Id = reader.GetInt32(0);
+                        prop.Name = reader.GetString(1);
+                        props.Add(prop);
+                    }
+                }
+                return props;
+            }
+        }
 
         public void AddPhotoshoot(PhotoShoot photoShoot)
         {
