@@ -430,25 +430,25 @@ namespace Casus4
 
             string[] Name = name.Split(' ');
 
-        //    using (SqlConnection connection = new SqlConnection(connectionString))
-        //    using (SqlCommand command = new SqlCommand("SELECT * FROM Contact WHERE FirstName = @First AND LastName = @Last", connection))
-        //    {
-        //        connection.Open();
-        //        command.Parameters.AddWithValue("@First", Name[0]);
-        //        command.Parameters.AddWithValue("@Last", Name[1]);
-        //        using (SqlDataReader reader = command.ExecuteReader())
-        //        {
-        //            while (reader.Read())
-        //            {
-        //                int Id = reader.GetInt32(0);
-        //                string FirstName = reader.GetString(1);
-        //                string LastName = reader.GetString(2);
-        //                byte[] Picture = (byte[])reader["Picture"];
-        //                Location location = GetLocationById(reader.GetInt32(4));
-        //                string description = reader.GetString(5);
-        //                string extraInformation = reader.GetString(6);
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlCommand command = new SqlCommand("SELECT * FROM Contact WHERE FirstName = @First AND LastName = @Last", connection))
+            {
+                connection.Open();
+                command.Parameters.AddWithValue("@First", Name[0]);
+                command.Parameters.AddWithValue("@Last", Name[1]);
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int Id = reader.GetInt32(0);
+                        string FirstName = reader.GetString(1);
+                        string LastName = reader.GetString(2);
+                        byte[] Picture = (byte[])reader["Picture"];
+                        Location location = GetLocationById(reader.GetInt32(4));
+                        string description = reader.GetString(5);
+                        string extraInformation = reader.GetString(6);
 
-        //                Model model = new(Id, FirstName, LastName, Picture, location, description, extraInformation,false);
+                        Model model = new(Id, FirstName, LastName, Picture, location, description, extraInformation, false);
 
                         return model;
                     }
@@ -460,21 +460,21 @@ namespace Casus4
         public Contact FindContacts(int id)
         {
 
-        //    using (SqlConnection connection = new SqlConnection(connectionString))
-        //    using (SqlCommand command = new SqlCommand("SELECT * FROM Contact WHERE Id = @Id", connection))
-        //    {
-        //        connection.Open();
-        //        command.Parameters.AddWithValue("@Id", id);
-        //        using (SqlDataReader reader = command.ExecuteReader())
-        //        {
-        //            while (reader.Read())
-        //            {
-        //                return new Helper(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), (byte[])reader["Picture"], (Location)reader["Location"], reader.GetString(3), reader.GetString(4), (bool)reader["Naked"]);
-        //            }
-        //        }
-        //    }
-        //    throw new Exception(nameof(FindContacts));
-        //}
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlCommand command = new SqlCommand("SELECT * FROM Contact WHERE Id = @Id", connection))
+            {
+                connection.Open();
+                command.Parameters.AddWithValue("@Id", id);
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        return new Helper(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), (byte[])reader["Picture"], (Location)reader["Location"], reader.GetString(3), reader.GetString(4), (bool)reader["Naked"]);
+                    }
+                }
+            }
+            throw new Exception(nameof(FindContacts));
+        }
 
 
 
