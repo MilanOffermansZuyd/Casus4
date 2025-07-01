@@ -73,5 +73,12 @@ namespace Casus4
             addProjectPage.Show();
             this.Close();   
         }
+
+        private void PropsButton_Click(object sender, RoutedEventArgs e)
+        {
+            PropsPage propsPage = new PropsPage();  
+            propsPage.Show();
+            this.Close();
+        }
     }
 }

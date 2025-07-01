@@ -16,6 +16,7 @@ namespace Casus4
         }
 
         Project project = new Project();
+        byte[] sketchToBeSaved;
 
         private void AddProjectToCombox()
         {
@@ -39,7 +40,8 @@ namespace Casus4
                 {
                     var uri = new Uri(openFileDialog.FileName);
                     var bitmap = new BitmapImage(uri);
-                    SketchAfbeeldingCreateConcept.Source = bitmap;
+                    SketchAfbeelding.Source = bitmap;
+                    sketchToBeSaved = ConceptImageHelper.ImageSourceToByteArray(bitmap);
                 }
                 catch (Exception ex)
                 {
@@ -64,8 +66,7 @@ namespace Casus4
                 {
                     var title = TextTitle.Text;
 
-
-                    Concept concept = new Concept(null, title, null, null, null, item, null, null);
+                    Concept concept = new Concept(null, title, null, sketchToBeSaved, null, item, null, null, Description_TextBox.Text);
 
                     concept.Add(concept);
 

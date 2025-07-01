@@ -1,13 +1,11 @@
 ﻿using Microsoft.Data.SqlClient;
-using System;
-using System.Diagnostics;
-using Microsoft.Identity.Client;
+using System.Data;
 
 namespace Casus4
 {
     public class DAL
     {
-        private readonly string connectionString = "Data Source=LAPTOP-T4RLVBV6;Initial Catalog=IdeaToGocCasus4;Integrated Security=True;Trust Server Certificate=True";
+        private readonly string connectionString = "Data Source=LAPTOP-T4RLVBV6;Initial Catalog=IdeaToGoCasus4;Integrated Security=True;Trust Server Certificate=True";
         
         //CRUD for project
         public List<Project> GetAllProjects() 
@@ -22,14 +20,32 @@ namespace Casus4
                 {
                     while (reader.Read())
                     {
-                        projects.Add(new Project(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), Convert.ToDateTime( reader.GetString(3)), null));
+                        projects.Add(new Project(reader.GetInt32(0), reader.GetString(1), reader.GetString(2),  reader.GetDateTime(3), null));
                     }
                 }
             }
 
             return projects;
         }
-        
+
+        public Project FindProject(int id)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlCommand command = new SqlCommand("SELECT * FROM Project WHERE Id = @Id", connection))
+            {
+                command.Parameters.AddWithValue("@Id",id);
+                connection.Open();
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        return new Project(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetDateTime(3), null);
+                    }
+                }
+            }
+            throw new Exception(nameof(FindProject));
+        }
+
         //CRUD for Photoshoot
         public List<PhotoShoot> GetAllPhotoshoots()
         {
@@ -51,6 +67,7 @@ namespace Casus4
                         photoshoot.Contracts = GetPhotoshootContracts(reader.GetInt32(0));
                         photoshoot.Models = GetPhotoshootModels(reader.GetInt32(0));
                         photoshoot.Props = GetPhotoshootProps(reader.GetInt32(0));
+
                     }
                 }
             }
@@ -534,7 +551,7 @@ namespace Casus4
                 {
                     while (reader.Read())
                     {
-                        concepts.Add(new Concept(reader.GetInt32(0), reader.GetString(1), reader["LocationId"] as Location ?? null, reader["FotoSketch"] as byte[] ?? null, [reader["FotoResults"] as byte[] ?? null], new Project(0,"Test", "test", DateTime.Now, null), null, null));
+                        concepts.Add(new Concept(reader.GetInt32(0), reader.GetString(1), reader["LocationId"] as Location ?? null, reader["PhotoSketch"] as byte[] ?? null, [reader["PhotoResults"] as byte[] ?? null], FindProject((int)reader["ProjectId"]), null, null, reader["Description"] as string ?? null)); ;
                     }
                 }
             }
@@ -574,11 +591,16 @@ namespace Casus4
         public void AddConcept(Concept concept)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
-            using (SqlCommand command = new SqlCommand("INSERT INTO Concept (Title, LocationId, ProjectId) VALUES (@Title, @LocationId, @ProjectId )",connection))
+            using (SqlCommand command = new SqlCommand("INSERT INTO Concept (Title, LocationId,PhotoSketch, ProjectId, Description) VALUES (@Title, @LocationId,@PhotoSketch,@ProjectId ,@Description )", connection))
             {
                 command.Parameters.AddWithValue("@Title", concept.Title);
-                _ = concept.Location == null ? command.Parameters.AddWithValue("@LocationId", 1) : command.Parameters.AddWithValue("@LocationId", concept.Location.Id);
+                command.Parameters.AddWithValue("@LocationId", concept.Location?.Id ?? 1);
+
+                command.Parameters.Add("@PhotoSketch", SqlDbType.VarBinary).Value =
+                    (object?)concept.FotoSketch ?? DBNull.Value;
+
                 command.Parameters.AddWithValue("@ProjectId", concept.Project.Id);
+                command.Parameters.AddWithValue("@Description", concept.Description);
 
 
                 connection.Open();
@@ -589,12 +611,21 @@ namespace Casus4
         public void UpdateConcept(Concept concept)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
-            using (SqlCommand command = new SqlCommand("UPDATE Concept SET LocationId = @LocationId, Title = @Title , ProjectId = @ProjectId WHERE Id = @Id", connection))
+            using (SqlCommand command = new SqlCommand("UPDATE Concept SET LocationId = @LocationId, Title = @Title , ProjectId = @ProjectId ,Description =@Description,PhotoSketch = @PhotoSketch, PhotoResults =@PhotoResults WHERE Id = @Id", connection))
             {
                 command.Parameters.AddWithValue("@Id", concept.Id);
                 command.Parameters.AddWithValue("@Title", concept.Title);
-                _ = concept.Location == null ? command.Parameters.AddWithValue("@LocationId", 1) : command.Parameters.AddWithValue("@LocationId", concept.Location.Id);
+                command.Parameters.AddWithValue("@LocationId", concept.Location?.Id ?? 1);
+
+                command.Parameters.Add("@PhotoSketch", SqlDbType.VarBinary).Value =
+                    (object?)concept.FotoSketch ?? DBNull.Value;
+
+                command.Parameters.Add("@PhotoResults", SqlDbType.VarBinary).Value =
+                    (object?)concept.FotoResult ?? DBNull.Value;
+
                 command.Parameters.AddWithValue("@ProjectId", concept.Project.Id);
+                command.Parameters.AddWithValue("@Description", concept.Description);
+
 
                 connection.Open();
                 command.ExecuteNonQuery();
@@ -670,30 +701,32 @@ namespace Casus4
         }
 
 
+
         public Model FindModelByName(string name)
         {
-            
-            string[] Name = name.Split(' ');
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            using (SqlCommand command = new SqlCommand("SELECT * FROM Contact WHERE FirstName = @First AND LastName = @Last", connection))
-            {
-                connection.Open();
-                command.Parameters.AddWithValue("@First", Name[0]);
-                command.Parameters.AddWithValue("@Last", Name[1]);
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        int Id = reader.GetInt32(0);
-                        string FirstName = reader.GetString(1);
-                        string LastName = reader.GetString(2);
-                        byte[] Picture = (byte[])reader["Picture"];
-                        Location location = GetLocationById(reader.GetInt32(4));
-                        string description = reader.GetString(5);
-                        string extraInformation = reader.GetString(6);
 
-                        Model model = new(Id, FirstName, LastName, Picture, location, description, extraInformation,false);
+           string[] Name = name.Split(' ');
+
+           using (SqlConnection connection = new SqlConnection(connectionString))
+           using (SqlCommand command = new SqlCommand("SELECT * FROM Contact WHERE FirstName = @First AND LastName = @Last", connection))
+           {
+               connection.Open();
+               command.Parameters.AddWithValue("@First", Name[0]);
+               command.Parameters.AddWithValue("@Last", Name[1]);
+               using (SqlDataReader reader = command.ExecuteReader())
+               {
+                   while (reader.Read())
+                   {
+                       int Id = reader.GetInt32(0);
+                       string FirstName = reader.GetString(1);
+                       string LastName = reader.GetString(2);
+                       byte[] Picture = (byte[])reader["Picture"];
+                       Location location = GetLocationById(reader.GetInt32(4));
+                       string description = reader.GetString(5);
+                       string extraInformation = reader.GetString(6);
+
+                       Model model = new(Id, FirstName, LastName, Picture, location, description, extraInformation,false);
 
                         return model;
                     }
@@ -705,21 +738,21 @@ namespace Casus4
         public Contact FindContacts(int id)
         {
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            using (SqlCommand command = new SqlCommand("SELECT * FROM Contact WHERE Id = @Id", connection))
-            {
-                connection.Open();
-                command.Parameters.AddWithValue("@Id", id);
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        return new Helper(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), (byte[])reader["Picture"], (Location)reader["Location"], reader.GetString(3), reader.GetString(4), (bool)reader["Naked"]);
-                    }
-                }
-            }
-            throw new Exception(nameof(FindContacts));
-        }
+        //    using (SqlConnection connection = new SqlConnection(connectionString))
+        //    using (SqlCommand command = new SqlCommand("SELECT * FROM Contact WHERE Id = @Id", connection))
+        //    {
+        //        connection.Open();
+        //        command.Parameters.AddWithValue("@Id", id);
+        //        using (SqlDataReader reader = command.ExecuteReader())
+        //        {
+        //            while (reader.Read())
+        //            {
+        //                return new Helper(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), (byte[])reader["Picture"], (Location)reader["Location"], reader.GetString(3), reader.GetString(4), (bool)reader["Naked"]);
+        //            }
+        //        }
+        //    }
+        //    throw new Exception(nameof(FindContacts));
+        //}
 
 
 

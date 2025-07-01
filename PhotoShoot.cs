@@ -21,8 +21,7 @@ public class PhotoShoot
         Models = models;
         Props = props;
     }
-    public void Add()
-    {
+    public void Add()    {
         PhotoShoot photoshoot = this;
         dal.AddPhotoshoot(photoshoot);
     }
