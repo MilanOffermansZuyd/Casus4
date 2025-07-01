@@ -173,21 +173,7 @@ namespace Casus4
 
             if (NewPhotoshoot = true)
             {
-                //add Photoshoot
                 photoshoot.Add();
-                //add concept-photshoot link to database
-                //foreach (Concept concept in photoshoot.Concepts)
-                //{
-                //    photoshoot.AddConceptPhotoshoot(concept);
-                //}
-
-                //foreach (string ModelName in ModelsListBox.SelectedItems)
-                //{
-                //    Model model = new(null, null, null, null, null, null, null, false);
-
-                //    model = (Model)model.SearchOnName(ModelName);
-                //    photoshoot.AddPhotoshootModel(model);
-                //}
             }
 
             if(NewPhotoshoot = false)

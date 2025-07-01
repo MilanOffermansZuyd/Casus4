@@ -9,6 +9,7 @@
     <DockPanel>
         <Border DockPanel.Dock="Top" Background="#EEE" Padding="10">
             <DockPanel HorizontalAlignment="Right">
+                <Button x:Name="DeleteButton" Content="Delete" Width="80" Margin="5" Click="DeleteButton_Click"/>
                 <Button x:Name="AddPhotoshoot" Content="Add Photoshoot" Width="100" Margin="5" Click="AddPhotoshoot_Click"/>
                 <Button x:Name="BackButton" Content="Back" Width="80" Margin="5" Click="BackButton_Click"/>
             </DockPanel>

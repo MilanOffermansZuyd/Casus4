@@ -58,14 +58,14 @@ namespace Casus4
             return photoshoots;
         }
 
-        public PhotoShoot GetPhotoshootByName(string name)
+        public PhotoShoot GetPhotoshootById(int Id)
         {
             PhotoShoot photoshoot = new PhotoShoot(0, new DateTime(2000, 1, 1), null, null, null, null, null);
 
             using (SqlConnection connection = new SqlConnection(connectionString))
-            using (SqlCommand command = new SqlCommand("SELECT * FROM Photoshoot WHERE Title = @Title", connection))
+            using (SqlCommand command = new SqlCommand("SELECT * FROM Photoshoot WHERE Id = @id", connection))
             {
-                command.Parameters.AddWithValue("@Title", name);
+                command.Parameters.AddWithValue("@Id", Id);
                 connection.Open();
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
@@ -345,12 +345,50 @@ namespace Casus4
 
         }
 
-        public void DeletePhotoshoot(int id)
+        public void DeletePhotoshoot(PhotoShoot photoshoot)
         {
+            //Concepts
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlCommand command = new SqlCommand("DELETE FROM ConceptPhotoshoots WHERE PhotoshootId = @PhotoshootId", connection))
+            {
+                command.Parameters.AddWithValue("@PhotoshootId", photoshoot.Id);
+
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+            //contracts
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlCommand command = new SqlCommand("UPDATE Contract SET ForPhotoshoot = null WHERE PhotoshootId = @PhotoshootId", connection))
+            {
+                command.Parameters.AddWithValue("@PhotoshootId", photoshoot.Id);
+
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+            //contacts
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlCommand command = new SqlCommand("DELETE FROM PhotoshootContact WHERE PhotoshootId = @PhotoshootId", connection))
+            {
+                command.Parameters.AddWithValue("@PhotoshootId", photoshoot.Id);
+
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+            //Props
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlCommand command = new SqlCommand("DELETE FROM PhotoshootProps WHERE PhotoshootId = @PhotoshootId", connection))
+            {
+                command.Parameters.AddWithValue("@PhotoshootId", photoshoot.Id);
+
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+
+            //Photoshoot
             using (SqlConnection connection = new SqlConnection(connectionString))
             using (SqlCommand command = new SqlCommand("DELETE FROM Photoshoot WHERE Id = @Id", connection))
             {
-                command.Parameters.AddWithValue("@Id", id);
+                command.Parameters.AddWithValue("@Id", photoshoot.Id);
                 connection.Open();
                 command.ExecuteNonQuery();
             }

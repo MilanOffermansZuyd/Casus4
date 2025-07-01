@@ -27,9 +27,10 @@ public class PhotoShoot
         dal.AddPhotoshoot(photoshoot);
     }
 
-    public void Remove(int id)
+    public void Remove()
     {
-        dal.DeletePhotoshoot(id);
+        PhotoShoot photoshoot = this;
+        dal.DeletePhotoshoot(photoshoot);
     }
     public void Edit()
     {
