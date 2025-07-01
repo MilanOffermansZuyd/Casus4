@@ -78,15 +78,65 @@ namespace Casus4
         public void AddPhotoshoot(PhotoShoot photoShoot)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
-            using (SqlCommand command = new SqlCommand("INSERT INTO Photoshoot (Title, Subtitle, Contract, LocationId) VALUES (@Title, @Subtitle, @Contract, @Location)", connection))
+            using (SqlCommand command = new SqlCommand("INSERT INTO Photoshoot (LocationId, Date) VALUES (@Location, @Date)", connection))
             {
-                command.Parameters.AddWithValue("@Title", photoShoot.Title);
-                command.Parameters.AddWithValue("@Subtitle", photoShoot.SubTitle);
-                command.Parameters.AddWithValue("@Contract", photoShoot.Contract.Id);
-                command.Parameters.AddWithValue("@Location", 1);
+                command.Parameters.AddWithValue("@Location", photoShoot.Location.Id);
+                command.Parameters.AddWithValue("@Date", photoShoot.Date);
 
                 connection.Open();
                 command.ExecuteNonQuery();
+            }
+
+            foreach (Concept concept in photoShoot.Concepts)
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlCommand command = new SqlCommand("INSERT INTO ConceptPhotoshoots (ConceptId, PhotoshootId,) VALUES (@ConceptId, @PhotoshootId)", connection))
+                {
+                    command.Parameters.AddWithValue("@ConceptId", concept.Id);
+                    command.Parameters.AddWithValue("@PhotoshootId", photoShoot.Id);
+
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+            }
+
+            foreach (Contract contract in photoShoot.Contracts)
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlCommand command = new SqlCommand("UPDATE Contract SET ForPhotoshoot = @PhotoshootId WHERE Id = @Id", connection))
+                {
+                    command.Parameters.AddWithValue("@Id", contract.Id);
+                    command.Parameters.AddWithValue("@PhotoshootId", photoShoot.Id);
+
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+            }
+
+            foreach (Model model in photoShoot.Models)
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlCommand command = new SqlCommand("INSERT INTO PhotoshootContact (PhotoshootId, ContactId) VALUES (@PhotoshootId, @ContactId)", connection))
+                {
+                    command.Parameters.AddWithValue("@ContactId", model.Id);
+                    command.Parameters.AddWithValue("@PhotoshootId", photoShoot.Id);
+
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+            }
+
+            foreach (Prop prop in photoShoot.Props)
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlCommand command = new SqlCommand("INSERT INTO PhotoshootProps (PhotoshootId, PropId) VALUES (@PhotoshootId, @PropId)", connection))
+                {
+                    command.Parameters.AddWithValue("@PropId", prop.Id);
+                    command.Parameters.AddWithValue("@PhotoshootId", photoShoot.Id);
+
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
             }
         }
 
@@ -96,14 +146,104 @@ namespace Casus4
             using (SqlCommand command = new SqlCommand("UPDATE Photoshoot SET Title = @Title, Subtitle = @Subtitle, Contract = @Contract, LocationId = @Location WHERE Id = @Id", connection))
             {
                 command.Parameters.AddWithValue("@Id", photoshoot.Id);
-                command.Parameters.AddWithValue("@Title", photoshoot.Title);
-                command.Parameters.AddWithValue("@Subtitle", photoshoot.SubTitle);
-                command.Parameters.AddWithValue("@Contract", photoshoot.Contract);
-                command.Parameters.AddWithValue("@Location", 1);
+                command.Parameters.AddWithValue("@Location", photoshoot.Location.Id);
 
                 connection.Open();
                 command.ExecuteNonQuery();
             }
+
+            //Delete all concepts with photoshoot ID from table, then add in the selected
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlCommand command = new SqlCommand("DELETE FROM ConceptPhotoshoots WHERE PhotoshootId = @PhotoshootId", connection))
+            {
+                command.Parameters.AddWithValue("@PhotoshootId", photoshoot.Id);
+
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+
+            foreach (Concept concept in photoshoot.Concepts)
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlCommand command = new SqlCommand("INSERT INTO ConceptPhotoshoots (ConceptId, PhotoshootId,) VALUES (@ConceptId, @PhotoshootId)", connection))
+                {
+                    command.Parameters.AddWithValue("@ConceptId", concept.Id);
+                    command.Parameters.AddWithValue("@PhotoshootId", photoshoot.Id);
+
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+            }
+
+            //Update contracts with photoshoot, then re-add the photoshoot ID
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlCommand command = new SqlCommand("UPDATE Contract SET ForPhotoshoot = null WHERE PhotoshootId = @PhotoshootId", connection))
+            {
+                command.Parameters.AddWithValue("@PhotoshootId", photoshoot.Id);
+
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+
+            foreach (Contract contract in photoshoot.Contracts)
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlCommand command = new SqlCommand("UPDATE Contract SET ForPhotoshoot = @PhotoshootId WHERE Id = @Id", connection))
+                {
+                    command.Parameters.AddWithValue("@Id", contract.Id);
+                    command.Parameters.AddWithValue("@PhotoshootId", photoshoot.Id);
+
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+            }
+
+
+            // Remove all contacts with photoshoot ID, then re-add them
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlCommand command = new SqlCommand("DELETE FROM PhotoshootContact WHERE PhotoshootId = @PhotoshootId", connection))
+            {
+                command.Parameters.AddWithValue("@PhotoshootId", photoshoot.Id);
+
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+
+            foreach (Model model in photoshoot.Models)
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlCommand command = new SqlCommand("INSERT INTO PhotoshootContact (PhotoshootId, ContactId) VALUES (@PhotoshootId, @ContactId)", connection))
+                {
+                    command.Parameters.AddWithValue("@ContactId", model.Id);
+                    command.Parameters.AddWithValue("@PhotoshootId", photoshoot.Id);
+
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+            }
+
+            // Remove all props with photoshoot ID, then re-add them
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlCommand command = new SqlCommand("DELETE FROM PhotoshootProps WHERE PhotoshootId = @PhotoshootId", connection))
+            {
+                command.Parameters.AddWithValue("@PhotoshootId", photoshoot.Id);
+
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+            foreach (Prop prop in photoshoot.Props)
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlCommand command = new SqlCommand("INSERT INTO PhotoshootProps (PhotoshootId, PropId) VALUES (@PhotoshootId, @PropId)", connection))
+                {
+                    command.Parameters.AddWithValue("@PropId", prop.Id);
+                    command.Parameters.AddWithValue("@PhotoshootId", photoshoot.Id);
+                        
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+            }
+
         }
 
         public void DeletePhotoshoot(int id)

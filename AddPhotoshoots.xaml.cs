@@ -24,7 +24,7 @@ namespace Casus4
     {
         DAL dal = new DAL();
         bool NewPhotoshoot = false;
-        PhotoShoot photoshoot = null;
+        PhotoShoot photoshoot = new PhotoShoot(0, new DateTime(2000, 1, 1), null, null, null, null, null);
 
         public AddPhotoshoots(int State, PhotoShoot SelectedPhotoshoot)
         {
@@ -109,7 +109,7 @@ namespace Casus4
                 foreach (string ConceptTitle in ConceptsListBox.SelectedItems)
                 {
                     Concept concept = dal.GetConceptByTitle(ConceptTitle);
-                    Concepts.Add(concept);
+                    concepts.Add(concept);
                 }
             }
             //models
@@ -127,10 +127,6 @@ namespace Casus4
                 }
 
             }
-            else
-            {
-                Contract contract = new Contract(0, null, null, false, null);
-            }
 
             //contracts
             List<Contract> contracts = new List<Contract>();
@@ -146,10 +142,6 @@ namespace Casus4
                     contracts.Add(contract);
                 }
 
-            }
-            else
-            {
-                Contract contract = new Contract(0, null, null, false, null);
             }
 
             //props
@@ -167,10 +159,7 @@ namespace Casus4
                 }
 
             }
-            else
-            {
-                Prop prop = new Prop(null, null);
-            }
+
 
             //date
             DateTime date = (DateTime)DatePicker.SelectedDate;
