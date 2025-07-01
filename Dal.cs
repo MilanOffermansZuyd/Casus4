@@ -63,7 +63,7 @@ namespace Casus4
                         PhotoShoot photoshoot = new PhotoShoot(0, new DateTime(2000, 1, 1), null, null, null, null, null);
                         photoshoot.Id = reader.GetInt32(0);
                         photoshoot.Location = GetLocationById(reader.GetInt32(1));
-                        photoshoot.Date = reader.GetDateTime(2);
+                        photoshoot.Date = reader["Date"] as DateTime? ?? null;
                         photoshoot.Concepts = GetPhotoshootConcepts(reader.GetInt32(0));
                         photoshoot.Contracts = GetPhotoshootContracts(reader.GetInt32(0));
                         photoshoot.Models = GetPhotoshootModels(reader.GetInt32(0));
@@ -808,7 +808,7 @@ namespace Casus4
         // CRUD for Location
         public Location GetLocationById(int Id)
         {
-            Location location = new Location(Id, null, null, null, null, null);
+            Location location = new Location();
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             using (SqlCommand command = new SqlCommand("SELECT * FROM Location WHERE Id = @Id", connection))
@@ -819,11 +819,10 @@ namespace Casus4
                 {
                     while (reader.Read())
                     {
-                        location.Street = reader.GetString(1);
-                        location.HouseNumber = reader.GetString(2);
-                        location.PostalCode = reader.GetString(3);
-                        location.City = reader.GetString(4);
-                        location.Country = reader.GetString(5);
+                        location.Name = reader.GetString(1);
+                        location.Adress= reader["HouseNumber"] as Adress ?? null;
+                        location.LocalAuthority = reader["PostalCode"] as LocalAuthority ?? null;
+                        location.Country = reader["Country"] as Country ?? null;
                     }
                     return location;
                 }
@@ -844,11 +843,10 @@ namespace Casus4
                 {
                     while (reader.Read())
                     {
-                        location.Street = reader.GetString(1);
-                        location.HouseNumber = reader.GetString(2);
-                        location.PostalCode = reader.GetString(3);
-                        location.City = reader.GetString(4);
-                        location.Country = reader.GetString(5);
+                        location.Name = reader.GetString(1);
+                        location.Adress = reader["HouseNumber"] as Adress ?? null;
+                        location.LocalAuthority = reader["PostalCode"] as LocalAuthority ?? null;
+                        location.Country = reader["Country"] as Country ?? null;
                     }
                     return location;
                 }

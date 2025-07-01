@@ -33,7 +33,7 @@ namespace Casus4
         private void LoadDataConcept(Concept concept)
         {
             TextUpdateTitle.Text = concept.Title;
-            TextUpdateLocatie.Text = concept.Location?.City ?? "leeg";
+            TextUpdateLocatie.Text = concept.Location?.Name?? "leeg";
             TextUpdateModel.Text = concept?.Models?.ToString() ?? "leeg";
             ComboBoxProjectUpdate.Text = concept.Project.Title;
             ComboBoxProjectUpdate.SelectedItem = concept.Project.Title;
