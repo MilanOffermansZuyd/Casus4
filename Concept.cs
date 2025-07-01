@@ -11,8 +11,9 @@
         public List<Model>? Models{ get; set; }
         public List<Helper>? Extras{ get; set; }
         public Project Project { get; set; }
+        public string Description { get; set; }
 
-        public Concept(int? id, string title, Location location, byte[] fotoSketch , List<byte[]> fotoResult, Project project, List<Model>? models, List<Helper>? extras) 
+        public Concept(int? id, string title, Location location, byte[] fotoSketch , List<byte[]> fotoResult, Project project, List<Model>? models, List<Helper>? extras, string description) 
         {
             Id = id ?? 0;
             Location = location;
@@ -22,7 +23,7 @@
             Extras = extras;
             Project = project;
             Title = title;
-
+            Description = description;
         }
         public Concept()
         {

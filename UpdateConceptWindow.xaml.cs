@@ -26,6 +26,39 @@ namespace Casus4
             TextUpdateModel.Text = concept?.Models?.ToString() ?? "leeg";
             ComboBoxProjectUpdate.SelectedItem = concept.Project.Title;
 
+            if (concept.FotoSketch != null)
+            {
+                SketchAfbeelding.Source = ByteArrayToBitmapImage(concept.FotoSketch);
+                sketchImage = concept.FotoSketch;
+            }
+            else 
+            {
+                SketchAfbeelding.Source= new BitmapImage(new Uri("pack://application:,,,/Images/default.png"));
+            }
+            if(concept.FotoResult != null)
+            {
+                _images.Clear();
+                foreach (var bytes in concept.FotoResult)
+                {
+                    if (bytes != null)
+                    {
+                        var bmp = ByteArrayToBitmapImage(bytes);
+                        _images.Add(bmp);
+                        _imageBytesList.Add(bytes);
+                    }
+                }
+            }
+
+
+            if (_images.Any())
+            {
+                _currentIndex = 0;
+                FotoAfbeelding.Source = _images[_currentIndex];
+            }
+            else
+            {
+                FotoAfbeelding.Source = new BitmapImage(new Uri("pack://application:,,,/Images/default.png"));
+            }
         }
 
         Project project = new Project();
@@ -78,7 +111,7 @@ namespace Casus4
                     var title = TextUpdateTitle.Text;
 
 
-                    Concept concept = new Concept(Concept.Id, title, null, null, null, item, null, null);
+                    Concept concept = new Concept(Concept.Id, title, null, sketchImage ?? null, _imageBytesList ?? null, item, null, null ,Description_TextBox.Text);
 
                     concept.Edit(concept);
 
@@ -86,6 +119,42 @@ namespace Casus4
                     conceptPage.Show();
                     this.Close();
                 }
+            }
+        }
+
+        private void VolgendeButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (_images.Count == 0) return;
+
+            _currentIndex++;
+            if (_currentIndex >= _images.Count)
+                _currentIndex = 0;
+
+            FotoAfbeelding.Source = _images[_currentIndex];
+        }
+
+        private void VorigeButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (_images.Count == 0) return;
+
+            _currentIndex--;
+            if (_currentIndex < 0)
+                _currentIndex = _images.Count - 1;
+
+            FotoAfbeelding.Source = _images[_currentIndex];
+        }
+
+        public BitmapImage ByteArrayToBitmapImage(byte[] imageData)
+        {
+            using (var ms = new MemoryStream(imageData))
+            {
+                var bitmap = new BitmapImage();
+                bitmap.BeginInit();
+                bitmap.CacheOption = BitmapCacheOption.OnLoad;
+                bitmap.StreamSource = ms;
+                bitmap.EndInit();
+                bitmap.Freeze();
+                return bitmap;
             }
         }
     }
