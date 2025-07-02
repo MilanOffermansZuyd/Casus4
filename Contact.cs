@@ -25,7 +25,7 @@ public abstract class Contact
 
     public virtual void Add(Contact contact)
     {
-        dal.AddContact(contact);
+        dal.AddModel(contact);
     }
     public virtual void Remove(int id)
     {

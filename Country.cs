@@ -6,11 +6,23 @@ using System.Threading.Tasks;
 
 namespace Casus4
 {
-    class Country: Location
+    public class Country
     {
-        public Country(int? id, string street, string houseNumber, string postalCode, string city, string country)
-            : base(id, street, houseNumber, postalCode, city, country)
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public Country(int? id, string name)
         {
-        }   
+            Id = id ?? 0;
+            Name = name;
+        }
+        public void Add()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Remove()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

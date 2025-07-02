@@ -21,10 +21,17 @@
         <TextBox x:Name="TextModelNameCreateModel" HorizontalAlignment="Left" Height="24" Margin="430,27,0,0" TextWrapping="Wrap" Text="Naam" VerticalAlignment="Top" Width="221"/>
         <TextBox x:Name="TextLastNameModelCreateModel" HorizontalAlignment="Left" Height="24" Margin="430,56,0,0" TextWrapping="Wrap" Text="Achternaam" VerticalAlignment="Top" Width="221"/>
         <TextBox x:Name="TextContactMethodCreateModel" HorizontalAlignment="Left" Height="24" Margin="430,85,0,0" TextWrapping="Wrap" Text="Contact" VerticalAlignment="Top" Width="222"/>
-        <TextBox x:Name="DescriptionCreateModel" HorizontalAlignment="Left" Height="110" Margin="326,139,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="428"/>
-        <TextBlock HorizontalAlignment="Left" Height="23" Margin="327,123,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="73"><Run Language="nl-nl" Text="Beschrijving"/><LineBreak/><Run Language="nl-nl"/></TextBlock>
         <Button x:Name="BackToModelPageFromCreate" Content="Back" HorizontalAlignment="Left" Height="27" Margin="726,0,0,0" VerticalAlignment="Top" Width="74" Click="BackToModelPageFromCreate_Click"/>
         <Button x:Name="SaveAddModel" Content="Save" HorizontalAlignment="Left" Height="27" Margin="652,0,0,0" VerticalAlignment="Top" Width="74" Click="SaveAddModel_Click"/>
+        <TextBox x:Name="DescriptionTextAddModel" HorizontalAlignment="Left" Height="24" Margin="429,114,0,0" TextWrapping="Wrap" Text="Beschrijving" VerticalAlignment="Top" Width="222"/>
+        <TextBox x:Name="ExtraInfoTextAddModel" HorizontalAlignment="Left" Height="98" Margin="429,306,0,0" TextWrapping="Wrap" Text="Extra Informatie" VerticalAlignment="Top" Width="286"/>
+        <TextBox x:Name="LocationTextAddModel" HorizontalAlignment="Left" Height="24" Margin="429,143,0,0" TextWrapping="Wrap" Text="Locatie" VerticalAlignment="Top" Width="222"/>
+        <CheckBox x:Name="ModelCheckBox" Content="Model" HorizontalAlignment="Left" Height="16" Margin="430,187,0,0" VerticalAlignment="Top" Width="142"/>
+        <CheckBox x:Name="HelperCheckBoxAddModel" Content="Helper" HorizontalAlignment="Left" Height="16" Margin="430,0,0,0" VerticalAlignment="Center" Width="142"/>
+        <CheckBox x:Name="MakeUpArtistCheckBox" Content="Visagist" HorizontalAlignment="Left" Height="16" Margin="429,230,0,0" VerticalAlignment="Top" Width="142"/>
+        <CheckBox x:Name="NakedModelCheckBox" Content="Naakt model" HorizontalAlignment="Left" Height="16" Margin="584,187,0,0" VerticalAlignment="Top" Width="142"/>
+        <CheckBox x:Name="GetsPaidHelper" Content="Betaalde hulp" HorizontalAlignment="Left" Height="16" Margin="584,0,0,0" VerticalAlignment="Center" Width="142"/>
+        <CheckBox x:Name="GetsResourcesPaidMakeUpArtistCheckBox" Content="Betaalde Visagist" HorizontalAlignment="Left" Height="16" Margin="584,230,0,0" VerticalAlignment="Top" Width="142"/>
 
     </Grid>
 </Window>

@@ -3,36 +3,39 @@
     public class Location
     {
         public int Id { get; set; }
-        public string Street { get; set; }
-        public string HouseNumber { get; set; }
-        public string PostalCode { get; set; }
-        public string City { get; set; }
-        public string Country { get; set; }
+        public string Name { get; set; }
+        public LocalAuthority? LocalAuthority { get; set; }
+        public Adress? Adress { get; set; }
+        public Country? Country { get; set; }
 
-        public Location(int? id, string street, string houseNumber, string postalCode, string city, string country) 
+        public Location(int? id, string name, LocalAuthority? localAuthority, Adress? adress, Country? country) 
         {
             Id = id ?? 0;
-            Street = street;
-            HouseNumber = houseNumber;
-            PostalCode = postalCode;
-            City = city;
+            Name = name;
+            LocalAuthority = localAuthority;
+            Adress = adress;
             Country = country;
+        }
+
+        public Location()
+        {
+            
         }
 
 
         public List<Location> GetAll()
         {
-            return [new Location(0, "t", "", "", "", "")];
+            throw new NotImplementedException();
         }
 
         public Location add(Location location) 
         {
-            return new Location(0, "t", "", "", "", "");
+            throw new NotImplementedException();
         }
 
         public Location Remove(int id)
         {
-            return new Location(0, "t", "", "", "", "");
+            throw new NotImplementedException();
         }
     }
 }

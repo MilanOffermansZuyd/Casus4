@@ -151,9 +151,10 @@ namespace Casus4
             {
                 foreach (string propString in PropsListBox.SelectedItems)
                 {
+
                     Prop prop = null;
 
-                    //prop = dal.GetPropByName(propString);
+                    prop = dal.GetPropByName(propString);
 
                     props.Add(prop);
                 }

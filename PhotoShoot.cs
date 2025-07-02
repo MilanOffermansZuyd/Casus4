@@ -4,7 +4,7 @@ public class PhotoShoot
 {
     DAL dal = new DAL();
     public int Id { get; set; }
-    public DateTime Date { get; set; }
+    public DateTime? Date { get; set; }
     public Location Location { get; set; }
     public List<Concept> Concepts { get; set; }
     public List<Contract> Contracts { get; set; }

@@ -33,7 +33,7 @@ namespace Casus4
         private void LoadDataConcept(Concept concept)
         {
             TextUpdateTitle.Text = concept.Title;
-            TextUpdateLocatie.Text = concept.Location?.City ?? "leeg";
+            TextUpdateLocatie.Text = concept.Location?.Name?? "leeg";
             TextUpdateModel.Text = concept?.Models?.ToString() ?? "leeg";
             ComboBoxProjectUpdate.Text = concept.Project.Title;
             ComboBoxProjectUpdate.SelectedItem = concept.Project.Title;
@@ -46,23 +46,28 @@ namespace Casus4
             if (concept.FotoSketch != null)
             {
                 SketchAfbeelding.Source = ByteArrayToBitmapImage(concept.FotoSketch);
+                sketchImage = concept.FotoSketch;
             }
             else 
             {
                 SketchAfbeelding.Source= new BitmapImage(new Uri("pack://application:,,,/Images/default.png"));
             }
-            
-            foreach (var bytes in concept.FotoResult)
+            if(concept.FotoResult != null)
             {
-                if (bytes != null) 
+                _images.Clear();
+                foreach (var bytes in concept.FotoResult)
                 {
-                    var bmp = ByteArrayToBitmapImage(bytes);
-                    _images.Clear();
-                    _images.Add(bmp);
+                    if (bytes != null)
+                    {
+                        var bmp = ByteArrayToBitmapImage(bytes);
+                        _images.Add(bmp);
+                        _imageBytesList.Add(bytes);
+                    }
                 }
             }
 
-            if (_imageBytesList.Any())
+
+            if (_images.Any())
             {
                 _currentIndex = 0;
                 FotoAfbeelding.Source = _images[_currentIndex];
