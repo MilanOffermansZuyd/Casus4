@@ -9,6 +9,7 @@
     <DockPanel>
         <Border DockPanel.Dock="Top" Background="#EEE" Padding="10">
             <DockPanel HorizontalAlignment="Right">
+                <Button x:Name="DeleteButton" Content="Delete" Width="80" Margin="5" Click="DeleteButton_Click"/>
                 <Button x:Name="AddPhotoshoot" Content="Add Photoshoot" Width="100" Margin="5" Click="AddPhotoshoot_Click"/>
                 <Button x:Name="BackButton" Content="Back" Width="80" Margin="5" Click="BackButton_Click"/>
             </DockPanel>
@@ -25,12 +26,14 @@
                       SelectionMode="Single" MouseDoubleClick="PhotoshootDataGrid_MouseDoubleClick">
 
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Title" Binding="{Binding Title}" Width="*"/>
-                    <DataGridTextColumn Header="Description" Binding="{Binding SubTitle}" Width="2*"/>
-                    <DataGridTextColumn Header="Concepts" Binding="{Binding ConceptsAsString}" Width="*"/>
-                    <DataGridTextColumn Header="Contract" Binding="{Binding Contract.Title}" Width="*"/>
-                    <DataGridTextColumn Header="Models" Binding="{Binding ModelsAsString}" Width="*"/>
-                    <DataGridTextColumn Header="Volunteers" Binding="{Binding VolunteersAsString}" Width="*"/>
+                    <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="0"/>
+                    <DataGridTextColumn Header="Date" Binding="{Binding Date}" Width="*"/>
+                    <DataGridTextColumn Header="Location" Binding="{Binding Location}" Width="*"/>
+
+                    <DataGridComboBoxColumn x:Name="ConceptsCombo" Header="Concepts" Width="*" SelectedItemBinding="{Binding Concepts}"/>
+                    <DataGridComboBoxColumn x:Name="ContractsCombo" Header="Contract" Width="*" SelectedItemBinding="{Binding Contracts}"/>
+                    <DataGridComboBoxColumn x:Name="ModelsCombo" Header="Models" Width="*" SelectedItemBinding="{Binding Models}"/>
+                    <DataGridComboBoxColumn x:Name="PropsCombo" Header="Props" Width="*" SelectedItemBinding="{Binding Props}"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>

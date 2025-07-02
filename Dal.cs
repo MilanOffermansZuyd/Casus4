@@ -1,13 +1,15 @@
 ﻿using Microsoft.Data.SqlClient;
-using System;
-using System.Diagnostics;
-using Microsoft.Identity.Client;
+using System.Data;
+using System.Xml.Linq;
 
 namespace Casus4
 {
     public class DAL
     {
-        private readonly string connectionString = "Data Source=JReuleaux;Initial Catalog=IdeaToGoCasus4;Integrated Security=True;Trust Server Certificate=True";
+
+
+        private readonly string connectionString = "Data Source=LAPTOP-T4RLVBV6;Initial Catalog=IdeaToGoCasus4;Integrated Security=True;Trust Server Certificate=True";
+
         //CRUD for project
         public List<Project> GetAllProjects()
         {
@@ -21,12 +23,32 @@ namespace Casus4
                 {
                     while (reader.Read())
                     {
-                        projects.Add(new Project(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), Convert.ToDateTime(reader.GetString(3)), null));
+
+                        projects.Add(new Project(reader.GetInt32(0), reader.GetString(1), reader.GetString(2),  reader.GetDateTime(3), null));
                     }
                 }
             }
 
             return projects;
+        }
+
+
+        public Project FindProject(int id)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlCommand command = new SqlCommand("SELECT * FROM Project WHERE Id = @Id", connection))
+            {
+                command.Parameters.AddWithValue("@Id",id);
+                connection.Open();
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        return new Project(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetDateTime(3), null);
+                    }
+                }
+            }
+            throw new Exception(nameof(FindProject));
         }
 
         //CRUD for Photoshoot
@@ -42,7 +64,15 @@ namespace Casus4
                 {
                     while (reader.Read())
                     {
-                        photoshoots.Add(new PhotoShoot(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), null, null));
+
+                        PhotoShoot photoshoot = new PhotoShoot(0, new DateTime(2000, 1, 1), null, null, null, null, null);
+                        photoshoot.Id = reader.GetInt32(0);
+                        photoshoot.Location = GetLocationById(reader.GetInt32(1));
+                        photoshoot.Date = reader["Date"] as DateTime? ?? null;
+                        photoshoot.Concepts = GetPhotoshootConcepts(reader.GetInt32(0));
+                        photoshoot.Contracts = GetPhotoshootContracts(reader.GetInt32(0));
+                        photoshoot.Models = GetPhotoshootModels(reader.GetInt32(0));
+                        photoshoot.Props = GetPhotoshootProps(reader.GetInt32(0));
                     }
                 }
             }
@@ -50,42 +80,184 @@ namespace Casus4
             return photoshoots;
         }
 
-        public PhotoShoot GetPhotoshootByName(string name)
+        public PhotoShoot GetPhotoshootById(int Id)
         {
-            PhotoShoot photoshoot = new PhotoShoot(0, null, null, null, null);
 
+            PhotoShoot photoshoot = new PhotoShoot(0, new DateTime(2000, 1, 1), null, null, null, null, null);
             using (SqlConnection connection = new SqlConnection(connectionString))
-            using (SqlCommand command = new SqlCommand("SELECT * FROM Photoshoot WHERE Title = @Title", connection))
+            using (SqlCommand command = new SqlCommand("SELECT * FROM Photoshoot WHERE Id = @id", connection))
             {
-                command.Parameters.AddWithValue("@Title", name);
+                command.Parameters.AddWithValue("@Id", Id);
                 connection.Open();
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
                         photoshoot.Id = reader.GetInt32(0);
-                        photoshoot.Title = reader.GetString(1);
-                        photoshoot.SubTitle = reader.GetString(2);
+                        photoshoot.Location = GetLocationById(reader.GetInt32(1));
+                        photoshoot.Date = reader.GetDateTime(2);
+                        photoshoot.Concepts = GetPhotoshootConcepts(reader.GetInt32(0));
+                        photoshoot.Contracts = GetPhotoshootContracts(reader.GetInt32(0));
+                        photoshoot.Models = GetPhotoshootModels(reader.GetInt32(0));
+                        photoshoot.Props = GetPhotoshootProps(reader.GetInt32(0));
                     }
                 }
                 return photoshoot;
             }
         }
 
+        public List<Concept> GetPhotoshootConcepts(int PhotoshootId)
+        {
+            List<Concept> concepts = new List<Concept>();
 
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlCommand command = new SqlCommand("SELECT C.ID, C.Title FROM CONCEPT C, ConceptPhotoshoots P WHERE C.Id = P.ConceptId AND P.PhotoshootId = @Id", connection))
+            {
+                command.Parameters.AddWithValue("@Id", PhotoshootId);
+                connection.Open();
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Concept concept = new Concept();
+                        concept.Id = reader.GetInt32(0);
+                        concept.Title = reader.GetString(1);
+                        concepts.Add(concept);
+                    }
+                }
+                return concepts;
+            }
+        }
+        public List<Contract> GetPhotoshootContracts(int PhotoshootId)
+        {
+            List<Contract> contracts = new List<Contract>();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlCommand command = new SqlCommand("SELECT ID, Name FROM Contract WHERE ForPhotoshoot = @Id", connection))
+            {
+                command.Parameters.AddWithValue("@Id", PhotoshootId);
+                connection.Open();
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Contract contract = new Contract(0, null,null,false,null);
+                        contract.Id = reader.GetInt32(0);
+                        contract.Name = reader.GetString(1);
+                        contracts.Add(contract);
+                    }
+                }
+                return contracts;
+            }
+        }
+        public List<Model> GetPhotoshootModels(int PhotoshootId)
+        {
+            List<Model> models = new List<Model>();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlCommand command = new SqlCommand("SELECT C.Id, C.FirstName, C.LastName FROM CONTACT C, PhotoshootContact P WHERE C.Id = P.ContactId AND P.PhotoshootId = @Id AND C.Naked IS NOT NULL", connection))
+            {
+                command.Parameters.AddWithValue("@Id", PhotoshootId);
+                connection.Open();
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Model model = new Model(0, null,null,null,null,null,null,false);
+                        model.Id = reader.GetInt32(0);
+                        model.FirstName = reader.GetString(1);
+                        model.LastName = reader.GetString(2);
+                        model.Add(model);
+                    }
+                }
+                return models;
+            }
+        }
+        public List<Prop> GetPhotoshootProps(int PhotoshootId)
+        {
+            List<Prop> props = new List<Prop>();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlCommand command = new SqlCommand("SELECT P.ID, P.Name FROM Prop P, PhotoShootProps A WHERE P.Id = A.PropId AND A.PhotoshootId = @Id", connection))
+            {
+                command.Parameters.AddWithValue("@Id", PhotoshootId);
+                connection.Open();
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Prop prop = new Prop(0, null, null);
+                        prop.Id = reader.GetInt32(0);
+                        prop.Name = reader.GetString(1);
+                        props.Add(prop);
+                    }
+                }
+                return props;
+            }
+        }
 
         public void AddPhotoshoot(PhotoShoot photoShoot)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
-            using (SqlCommand command = new SqlCommand("INSERT INTO Photoshoot (Title, Subtitle, Contract, LocationId) VALUES (@Title, @Subtitle, @Contract, @Location)", connection))
+            using (SqlCommand command = new SqlCommand("INSERT INTO Photoshoot (LocationId, Date) VALUES (@Location, @Date)", connection))
             {
-                command.Parameters.AddWithValue("@Title", photoShoot.Title);
-                command.Parameters.AddWithValue("@Subtitle", photoShoot.SubTitle);
-                command.Parameters.AddWithValue("@Contract", photoShoot.Contract.Id);
-                command.Parameters.AddWithValue("@Location", 1);
+                command.Parameters.AddWithValue("@Location", photoShoot.Location.Id);
+                command.Parameters.AddWithValue("@Date", photoShoot.Date);
 
                 connection.Open();
                 command.ExecuteNonQuery();
+            }
+
+            foreach (Concept concept in photoShoot.Concepts)
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlCommand command = new SqlCommand("INSERT INTO ConceptPhotoshoots (ConceptId, PhotoshootId,) VALUES (@ConceptId, @PhotoshootId)", connection))
+                {
+                    command.Parameters.AddWithValue("@ConceptId", concept.Id);
+                    command.Parameters.AddWithValue("@PhotoshootId", photoShoot.Id);
+
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+            }
+
+            foreach (Contract contract in photoShoot.Contracts)
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlCommand command = new SqlCommand("UPDATE Contract SET ForPhotoshoot = @PhotoshootId WHERE Id = @Id", connection))
+                {
+                    command.Parameters.AddWithValue("@Id", contract.Id);
+                    command.Parameters.AddWithValue("@PhotoshootId", photoShoot.Id);
+
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+            }
+
+            foreach (Model model in photoShoot.Models)
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlCommand command = new SqlCommand("INSERT INTO PhotoshootContact (PhotoshootId, ContactId) VALUES (@PhotoshootId, @ContactId)", connection))
+                {
+                    command.Parameters.AddWithValue("@ContactId", model.Id);
+                    command.Parameters.AddWithValue("@PhotoshootId", photoShoot.Id);
+
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+            }
+
+            foreach (Prop prop in photoShoot.Props)
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlCommand command = new SqlCommand("INSERT INTO PhotoshootProps (PhotoshootId, PropId) VALUES (@PhotoshootId, @PropId)", connection))
+                {
+                    command.Parameters.AddWithValue("@PropId", prop.Id);
+                    command.Parameters.AddWithValue("@PhotoshootId", photoShoot.Id);
+
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
             }
         }
 
@@ -95,22 +267,150 @@ namespace Casus4
             using (SqlCommand command = new SqlCommand("UPDATE Photoshoot SET Title = @Title, Subtitle = @Subtitle, Contract = @Contract, LocationId = @Location WHERE Id = @Id", connection))
             {
                 command.Parameters.AddWithValue("@Id", photoshoot.Id);
-                command.Parameters.AddWithValue("@Title", photoshoot.Title);
-                command.Parameters.AddWithValue("@Subtitle", photoshoot.SubTitle);
-                command.Parameters.AddWithValue("@Contract", photoshoot.Contract);
-                command.Parameters.AddWithValue("@Location", 1);
+                command.Parameters.AddWithValue("@Location", photoshoot.Location.Id);
 
                 connection.Open();
                 command.ExecuteNonQuery();
             }
+
+            //Delete all concepts with photoshoot ID from table, then add in the selected
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlCommand command = new SqlCommand("DELETE FROM ConceptPhotoshoots WHERE PhotoshootId = @PhotoshootId", connection))
+            {
+                command.Parameters.AddWithValue("@PhotoshootId", photoshoot.Id);
+
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+
+            foreach (Concept concept in photoshoot.Concepts)
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlCommand command = new SqlCommand("INSERT INTO ConceptPhotoshoots (ConceptId, PhotoshootId,) VALUES (@ConceptId, @PhotoshootId)", connection))
+                {
+                    command.Parameters.AddWithValue("@ConceptId", concept.Id);
+                    command.Parameters.AddWithValue("@PhotoshootId", photoshoot.Id);
+
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+            }
+
+            //Update contracts with photoshoot, then re-add the photoshoot ID
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlCommand command = new SqlCommand("UPDATE Contract SET ForPhotoshoot = null WHERE PhotoshootId = @PhotoshootId", connection))
+            {
+                command.Parameters.AddWithValue("@PhotoshootId", photoshoot.Id);
+
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+
+            foreach (Contract contract in photoshoot.Contracts)
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlCommand command = new SqlCommand("UPDATE Contract SET ForPhotoshoot = @PhotoshootId WHERE Id = @Id", connection))
+                {
+                    command.Parameters.AddWithValue("@Id", contract.Id);
+                    command.Parameters.AddWithValue("@PhotoshootId", photoshoot.Id);
+
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+            }
+
+
+            // Remove all contacts with photoshoot ID, then re-add them
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlCommand command = new SqlCommand("DELETE FROM PhotoshootContact WHERE PhotoshootId = @PhotoshootId", connection))
+            {
+                command.Parameters.AddWithValue("@PhotoshootId", photoshoot.Id);
+
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+
+            foreach (Model model in photoshoot.Models)
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlCommand command = new SqlCommand("INSERT INTO PhotoshootContact (PhotoshootId, ContactId) VALUES (@PhotoshootId, @ContactId)", connection))
+                {
+                    command.Parameters.AddWithValue("@ContactId", model.Id);
+                    command.Parameters.AddWithValue("@PhotoshootId", photoshoot.Id);
+
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+            }
+
+            // Remove all props with photoshoot ID, then re-add them
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlCommand command = new SqlCommand("DELETE FROM PhotoshootProps WHERE PhotoshootId = @PhotoshootId", connection))
+            {
+                command.Parameters.AddWithValue("@PhotoshootId", photoshoot.Id);
+
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+            foreach (Prop prop in photoshoot.Props)
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlCommand command = new SqlCommand("INSERT INTO PhotoshootProps (PhotoshootId, PropId) VALUES (@PhotoshootId, @PropId)", connection))
+                {
+                    command.Parameters.AddWithValue("@PropId", prop.Id);
+                    command.Parameters.AddWithValue("@PhotoshootId", photoshoot.Id);
+                        
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+            }
+
         }
 
-        public void DeletePhotoshoot(int id)
+        public void DeletePhotoshoot(PhotoShoot photoshoot)
         {
+            //Concepts
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlCommand command = new SqlCommand("DELETE FROM ConceptPhotoshoots WHERE PhotoshootId = @PhotoshootId", connection))
+            {
+                command.Parameters.AddWithValue("@PhotoshootId", photoshoot.Id);
+
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+            //contracts
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlCommand command = new SqlCommand("UPDATE Contract SET ForPhotoshoot = null WHERE PhotoshootId = @PhotoshootId", connection))
+            {
+                command.Parameters.AddWithValue("@PhotoshootId", photoshoot.Id);
+
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+            //contacts
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlCommand command = new SqlCommand("DELETE FROM PhotoshootContact WHERE PhotoshootId = @PhotoshootId", connection))
+            {
+                command.Parameters.AddWithValue("@PhotoshootId", photoshoot.Id);
+
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+            //Props
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlCommand command = new SqlCommand("DELETE FROM PhotoshootProps WHERE PhotoshootId = @PhotoshootId", connection))
+            {
+                command.Parameters.AddWithValue("@PhotoshootId", photoshoot.Id);
+
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+
+            //Photoshoot
             using (SqlConnection connection = new SqlConnection(connectionString))
             using (SqlCommand command = new SqlCommand("DELETE FROM Photoshoot WHERE Id = @Id", connection))
             {
-                command.Parameters.AddWithValue("@Id", id);
+                command.Parameters.AddWithValue("@Id", photoshoot.Id);
                 connection.Open();
                 command.ExecuteNonQuery();
             }
@@ -256,7 +556,8 @@ namespace Casus4
                 {
                     while (reader.Read())
                     {
-                        concepts.Add(new Concept(reader.GetInt32(0), reader.GetString(1), reader["LocationId"] as Location ?? null, reader["FotoSketch"] as byte[] ?? null, [reader["FotoResults"] as byte[] ?? null], new Project(0, "Test", "test", DateTime.Now, null), null, null));
+
+                        concepts.Add(new Concept(reader.GetInt32(0), reader.GetString(1), reader["LocationId"] as Location ?? null, reader["PhotoSketch"] as byte[] ?? null, ConceptImageHelper.SplitPhotos(reader["PhotoResults"] as byte[] ?? null), FindProject((int)reader["ProjectId"]), null, null, reader["Description"] as string ?? null)); ;
                     }
                 }
             }
@@ -296,11 +597,17 @@ namespace Casus4
         public void AddConcept(Concept concept)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
-            using (SqlCommand command = new SqlCommand("INSERT INTO Concept (Title, LocationId, ProjectId) VALUES (@Title, @LocationId, @ProjectId )", connection))
+
+            using (SqlCommand command = new SqlCommand("INSERT INTO Concept (Title, LocationId,PhotoSketch, ProjectId, Description) VALUES (@Title, @LocationId,@PhotoSketch,@ProjectId ,@Description )", connection))
             {
                 command.Parameters.AddWithValue("@Title", concept.Title);
-                _ = concept.Location == null ? command.Parameters.AddWithValue("@LocationId", 1) : command.Parameters.AddWithValue("@LocationId", concept.Location.Id);
+                command.Parameters.AddWithValue("@LocationId", concept.Location?.Id ?? 1);
+
+                command.Parameters.Add("@PhotoSketch", SqlDbType.VarBinary).Value =
+                    (object?)concept.FotoSketch ?? DBNull.Value;
+
                 command.Parameters.AddWithValue("@ProjectId", concept.Project.Id);
+                command.Parameters.AddWithValue("@Description", concept.Description);
 
 
                 connection.Open();
@@ -311,12 +618,23 @@ namespace Casus4
         public void UpdateConcept(Concept concept)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
-            using (SqlCommand command = new SqlCommand("UPDATE Concept SET LocationId = @LocationId, Title = @Title , ProjectId = @ProjectId WHERE Id = @Id", connection))
+            using (SqlCommand command = new SqlCommand("UPDATE Concept SET LocationId = @LocationId, Title = @Title , ProjectId = @ProjectId ,Description =@Description,PhotoSketch = @PhotoSketch, PhotoResults =@PhotoResults WHERE Id = @Id", connection))
             {
                 command.Parameters.AddWithValue("@Id", concept.Id);
                 command.Parameters.AddWithValue("@Title", concept.Title);
-                _ = concept.Location == null ? command.Parameters.AddWithValue("@LocationId", 1) : command.Parameters.AddWithValue("@LocationId", concept.Location.Id);
+                command.Parameters.AddWithValue("@LocationId", concept.Location?.Id ?? 1);
+
+                command.Parameters.Add("@PhotoSketch", SqlDbType.VarBinary).Value =
+                    (object?)concept.FotoSketch ?? DBNull.Value;
+
+                var bytefotos = ConceptImageHelper.CombinePhotos(concept.FotoResult);
+                command.Parameters.Add("@PhotoResults", SqlDbType.VarBinary).Value =
+                    (object?)bytefotos ?? DBNull.Value;
+
                 command.Parameters.AddWithValue("@ProjectId", concept.Project.Id);
+                command.Parameters.AddWithValue("@Description", concept.Description);
+
+
 
                 connection.Open();
                 command.ExecuteNonQuery();
@@ -384,7 +702,8 @@ namespace Casus4
                         string description = reader["Description"].ToString();
                         string extraInformation = reader["ExtraInfo"].ToString();
                         bool naked = (bool)reader["Naked"];
-                        contacts.Add(new Model(id, firstName, lastName, picture, location, description, extraInformation, naked, null, null));
+                        contacts.Add(new Model(id, firstName, lastName, picture, location, description, extraInformation, naked));
+
                     }
                 }
             }
@@ -394,6 +713,7 @@ namespace Casus4
         public List<Contact> GetAllMakeUpArtists()
         {
             var contacts = new List<Contact>();
+
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             using (SqlCommand command = new SqlCommand("SELECT * FROM Contact WHERE GetsResourcesPaid IS NOT NULL", connection))
@@ -472,7 +792,7 @@ namespace Casus4
                         string extraInformation = reader.GetString(6);
                         bool naked = (bool)reader["@Naked"];
 
-                        Model model = new Model(Id, FirstName, LastName, Picture, location, description, extraInformation, naked, null, null);
+                        Model model = new(Id, FirstName, LastName, Picture, location, description, extraInformation, false);
 
                         return model;
                     }
@@ -480,6 +800,7 @@ namespace Casus4
             }
             throw new Exception(nameof(FindModelByName));
         }
+
 
         public Contact FindModel(int id)
         {
@@ -502,7 +823,6 @@ namespace Casus4
 
         public Contact FindMakeUpArtist(int id)
         {
-
             using (SqlConnection connection = new SqlConnection(connectionString))
             using (SqlCommand command = new SqlCommand("SELECT * FROM Contact WHERE Id = @Id", connection))
             {
@@ -632,15 +952,10 @@ namespace Casus4
             }
         }
 
-        internal void UpdateConcept()
-        {
-            throw new NotImplementedException();
-        }
-
         // CRUD for Location
         public Location GetLocationById(int Id)
         {
-            Location location = new Location(Id, null, null, null, null, null);
+            Location location = new Location();
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             using (SqlCommand command = new SqlCommand("SELECT * FROM Location WHERE Id = @Id", connection))
@@ -651,17 +966,41 @@ namespace Casus4
                 {
                     while (reader.Read())
                     {
-                        location.Street = reader.GetString(1);
-                        location.HouseNumber = reader.GetString(2);
-                        location.PostalCode = reader.GetString(3);
-                        location.City = reader.GetString(4);
-                        location.Country = reader.GetString(5);
+                        location.Name = reader.GetString(1);
+                        location.Adress= reader["HouseNumber"] as Adress ?? null;
+                        location.LocalAuthority = reader["PostalCode"] as LocalAuthority ?? null;
+                        location.Country = reader["Country"] as Country ?? null;
                     }
                     return location;
                 }
             }
             throw new Exception(nameof(GetLocationById));
         }
+
+        public Location GetLocationByString(string street)
+        {
+            Location location = new Location();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlCommand command = new SqlCommand("SELECT * FROM Location WHERE Street = @Street", connection))
+            {
+                connection.Open();
+                command.Parameters.AddWithValue("@Street", street);
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        location.Name = reader.GetString(1);
+                        location.Adress = reader["HouseNumber"] as Adress ?? null;
+                        location.LocalAuthority = reader["PostalCode"] as LocalAuthority ?? null;
+                        location.Country = reader["Country"] as Country ?? null;
+                    }
+                    return location;
+                }
+            }
+            throw new Exception(nameof(GetLocationById));
+        }
+
 
         public List<Location> GetAllLocations()
         {
@@ -734,11 +1073,36 @@ namespace Casus4
                 {
                     while (reader.Read())
                     {
-                        return new Location(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), reader.GetString(5));
+                          return new Location(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), reader.GetString(5));
                     }
                 }
             }
             throw new Exception(nameof(GetLocationByName));
+        }
+              
+        //CRUD for Props
+        internal List<Prop> GetAllProps()
+        {
+
+            var props = new List<Prop>();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlCommand command = new SqlCommand("SELECT * FROM Prop", connection))
+            {
+                connection.Open();
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int id = reader.GetInt32(0);
+                        string Name = reader.GetString(1);
+                        string Description = reader.GetString(2);
+                        props.Add(new Prop(id, Name, Description));
+                    }
+                }
+            }
+            return props;
+
         }
     }
 }
