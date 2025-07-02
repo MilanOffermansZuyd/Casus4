@@ -1,5 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
 using System.Data;
+using System.Xml.Linq;
 
 namespace Casus4
 {
@@ -62,7 +63,7 @@ namespace Casus4
                         PhotoShoot photoshoot = new PhotoShoot(0, new DateTime(2000, 1, 1), null, null, null, null, null);
                         photoshoot.Id = reader.GetInt32(0);
                         photoshoot.Location = GetLocationById(reader.GetInt32(1));
-                        photoshoot.Date = reader.GetDateTime(2);
+                        photoshoot.Date = reader["Date"] as DateTime? ?? null;
                         photoshoot.Concepts = GetPhotoshootConcepts(reader.GetInt32(0));
                         photoshoot.Contracts = GetPhotoshootContracts(reader.GetInt32(0));
                         photoshoot.Models = GetPhotoshootModels(reader.GetInt32(0));
@@ -551,7 +552,7 @@ namespace Casus4
                 {
                     while (reader.Read())
                     {
-                        concepts.Add(new Concept(reader.GetInt32(0), reader.GetString(1), reader["LocationId"] as Location ?? null, reader["PhotoSketch"] as byte[] ?? null, [reader["PhotoResults"] as byte[] ?? null], FindProject((int)reader["ProjectId"]), null, null, reader["Description"] as string ?? null)); ;
+                        concepts.Add(new Concept(reader.GetInt32(0), reader.GetString(1), reader["LocationId"] as Location ?? null, reader["PhotoSketch"] as byte[] ?? null, ConceptImageHelper.SplitPhotos(reader["PhotoResults"] as byte[] ?? null), FindProject((int)reader["ProjectId"]), null, null, reader["Description"] as string ?? null)); ;
                     }
                 }
             }
@@ -620,11 +621,13 @@ namespace Casus4
                 command.Parameters.Add("@PhotoSketch", SqlDbType.VarBinary).Value =
                     (object?)concept.FotoSketch ?? DBNull.Value;
 
+                var bytefotos = ConceptImageHelper.CombinePhotos(concept.FotoResult);
                 command.Parameters.Add("@PhotoResults", SqlDbType.VarBinary).Value =
-                    (object?)concept.FotoResult ?? DBNull.Value;
+                    (object?)bytefotos ?? DBNull.Value;
 
                 command.Parameters.AddWithValue("@ProjectId", concept.Project.Id);
                 command.Parameters.AddWithValue("@Description", concept.Description);
+
 
 
                 connection.Open();
@@ -691,8 +694,8 @@ namespace Casus4
                         int locationId = (int)reader["LocationId"];
                         Location location = GetLocationById(locationId);
                         string description = reader["Description"].ToString();
-                        string extraInformation = reader["ExtraInformation"].ToString();
-                        bool naked = (bool)reader["Naked"];
+                        string extraInformation = reader["ExtraInfo"].ToString();
+                        bool naked = reader.GetBoolean(7);
                         contacts.Add(new Model(id, firstName, lastName, picture, location, description, extraInformation, naked));
                     }
                 }
@@ -701,32 +704,30 @@ namespace Casus4
         }
 
 
-
         public Model FindModelByName(string name)
         {
 
+            string[] Name = name.Split(' ');
 
-           string[] Name = name.Split(' ');
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlCommand command = new SqlCommand("SELECT * FROM Contact WHERE FirstName = @First AND LastName = @Last", connection))
+            {
+                connection.Open();
+                command.Parameters.AddWithValue("@First", Name[0]);
+                command.Parameters.AddWithValue("@Last", Name[1]);
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int Id = reader.GetInt32(0);
+                        string FirstName = reader.GetString(1);
+                        string LastName = reader.GetString(2);
+                        byte[] Picture = (byte[])reader["Picture"];
+                        Location location = GetLocationById(reader.GetInt32(4));
+                        string description = reader.GetString(5);
+                        string extraInformation = reader.GetString(6);
 
-           using (SqlConnection connection = new SqlConnection(connectionString))
-           using (SqlCommand command = new SqlCommand("SELECT * FROM Contact WHERE FirstName = @First AND LastName = @Last", connection))
-           {
-               connection.Open();
-               command.Parameters.AddWithValue("@First", Name[0]);
-               command.Parameters.AddWithValue("@Last", Name[1]);
-               using (SqlDataReader reader = command.ExecuteReader())
-               {
-                   while (reader.Read())
-                   {
-                       int Id = reader.GetInt32(0);
-                       string FirstName = reader.GetString(1);
-                       string LastName = reader.GetString(2);
-                       byte[] Picture = (byte[])reader["Picture"];
-                       Location location = GetLocationById(reader.GetInt32(4));
-                       string description = reader.GetString(5);
-                       string extraInformation = reader.GetString(6);
-
-                       Model model = new(Id, FirstName, LastName, Picture, location, description, extraInformation,false);
+                        Model model = new(Id, FirstName, LastName, Picture, location, description, extraInformation, false);
 
                         return model;
                     }
@@ -738,21 +739,21 @@ namespace Casus4
         public Contact FindContacts(int id)
         {
 
-        //    using (SqlConnection connection = new SqlConnection(connectionString))
-        //    using (SqlCommand command = new SqlCommand("SELECT * FROM Contact WHERE Id = @Id", connection))
-        //    {
-        //        connection.Open();
-        //        command.Parameters.AddWithValue("@Id", id);
-        //        using (SqlDataReader reader = command.ExecuteReader())
-        //        {
-        //            while (reader.Read())
-        //            {
-        //                return new Helper(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), (byte[])reader["Picture"], (Location)reader["Location"], reader.GetString(3), reader.GetString(4), (bool)reader["Naked"]);
-        //            }
-        //        }
-        //    }
-        //    throw new Exception(nameof(FindContacts));
-        //}
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlCommand command = new SqlCommand("SELECT * FROM Contact WHERE Id = @Id", connection))
+            {
+                connection.Open();
+                command.Parameters.AddWithValue("@Id", id);
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        return new Helper(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), (byte[])reader["Picture"], (Location)reader["Location"], reader.GetString(3), reader.GetString(4), (bool)reader["Naked"]);
+                    }
+                }
+            }
+            throw new Exception(nameof(FindContacts));
+        }
 
 
 
@@ -804,15 +805,10 @@ namespace Casus4
             }
         }
 
-        internal void UpdateConcept()
-        {
-            throw new NotImplementedException();
-        }
-
         // CRUD for Location
         public Location GetLocationById(int Id)
         {
-            Location location = new Location(Id, null, null, null, null, null);
+            Location location = new Location();
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             using (SqlCommand command = new SqlCommand("SELECT * FROM Location WHERE Id = @Id", connection))
@@ -823,11 +819,34 @@ namespace Casus4
                 {
                     while (reader.Read())
                     {
-                        location.Street = reader.GetString(1);
-                        location.HouseNumber = reader.GetString(2);
-                        location.PostalCode = reader.GetString(3);
-                        location.City = reader.GetString(4);
-                        location.Country = reader.GetString(5);
+                        location.Name = reader.GetString(1);
+                        location.Adress= reader["HouseNumber"] as Adress ?? null;
+                        location.LocalAuthority = reader["PostalCode"] as LocalAuthority ?? null;
+                        location.Country = reader["Country"] as Country ?? null;
+                    }
+                    return location;
+                }
+            }
+            throw new Exception(nameof(GetLocationById));
+        }
+
+        public Location GetLocationByString(string street)
+        {
+            Location location = new Location();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlCommand command = new SqlCommand("SELECT * FROM Location WHERE Street = @Street", connection))
+            {
+                connection.Open();
+                command.Parameters.AddWithValue("@Street", street);
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        location.Name = reader.GetString(1);
+                        location.Adress = reader["HouseNumber"] as Adress ?? null;
+                        location.LocalAuthority = reader["PostalCode"] as LocalAuthority ?? null;
+                        location.Country = reader["Country"] as Country ?? null;
                     }
                     return location;
                 }
