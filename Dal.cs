@@ -7,8 +7,7 @@ namespace Casus4
 {
     public class DAL
     {
-        private readonly string connectionString = "Data Source=LAPTOP-T4RLVBV6;Initial Catalog=IdeaToGocCasus4;Integrated Security=True;Trust Server Certificate=True";
-        DAL dal = new DAL();
+        private readonly string connectionString = "Data Source=JReuleaux;Initial Catalog=IdeaToGoCasus4;Integrated Security=True;Trust Server Certificate=True";
         //CRUD for project
         public List<Project> GetAllProjects()
         {
@@ -381,7 +380,7 @@ namespace Casus4
                         string lastName = reader["LastName"].ToString();
                         byte[] picture = reader["Picture"] as byte[];
                         int locationId = (int)reader["LocationId"];
-                        Location location = dal.GetLocationById(locationId);
+                        Location location = GetLocationById(locationId);
                         string description = reader["Description"].ToString();
                         string extraInformation = reader["ExtraInfo"].ToString();
                         bool naked = (bool)reader["Naked"];
@@ -397,7 +396,7 @@ namespace Casus4
             var contacts = new List<Contact>();
 
             using (SqlConnection connection = new SqlConnection(connectionString))
-            using (SqlCommand command = new SqlCommand("SELECT * FROM Contact WHERE GetsResourcesPayed IS NOT NULL", connection))
+            using (SqlCommand command = new SqlCommand("SELECT * FROM Contact WHERE GetsResourcesPaid IS NOT NULL", connection))
             {
                 connection.Open();
                 using (SqlDataReader reader = command.ExecuteReader())
@@ -409,11 +408,11 @@ namespace Casus4
                         string lastName = reader["LastName"].ToString();
                         byte[] picture = reader["Picture"] as byte[];
                         int locationId = (int)reader["LocationId"];
-                        Location location = dal.GetLocationById(locationId);
+                        Location location = GetLocationById(locationId);
                         string description = reader["Description"].ToString();
                         string extraInformation = reader["ExtraInfo"].ToString();
-                        bool getsResourcesPayed = (bool)reader["GetsResourcesPayed"];
-                        contacts.Add(new MakeUpArtist(id, firstName, lastName, picture, location, description, extraInformation, null, null, getsResourcesPayed));
+                        bool getsResourcesPaid = (bool)reader["GetsResourcesPaid"];
+                        contacts.Add(new MakeUpArtist(id, firstName, lastName, picture, location, description, extraInformation, null, null, getsResourcesPaid));
                     }
                 }
             }
@@ -425,7 +424,7 @@ namespace Casus4
             var contacts = new List<Contact>();
 
             using (SqlConnection connection = new SqlConnection(connectionString))
-            using (SqlCommand command = new SqlCommand("SELECT * FROM Contact WHERE GetsPayed IS NOT NULL", connection))
+            using (SqlCommand command = new SqlCommand("SELECT * FROM Contact WHERE GetsPaid IS NOT NULL", connection))
             {
                 connection.Open();
                 using (SqlDataReader reader = command.ExecuteReader())
@@ -437,11 +436,11 @@ namespace Casus4
                         string lastName = reader["LastName"].ToString();
                         byte[] picture = reader["Picture"] as byte[];
                         int locationId = (int)reader["LocationId"];
-                        Location location = dal.GetLocationById(locationId);
+                        Location location = GetLocationById(locationId);
                         string description = reader["Description"].ToString();
                         string extraInformation = reader["ExtraInfo"].ToString();
-                        bool getsPayed = (bool)reader["GetsPayed"];
-                        contacts.Add(new Helper(id, firstName, lastName, picture, location, description, extraInformation, null, getsPayed, null));
+                        bool getsPaid = (bool)reader["GetsPaid"];
+                        contacts.Add(new Helper(id, firstName, lastName, picture, location, description, extraInformation, null, getsPaid, null));
                     }
                 }
             }
@@ -544,7 +543,7 @@ namespace Casus4
         public void AddModel(Contact contact)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
-            using (SqlCommand command = new SqlCommand("INSERT INTO Contact (FirstName, LastName, Picture, Location, Description, ExtraInformation, Naked) VALUES (@FirstName, @LastName, @Picture, @Location, @Description, @ExtraInformation, @Naked)", connection))
+            using (SqlCommand command = new SqlCommand("INSERT INTO Contact (FirstName, LastName, Picture, Location, Description, ExtraInformation, Naked, GetsPaid, GetsResourcesPaid) VALUES (@FirstName, @LastName, @Picture, @Location, @Description, @ExtraInformation, @Naked, GetsPaid, GetsResourcesPaid)", connection))
             {
                 command.Parameters.AddWithValue("@FirstName", contact.FirstName);
                 command.Parameters.AddWithValue("@LastName", contact.LastName);
@@ -553,8 +552,8 @@ namespace Casus4
                 command.Parameters.AddWithValue("@Description", contact.Description);
                 command.Parameters.AddWithValue("@ExtraInformation", contact.ExtraInformation);
                 command.Parameters.AddWithValue("@Naked", contact.Naked);
-                command.Parameters.AddWithValue("@GetsPayed", null);
-                command.Parameters.AddWithValue("@GetsResourcesPayed", null);
+                command.Parameters.AddWithValue("@GetsPaid", null);
+                command.Parameters.AddWithValue("@GetsResourcesPaid", null);
 
                 connection.Open();
                 command.ExecuteNonQuery();
@@ -564,7 +563,7 @@ namespace Casus4
         public void AddMakeUpArtist(Contact contact)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
-            using (SqlCommand command = new SqlCommand("INSERT INTO Contact (FirstName, LastName, Picture, Location, Description, ExtraInformation, Naked) VALUES (@FirstName, @LastName, @Picture, @Location, @Description, @ExtraInformation, @Naked)", connection))
+            using (SqlCommand command = new SqlCommand("INSERT INTO Contact (FirstName, LastName, Picture, Location, Description, ExtraInformation, Naked, GetsPaid, GetsResourcesPaid) VALUES (@FirstName, @LastName, @Picture, @Location, @Description, @ExtraInformation, @Naked, GetsPaid, GetsResourcesPaid)", connection))
             {
                 command.Parameters.AddWithValue("@FirstName", contact.FirstName);
                 command.Parameters.AddWithValue("@LastName", contact.LastName);
@@ -574,7 +573,7 @@ namespace Casus4
                 command.Parameters.AddWithValue("@ExtraInformation", contact.ExtraInformation);
                 command.Parameters.AddWithValue("@Naked", null);
                 command.Parameters.AddWithValue("@GetsPayed", null);
-                command.Parameters.AddWithValue("@GetsResourcesPayed", contact.GetsResourcesPayed);
+                command.Parameters.AddWithValue("@GetsResourcesPayed", contact.GetsResourcesPaid);
 
                 connection.Open();
                 command.ExecuteNonQuery();
@@ -584,7 +583,7 @@ namespace Casus4
         public void AddHelper(Contact contact)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
-            using (SqlCommand command = new SqlCommand("INSERT INTO Contact (FirstName, LastName, Picture, Location, Description, ExtraInformation, Naked) VALUES (@FirstName, @LastName, @Picture, @Location, @Description, @ExtraInformation, @Naked)", connection))
+            using (SqlCommand command = new SqlCommand("INSERT INTO Contact (FirstName, LastName, Picture, Location, Description, ExtraInformation, Naked, GetsPaid, GetsResourcesPaid) VALUES (@FirstName, @LastName, @Picture, @Location, @Description, @ExtraInformation, @Naked, @GetsPaid, @GetsResourcesPaid)", connection))
             {
                 command.Parameters.AddWithValue("@FirstName", contact.FirstName);
                 command.Parameters.AddWithValue("@LastName", contact.LastName);
@@ -593,8 +592,8 @@ namespace Casus4
                 command.Parameters.AddWithValue("@Description", contact.Description);
                 command.Parameters.AddWithValue("@ExtraInformation", contact.ExtraInformation);
                 command.Parameters.AddWithValue("@Naked", null);
-                command.Parameters.AddWithValue("@GetsPayed", contact.GetsPayed);
-                command.Parameters.AddWithValue("@GetsResourcesPayed", null);
+                command.Parameters.AddWithValue("@GetsPaid", contact.GetsPaid);
+                command.Parameters.AddWithValue("@GetsResourcesPaid", null);
 
                 connection.Open();
                 command.ExecuteNonQuery();
@@ -604,7 +603,7 @@ namespace Casus4
         public void UpdateContact(Contact contact)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
-            using (SqlCommand command = new SqlCommand("UPDATE Contact SET FirstName = @FirstName, LastName = @LastName, Picture = @Picture, Location = @Location, Description = @Description, ExtraInformation = @ExtraInformation, Naked = @Naked, WHERE Id = @Id", connection))
+            using (SqlCommand command = new SqlCommand("UPDATE Contact SET FirstName = @FirstName, LastName = @LastName, Picture = @Picture, Location = @Location, Description = @Description, ExtraInformation = @ExtraInformation, Naked = @Naked, GetsPaid = @GetsPaid, GetsResourcesPaid = @GetsResourcesPaid, WHERE Id = @Id", connection))
             {
                 command.Parameters.AddWithValue("@Id", contact.Id);
                 command.Parameters.AddWithValue("@FirstName", contact.FirstName);
@@ -614,8 +613,8 @@ namespace Casus4
                 command.Parameters.AddWithValue("@Description", contact.Description);
                 command.Parameters.AddWithValue("@ExtraInformation", contact.ExtraInformation);
                 command.Parameters.AddWithValue("@Naked", contact.Naked);
-                command.Parameters.AddWithValue("@GetsPayed", contact.GetsPayed);
-                command.Parameters.AddWithValue("@GetsResourcesPayed", contact.GetsResourcesPayed);
+                command.Parameters.AddWithValue("@GetsPaid", contact.GetsPaid);
+                command.Parameters.AddWithValue("@GetsResourcesPaid", contact.GetsResourcesPaid);
 
                 connection.Open();
                 command.ExecuteNonQuery();

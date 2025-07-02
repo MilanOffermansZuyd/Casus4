@@ -26,7 +26,23 @@ namespace Casus4
 
         private void UploadImage_Click(object sender, RoutedEventArgs e)
         {
+            var openFileDialog = new Microsoft.Win32.OpenFileDialog();
+            openFileDialog.Filter = "Afbeeldingen (*.png;*.jpg;*.jpeg)|*.png;*.jpg;*.jpeg";
 
+            if (openFileDialog.ShowDialog() == true)
+            {
+                try
+                {
+                    var uri = new Uri(openFileDialog.FileName);
+                    var bitmap = new BitmapImage(uri);
+                    ModelFotoCreateModel.Source = bitmap;
+                }
+
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Kon afbeelding niet laden: " + ex.Message);
+                }
+            }
         }
 
         private void BackToModelPageFromCreate_Click(object sender, RoutedEventArgs e)
