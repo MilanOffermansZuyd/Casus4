@@ -11,8 +11,10 @@ public abstract class Contact
     public Location Location { get; set; }
     public string Description { get; set; }
     public string ExtraInformation { get; set; }
-    public bool Naked { get; set; }
-    public Contact(int? id, string firstName, string lastName, byte[] picture, int distanceBetween, Location location, string description, string extrainformation, bool naked)
+    public bool? Naked { get; set; }
+    public bool? GetsPayed { get; set; }
+    public bool? GetsResourcesPayed { get; set; }
+    public Contact(int? id, string firstName, string lastName, byte[] picture, int distanceBetween, Location location, string description, string extrainformation, bool? naked, bool? getsPayed, bool? getsRecoursesPayed)
     {
         Id = id ?? 0;
         FirstName = firstName;
@@ -23,11 +25,17 @@ public abstract class Contact
         Description = description;
         ExtraInformation = extrainformation;
         Naked = naked;
+        GetsPayed = getsPayed;
+        GetsResourcesPayed = getsRecoursesPayed;
+    }
+
+    public Contact()
+    {
     }
 
     public virtual void Add(Contact contact)
     {
-        dal.AddContact(contact);
+        dal.AddModel(contact);
     }
     public virtual void Remove(int id)
     {
