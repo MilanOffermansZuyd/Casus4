@@ -80,5 +80,12 @@ namespace Casus4
             propsPage.Show();
             this.Close();
         }
+
+        private void LocationButton_Click(object sender, RoutedEventArgs e)
+        {
+            LocationWindow locationWindow = new LocationWindow();
+            locationWindow.Show();
+            this.Close();
+        }
     }
 }

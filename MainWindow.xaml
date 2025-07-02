@@ -16,12 +16,13 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button x:Name="ConceptButtonHomePage" Content="Concept" HorizontalAlignment="Center" Height="150" Margin="0,284,0,0" VerticalAlignment="Top" Width="800" Click="ConceptButtonHomePage_Click"/>
+        <Button x:Name="ConceptButtonHomePage" Content="Concept" HorizontalAlignment="Left" Height="174" Margin="188,250,0,0" VerticalAlignment="Top" Width="589" Click="ConceptButtonHomePage_Click"/>
         <Button x:Name="NewProjectHomePageButton" Content="New project" HorizontalAlignment="Left" Height="229" Margin="714,7,0,0" VerticalAlignment="Top" Width="76" Click="NewProjectHomePageButton_Click"/>
         <Button Content="Concepten" HorizontalAlignment="Left" Height="57" Margin="10,10,0,0" VerticalAlignment="Top" Width="127" Click="ConceptButton_Click"/>
         <Button Content="Modellen/ contacten" HorizontalAlignment="Left" Height="57" Margin="10,87,0,0" VerticalAlignment="Top" Width="127" Click="ContacsButton_Click"/>
         <Button Content="Photoshoot" HorizontalAlignment="Left" Height="57" Margin="10,160,0,0" VerticalAlignment="Top" Width="127" Click="PhotoshootButton_Click"/>
-        <Button Content="Props" HorizontalAlignment="Left" Height="57" Margin="10,222,0,0" VerticalAlignment="Top" Width="127" Click="PropsButton_Click"/>
+        <Button Content="Props" HorizontalAlignment="Left" Height="57" Margin="10,237,0,0" VerticalAlignment="Top" Width="127" Click="PropsButton_Click" RenderTransformOrigin="0.471,0.837"/>
+        <Button Content="Location" HorizontalAlignment="Left" Height="57" Margin="10,320,0,0" VerticalAlignment="Top" Width="127" Click="LocationButton_Click" RenderTransformOrigin="0.471,0.837"/>
 
     </Grid>
 </Window>

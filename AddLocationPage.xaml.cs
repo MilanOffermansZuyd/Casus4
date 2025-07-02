@@ -23,5 +23,19 @@ namespace Casus4
         {
             InitializeComponent();
         }
+
+        private void Opslaan_Click(object sender, RoutedEventArgs e)
+        {
+            LocationWindow locationWindow = new LocationWindow();
+            locationWindow.Show();
+            this.Close();
+        }
+
+        private void Terug_Click(object sender, RoutedEventArgs e)
+        {
+            LocationWindow locationWindow= new LocationWindow();
+            locationWindow.Show();
+            this.Close();
+        }
     }
 }

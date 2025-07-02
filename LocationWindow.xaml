@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="LocationWindow" Height="450" Width="800">
     <Grid>
-        <ListView HorizontalAlignment="Center" Height="318" VerticalAlignment="Top" Width="800" d:ItemsSource="{d:SampleData ItemCount=5}">
+        <ListView HorizontalAlignment="Center" Height="318" VerticalAlignment="Top" Width="800" d:ItemsSource="{d:SampleData ItemCount=5}" MouseDoubleClick="EditLocation_Btn" >
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Street" Width="150"/>
@@ -19,8 +19,8 @@
             </ListView.View>
         </ListView>
         <Button x:Name="BackToMainFromLocation" Content="Back to main" HorizontalAlignment="Left" Height="68" Margin="0,356,0,0" VerticalAlignment="Top" Width="171" Click="BackToMainFromLocation_Click"/>
-        <Button x:Name="AddLocationFromLocation" Content="Add Location" HorizontalAlignment="Left" Height="68" Margin="176,356,0,0" VerticalAlignment="Top" Width="171"/>
-        <Button x:Name="DeleteLocationFromLocation" Content="Delete location" HorizontalAlignment="Left" Height="68" Margin="352,356,0,0" VerticalAlignment="Top" Width="171"/>
+        <Button x:Name="AddLocationFromLocation" Content="Add Location" HorizontalAlignment="Left" Height="68" Margin="176,356,0,0" VerticalAlignment="Top" Width="171" Click="AddLocationFromLocation_Click"/>
+        <Button x:Name="DeleteLocationFromLocation" Content="Delete location" HorizontalAlignment="Left" Height="68" Margin="352,356,0,0" VerticalAlignment="Top" Width="171" Click="DeleteLocationFromLocation_Click"/>
 
     </Grid>
 </Window>

@@ -24,15 +24,28 @@ namespace Casus4
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void BackToMainFromLocation_Click(object sender, RoutedEventArgs e)
         {
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
+            this.Close();
+        }
+
+        private void AddLocationFromLocation_Click(object sender, RoutedEventArgs e)
+        {
+            AddLocationPage addLocationPage = new AddLocationPage();
+            addLocationPage.Show();
+            this.Close();
+        }
+
+        private void DeleteLocationFromLocation_Click(object sender, RoutedEventArgs e)
+        {
+
+        } 
+        private void EditLocation_Btn(object sender, RoutedEventArgs e)
+        {
+            AddLocationPage editLocationPage = new AddLocationPage();
+            editLocationPage.Show();
             this.Close();
         }
     }
