@@ -1,4 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
+using Microsoft.Identity.Client;
 using System.Data;
 using System.Xml.Linq;
 
@@ -163,7 +164,7 @@ namespace Casus4
                 {
                     while (reader.Read())
                     {
-                        Model model = new Model(0, null,null,null,null,null,null,false);
+                        Model model = new Model(0, null,null,null,null,null,null,false,false);
                         model.Id = reader.GetInt32(0);
                         model.FirstName = reader.GetString(1);
                         model.LastName = reader.GetString(2);
@@ -702,7 +703,8 @@ namespace Casus4
                         string description = reader["Description"].ToString();
                         string extraInformation = reader["ExtraInfo"].ToString();
                         bool naked = (bool)reader["Naked"];
-                        contacts.Add(new Model(id, firstName, lastName, picture, location, description, extraInformation, naked));
+                        bool paid = (bool)reader["Naked"];
+                        contacts.Add(new Model(id, firstName, lastName, picture, location, description, extraInformation, paid, naked));
 
                     }
                 }
@@ -732,7 +734,7 @@ namespace Casus4
                         string description = reader["Description"].ToString();
                         string extraInformation = reader["ExtraInfo"].ToString();
                         bool getsResourcesPaid = (bool)reader["GetsResourcesPaid"];
-                        contacts.Add(new MakeUpArtist(id, firstName, lastName, picture, location, description, extraInformation, null, null, getsResourcesPaid));
+                        contacts.Add(new MakeUpArtist(id, firstName, lastName, picture, location, description, extraInformation, false, getsResourcesPaid));
                     }
                 }
             }
@@ -760,7 +762,7 @@ namespace Casus4
                         string description = reader["Description"].ToString();
                         string extraInformation = reader["ExtraInfo"].ToString();
                         bool getsPaid = (bool)reader["GetsPaid"];
-                        contacts.Add(new Helper(id, firstName, lastName, picture, location, description, extraInformation, null, getsPaid, null));
+                        contacts.Add(new Helper(id, firstName, lastName, picture, location, description, extraInformation));
                     }
                 }
             }
@@ -792,7 +794,7 @@ namespace Casus4
                         string extraInformation = reader.GetString(6);
                         bool naked = (bool)reader["@Naked"];
 
-                        Model model = new(Id, FirstName, LastName, Picture, location, description, extraInformation, false);
+                        Model model = new(Id, FirstName, LastName, Picture, location, description, extraInformation, false,false);
 
                         return model;
                     }
@@ -814,7 +816,7 @@ namespace Casus4
                 {
                     while (reader.Read())
                     {
-                        return new Model(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), (byte[])reader["Picture"], (Location)reader["Location"], reader.GetString(3), reader.GetString(4), (bool)reader["Naked"], (bool)reader["GetsPayed"], (bool)reader["GetsResourcesPayed"]);
+                        return new Model(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), (byte[])reader["Picture"], (Location)reader["Location"], reader.GetString(3), reader.GetString(4), (bool)reader["Naked"], (bool)reader["GetsPayed"]);
                     }
                 }
             }
@@ -832,7 +834,7 @@ namespace Casus4
                 {
                     while (reader.Read())
                     {
-                        return new MakeUpArtist(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), (byte[])reader["Picture"], (Location)reader["Location"], reader.GetString(3), reader.GetString(4), (bool)reader["Naked"], (bool)reader["GetsPayed"], (bool)reader["GetsResourcesPayed"]);
+                        return new MakeUpArtist(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), (byte[])reader["Picture"], (Location)reader["Location"], reader.GetString(3), reader.GetString(4), (bool)reader["GetsPayed"], (bool)reader["GetsResourcesPayed"]);
                     }
                 }
             }
@@ -851,7 +853,7 @@ namespace Casus4
                 {
                     while (reader.Read())
                     {
-                        return new Helper(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), (byte[])reader["Picture"], (Location)reader["Location"], reader.GetString(3), reader.GetString(4), (bool)reader["Naked"], (bool)reader["GetsPayed"], (bool)reader["GetsResourcesPayed"]);
+                        return new Helper(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), (byte[])reader["Picture"], (Location)reader["Location"], reader.GetString(3), reader.GetString(4));
                     }
                 }
             }
@@ -860,10 +862,10 @@ namespace Casus4
 
 
 
-        public void AddModel(Contact contact)
+        public void AddModel(Model contact)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
-            using (SqlCommand command = new SqlCommand("INSERT INTO Contact (FirstName, LastName, Picture, Location, Description, ExtraInformation, Naked, GetsPaid, GetsResourcesPaid) VALUES (@FirstName, @LastName, @Picture, @Location, @Description, @ExtraInformation, @Naked, GetsPaid, GetsResourcesPaid)", connection))
+            using (SqlCommand command = new SqlCommand("INSERT INTO Contact (FirstName, LastName, Picture, Location, Description, ExtraInformation, Naked) VALUES (@FirstName, @LastName, @Picture, @Location, @Description, @ExtraInformation, @Naked)", connection))
             {
                 command.Parameters.AddWithValue("@FirstName", contact.FirstName);
                 command.Parameters.AddWithValue("@LastName", contact.LastName);
@@ -872,8 +874,7 @@ namespace Casus4
                 command.Parameters.AddWithValue("@Description", contact.Description);
                 command.Parameters.AddWithValue("@ExtraInformation", contact.ExtraInformation);
                 command.Parameters.AddWithValue("@Naked", contact.Naked);
-                command.Parameters.AddWithValue("@GetsPaid", null);
-                command.Parameters.AddWithValue("@GetsResourcesPaid", null);
+
 
                 connection.Open();
                 command.ExecuteNonQuery();
@@ -883,7 +884,7 @@ namespace Casus4
         public void AddMakeUpArtist(Contact contact)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
-            using (SqlCommand command = new SqlCommand("INSERT INTO Contact (FirstName, LastName, Picture, Location, Description, ExtraInformation, Naked, GetsPaid, GetsResourcesPaid) VALUES (@FirstName, @LastName, @Picture, @Location, @Description, @ExtraInformation, @Naked, GetsPaid, GetsResourcesPaid)", connection))
+            using (SqlCommand command = new SqlCommand("INSERT INTO Contact (FirstName, LastName, Picture, Location, Description, ExtraInformation, Naked, GetsPaid) VALUES (@FirstName, @LastName, @Picture, @Location, @Description, @ExtraInformation, @Naked, GetsPaid)", connection))
             {
                 command.Parameters.AddWithValue("@FirstName", contact.FirstName);
                 command.Parameters.AddWithValue("@LastName", contact.LastName);
@@ -893,7 +894,6 @@ namespace Casus4
                 command.Parameters.AddWithValue("@ExtraInformation", contact.ExtraInformation);
                 command.Parameters.AddWithValue("@Naked", null);
                 command.Parameters.AddWithValue("@GetsPayed", null);
-                command.Parameters.AddWithValue("@GetsResourcesPayed", contact.GetsResourcesPaid);
 
                 connection.Open();
                 command.ExecuteNonQuery();
@@ -912,7 +912,7 @@ namespace Casus4
                 command.Parameters.AddWithValue("@Description", contact.Description);
                 command.Parameters.AddWithValue("@ExtraInformation", contact.ExtraInformation);
                 command.Parameters.AddWithValue("@Naked", null);
-                command.Parameters.AddWithValue("@GetsPaid", contact.GetsPaid);
+                command.Parameters.AddWithValue("@GetsPaid", null);
                 command.Parameters.AddWithValue("@GetsResourcesPaid", null);
 
                 connection.Open();
@@ -923,7 +923,7 @@ namespace Casus4
         public void UpdateContact(Contact contact)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
-            using (SqlCommand command = new SqlCommand("UPDATE Contact SET FirstName = @FirstName, LastName = @LastName, Picture = @Picture, Location = @Location, Description = @Description, ExtraInformation = @ExtraInformation, Naked = @Naked, GetsPaid = @GetsPaid, GetsResourcesPaid = @GetsResourcesPaid, WHERE Id = @Id", connection))
+            using (SqlCommand command = new SqlCommand("UPDATE Contact SET FirstName = @FirstName, LastName = @LastName, Picture = @Picture, Location = @Location, Description = @Description, ExtraInformation = @ExtraInformation WHERE Id = @Id", connection))
             {
                 command.Parameters.AddWithValue("@Id", contact.Id);
                 command.Parameters.AddWithValue("@FirstName", contact.FirstName);
@@ -932,9 +932,6 @@ namespace Casus4
                 command.Parameters.AddWithValue("@Location", contact.Location);
                 command.Parameters.AddWithValue("@Description", contact.Description);
                 command.Parameters.AddWithValue("@ExtraInformation", contact.ExtraInformation);
-                command.Parameters.AddWithValue("@Naked", contact.Naked);
-                command.Parameters.AddWithValue("@GetsPaid", contact.GetsPaid);
-                command.Parameters.AddWithValue("@GetsResourcesPaid", contact.GetsResourcesPaid);
 
                 connection.Open();
                 command.ExecuteNonQuery();
@@ -1013,7 +1010,7 @@ namespace Casus4
                 {
                     while (reader.Read())
                     {
-                        locations.Add(new Location(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), reader.GetString(5)));
+                        locations.Add(new Location(reader.GetInt32(0), reader.GetString(1), reader["Local"] as LocalAuthority, reader["Adress"] as Adress, reader["Country"] as Country));
                     }
                 }
             }
@@ -1025,10 +1022,9 @@ namespace Casus4
             using (SqlConnection connection = new SqlConnection(connectionString))
             using (SqlCommand command = new SqlCommand("INSERT INTO Location (Street, HouseNumber, PostalCode, City, Country) VALUES (@Street, @HouseNumber, @PostalCode, @City, @Country)", connection))
             {
-                command.Parameters.AddWithValue("@Street", location.Street);
-                command.Parameters.AddWithValue("@HouseNumber", location.HouseNumber);
-                command.Parameters.AddWithValue("@PostalCode", location.PostalCode);
-                command.Parameters.AddWithValue("@City", location.City);
+                command.Parameters.AddWithValue("@City", location.Id);
+                command.Parameters.AddWithValue("@Street", location.LocalAuthority);
+                command.Parameters.AddWithValue("@PostalCode", location.Adress);
                 command.Parameters.AddWithValue("@Country", location.Country);
                 connection.Open();
                 command.ExecuteNonQuery();
@@ -1040,13 +1036,10 @@ namespace Casus4
             using (SqlConnection connection = new SqlConnection(connectionString))
             using (SqlCommand command = new SqlCommand("UPDATE Location SET Street = @Street, HouseNumber = @HouseNumber, PostalCode = @PostalCode, City = @City, Country = @Country WHERE Id = @Id", connection))
             {
-                command.Parameters.AddWithValue("@Id", location.Id);
-                command.Parameters.AddWithValue("@Street", location.Street);
-                command.Parameters.AddWithValue("@HouseNumber", location.HouseNumber);
-                command.Parameters.AddWithValue("@PostalCode", location.PostalCode);
-                command.Parameters.AddWithValue("@City", location.City);
+                command.Parameters.AddWithValue("@City", location.Id);
+                command.Parameters.AddWithValue("@Street", location.LocalAuthority);
+                command.Parameters.AddWithValue("@PostalCode", location.Adress);
                 command.Parameters.AddWithValue("@Country", location.Country);
-                connection.Open();
                 command.ExecuteNonQuery();
             }
         }
@@ -1073,7 +1066,7 @@ namespace Casus4
                 {
                     while (reader.Read())
                     {
-                          return new Location(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), reader.GetString(5));
+                          return new Location(reader.GetInt32(0), reader.GetString(1), reader["Local"] as LocalAuthority, reader["Adress"] as Adress, reader["Country"] as Country);
                     }
                 }
             }
@@ -1103,6 +1096,23 @@ namespace Casus4
             }
             return props;
 
+        }
+
+        public Prop? GetPropByName(string propString)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlCommand command = new SqlCommand("SELECT * FROM Prop WHERE Name = @Name", connection))
+            {
+                command.Parameters.AddWithValue("@Name", propString);
+                connection.Open();
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    int id = reader.GetInt32(0);
+                    string Name = reader.GetString(1);
+                    string Description = reader.GetString(2);
+                    return new Prop(id, Name, Description);
+                }
+            }
         }
     }
 }

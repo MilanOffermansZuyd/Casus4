@@ -23,7 +23,7 @@ public abstract class Contact
         ExtraInformation = extrainformation;
     }
 
-    public virtual void Add(Contact contact)
+    public virtual void Add(Model contact)
     {
         dal.AddModel(contact);
     }
