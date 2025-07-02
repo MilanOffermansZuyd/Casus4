@@ -11,8 +11,7 @@ public abstract class Contact
     public Location Location { get; set; }
     public string Description { get; set; }
     public string ExtraInformation { get; set; }
-    public bool Naked { get; set; }
-    public Contact(int? id, string firstName, string lastName, byte[] picture, int distanceBetween, Location location, string description, string extrainformation, bool naked)
+    public Contact(int? id, string firstName, string lastName, byte[] picture, int distanceBetween, Location location, string description, string extrainformation)
     {
         Id = id ?? 0;
         FirstName = firstName;
@@ -22,7 +21,6 @@ public abstract class Contact
         Location = location;
         Description = description;
         ExtraInformation = extrainformation;
-        Naked = naked;
     }
 
     public virtual void Add(Contact contact)

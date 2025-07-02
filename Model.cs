@@ -1,14 +1,15 @@
 ﻿using Casus4;
 using static Azure.Core.HttpHeader;
 
-public class Model : Contact
+public class Model : PayedContact
 {
     DAL dal = new DAL();
-    public bool GetsPayed { get; set; }
+    public bool Naked { get; set; }
 
-    public Model(int? id, string firstName, string lastName, byte[] picture, Location location, string description, string extraInformation, bool naked)
-            : base(id, firstName, lastName, picture, 0, location, description, extraInformation, naked)
+    public Model(int? id, string firstName, string lastName, byte[] picture, Location location, string description, string extraInformation,bool payed ,bool naked)
+            : base(id, firstName, lastName, picture, 0, location, description, extraInformation, payed)
     {
+        Naked = naked;
     }
     public void Add(Model model)
     {

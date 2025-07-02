@@ -21,6 +21,14 @@ public class PhotoShoot
         Models = models;
         Props = props;
     }
+    public PhotoShoot()
+    {
+        
+    }
+    public List<PhotoShoot> Get()
+    {
+        return dal.GetAllPhotoshoots();
+    }
     public void Add()    {
         PhotoShoot photoshoot = this;
         dal.AddPhotoshoot(photoshoot);
