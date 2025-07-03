@@ -769,6 +769,18 @@ namespace Casus4
             return contacts;
         }
 
+        public List<Contact> GettAllContacts()
+        {
+            var contacts = new List<Contact>();
+            var helpers = GetAllHelpers();
+            var makeUpArtist = GetAllMakeUpArtists();
+            var models = GetAllModels();
+            contacts.AddRange(models);
+            contacts.AddRange(makeUpArtist);
+            contacts.AddRange(models);  
+            return contacts;
+        }
+
 
         public Model FindModelByName(string name)
         {
