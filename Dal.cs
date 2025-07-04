@@ -1114,5 +1114,15 @@ namespace Casus4
                 }
             }
         }
+
+        public void AddProp(Prop prop)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal void RemoveProp(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

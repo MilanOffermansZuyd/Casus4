@@ -46,9 +46,9 @@
             <ComboBox x:Name="ComboBoxProject" HorizontalAlignment="Left" Height="24" Margin="430,130,0,0" VerticalAlignment="Top" Width="222">
             </ComboBox>
 
-            <Button x:Name="NewPropCreateConcept1" Content="Nieuwe prop" HorizontalAlignment="Left" Height="24" Margin="327,85,0,0" VerticalAlignment="Top" Width="73"/>
-            <Button x:Name="NewLocationCreateConcept1" Content="Nieuwe locatie" HorizontalAlignment="Left" Height="24" Margin="661,56,0,0" VerticalAlignment="Top" Width="129"/>
-            <Button x:Name="NewModelCreateConcept1" Content="Nieuw model" HorizontalAlignment="Left" Height="24" Margin="661,85,0,0" VerticalAlignment="Top" Width="129"/>
+            <Button x:Name="NewPropCreateConcept1" Content="Nieuwe prop" HorizontalAlignment="Left" Height="24" Margin="327,85,0,0" VerticalAlignment="Top" Width="73" Click="CreateNewProp_Click"/>
+            <Button x:Name="NewLocationCreateConcept1" Content="Nieuwe locatie" HorizontalAlignment="Left" Height="24" Margin="661,56,0,0" VerticalAlignment="Top" Width="129" Click="CreateNewLocation_Click"/>
+            <Button x:Name="NewModelCreateConcept1" Content="Nieuw model" HorizontalAlignment="Left" Height="24" Margin="661,85,0,0" VerticalAlignment="Top" Width="129" Click="CreateNewModel_Click"/>
             <Button x:Name="BackToConceptPageFromCreate1" Content="Back" HorizontalAlignment="Left" Height="27" Margin="726,0,0,0" VerticalAlignment="Top" Width="74" Click="BackToConceptPageFromCreate_Click"/>
             <Button x:Name="SaveAddConcept1" Content="Save" HorizontalAlignment="Left" Height="27" Margin="652,0,0,0" VerticalAlignment="Top" Width="74" Click="SaveAddConcept_Click"/>
         </Grid>

@@ -1,5 +1,4 @@
-﻿using Microsoft.Data.SqlClient;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Media.Imaging;
 
 namespace Casus4
@@ -75,6 +74,24 @@ namespace Casus4
                     this.Close();
                 }
             }
+        }
+
+        private void CreateNewProp_Click(object sender, RoutedEventArgs e)
+        {
+            Prop prop = new Prop("NAME","description");
+            prop.Add(prop);
+        }
+
+        private void CreateNewLocation_Click(object sender, RoutedEventArgs e)
+        {
+            Location location = new Location(null, "name", new LocalAuthority(null, "test"), new Adress(null, "street", "house", "6445", "city"), new Country(null, "name") );
+           location.add(location);
+        }
+
+        private void CreateNewModel_Click(object sender, RoutedEventArgs e)
+        {
+            Model model = new Model( null, "test", "last", [], new Location(), "yes", "ee",false , false);
+            model.Add(model);
         }
     }
 }

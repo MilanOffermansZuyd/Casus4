@@ -8,6 +8,7 @@ namespace Casus4
 {
     public class Prop
     {
+        DAL dal = new DAL();
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
@@ -22,6 +23,20 @@ namespace Casus4
             Id = id;
             Name = name;
             Description = description;
+        }
+
+        public Prop()
+        {
+            
+        }
+
+        public void Add(Prop prop) 
+        {
+            dal.AddProp(prop);
+        }
+        public void remove(int id)
+        {
+            dal.RemoveProp(id);
         }
     }
 }

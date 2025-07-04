@@ -2,6 +2,7 @@
 {
     public class Location
     {
+        DAL dal = new DAL();
         public int Id { get; set; }
         public string Name { get; set; }
         public LocalAuthority? LocalAuthority { get; set; }
@@ -28,9 +29,9 @@
             throw new NotImplementedException();
         }
 
-        public Location add(Location location) 
+        public void add(Location location) 
         {
-            throw new NotImplementedException();
+            dal.AddLocation(location);
         }
 
         public Location Remove(int id)

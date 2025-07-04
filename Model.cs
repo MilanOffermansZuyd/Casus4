@@ -13,7 +13,7 @@ public class Model : PayedContact
     }
     public void Add(Model model)
     {
-        throw new NotImplementedException();
+        dal.AddModel(model);
     }
     public override void Remove(int id)
     {
