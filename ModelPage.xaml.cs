@@ -19,9 +19,14 @@ namespace Casus4
     /// </summary>
     public partial class ModelPage : Window
     {
+        DAL dal = new DAL();
         public ModelPage()
         {
             InitializeComponent();
+
+            var contacts = dal.GettAllContacts();
+
+            ModellenListViewModelPage.ItemsSource = contacts;
         }
 
         private void CreateNewModelFromModelPage_Click(object sender, RoutedEventArgs e)
@@ -36,6 +41,10 @@ namespace Casus4
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
             this.Close();
+        }
+
+        private void ModellenListViewModelPage_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
         }
     }
 }

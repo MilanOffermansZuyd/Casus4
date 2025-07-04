@@ -43,19 +43,19 @@ namespace Casus4
                 FotoshootsGridView.Items.Add(item);
             }
 
-            if (concept.FotoSketch != null)
+            if (concept.PhotoSketch != null)
             {
-                SketchAfbeelding.Source = ByteArrayToBitmapImage(concept.FotoSketch);
-                sketchImage = concept.FotoSketch;
+                SketchAfbeelding.Source = ByteArrayToBitmapImage(concept.PhotoSketch);
+                sketchImage = concept.PhotoSketch;
             }
             else 
             {
                 SketchAfbeelding.Source= new BitmapImage(new Uri("pack://application:,,,/Images/default.png"));
             }
-            if(concept.FotoResult != null)
+            if(concept.PhotoResult != null)
             {
                 _images.Clear();
-                foreach (var bytes in concept.FotoResult)
+                foreach (var bytes in concept.PhotoResult)
                 {
                     if (bytes != null)
                     {
