@@ -29,5 +29,27 @@
             return dal.GetAllProjects();
         }
 
+        public void Add() 
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Remove()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Edit()
+        {
+            throw new NotImplementedException();
+        }
+        public void FilterOn()
+        {
+            throw new NotImplementedException();
+        }
+        public void SearchOn()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

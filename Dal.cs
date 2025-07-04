@@ -583,8 +583,8 @@ namespace Casus4
                         concept.Id = reader.GetInt32(0);
                         concept.Title = reader.GetString(1);
                         concept.Location = reader["LocationId"] as Location ?? null;
-                        concept.FotoSketch = reader["PhotoSketch"] as byte[] ?? null;
-                        concept.FotoResult = [reader["PhotoResults"] as byte[] ?? null];
+                        concept.PhotoSketch = reader["PhotoSketch"] as byte[] ?? null;
+                        concept.PhotoResult = [reader["PhotoResults"] as byte[] ?? null];
                         concept.Project = new Project(null, "Test", "test", DateTime.Now, null);
                         concept.Models = null;
                         concept.Extras = null;
@@ -605,7 +605,7 @@ namespace Casus4
                 command.Parameters.AddWithValue("@LocationId", concept.Location?.Id ?? 1);
 
                 command.Parameters.Add("@PhotoSketch", SqlDbType.VarBinary).Value =
-                    (object?)concept.FotoSketch ?? DBNull.Value;
+                    (object?)concept.PhotoSketch ?? DBNull.Value;
 
                 command.Parameters.AddWithValue("@ProjectId", concept.Project.Id);
                 command.Parameters.AddWithValue("@Description", concept.Description);
@@ -626,9 +626,9 @@ namespace Casus4
                 command.Parameters.AddWithValue("@LocationId", concept.Location?.Id ?? 1);
 
                 command.Parameters.Add("@PhotoSketch", SqlDbType.VarBinary).Value =
-                    (object?)concept.FotoSketch ?? DBNull.Value;
+                    (object?)concept.PhotoSketch ?? DBNull.Value;
 
-                var bytefotos = ConceptImageHelper.CombinePhotos(concept.FotoResult);
+                var bytefotos = ConceptImageHelper.CombinePhotos(concept.PhotoResult);
                 command.Parameters.Add("@PhotoResults", SqlDbType.VarBinary).Value =
                     (object?)bytefotos ?? DBNull.Value;
 
@@ -766,6 +766,18 @@ namespace Casus4
                     }
                 }
             }
+            return contacts;
+        }
+
+        public List<Contact> GettAllContacts()
+        {
+            var contacts = new List<Contact>();
+            var helpers = GetAllHelpers();
+            var makeUpArtist = GetAllMakeUpArtists();
+            var models = GetAllModels();
+            contacts.AddRange(models);
+            contacts.AddRange(makeUpArtist);
+            contacts.AddRange(models);  
             return contacts;
         }
 
