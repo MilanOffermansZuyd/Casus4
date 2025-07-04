@@ -23,11 +23,6 @@
         }
 
 
-        public List<Location> GetAll()
-        {
-            throw new NotImplementedException();
-        }
-
         public Location add(Location location) 
         {
             throw new NotImplementedException();

@@ -6,19 +6,19 @@
         public int Id { get; set; }
         public string Title { get; set; }
         public Location Location { get; set; }
-        public byte[] FotoSketch { get; set; }
-        public List<byte[]> FotoResult { get; set; }
+        public byte[] PhotoSketch { get; set; }
+        public List<byte[]> PhotoResult { get; set; }
         public List<Model>? Models{ get; set; }
         public List<Helper>? Extras{ get; set; }
         public Project Project { get; set; }
         public string? Description { get; set; }
 
-        public Concept(int? id, string title, Location location, byte[] fotoSketch , List<byte[]> fotoResult, Project project, List<Model>? models, List<Helper>? extras, string? desciption) 
+        public Concept(int? id, string title, Location location, byte[] photoSketch , List<byte[]> photoResult, Project project, List<Model>? models, List<Helper>? extras, string? desciption) 
         {
             Id = id ?? 0;
             Location = location;
-            FotoResult = fotoResult;
-            FotoSketch = fotoSketch;
+            PhotoResult = photoResult;
+            PhotoSketch = photoSketch;
             Models = models;
             Extras = extras;
             Project = project;
@@ -28,10 +28,6 @@
         public Concept()
         {
             
-        }
-        public List<Concept> get()
-        {
-            return dal.GetAllConcepts();
         }
 
         public void Add(Concept concept) 
@@ -53,6 +49,10 @@
         public void SearchOn(string searchCriteria)
         {
             throw new NotImplementedException();
+        }
+        public List<Concept> get()
+        {
+            return dal.GetAllConcepts();
         }
     }
 }

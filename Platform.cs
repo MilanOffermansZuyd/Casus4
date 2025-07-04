@@ -6,29 +6,25 @@ using System.Threading.Tasks;
 
 namespace Casus4
 {
-    public class Prop
+    public class Platform
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public string Description { get; set; }
+        public string Information { get; set; }
 
-        public Prop(string name, string description)
-        {
-            Name = name;
-            Description = description;
-        }
-        public Prop(int id, string name, string description)
+        public Platform(int id, string name, string information)
         {
             Id = id;
             Name = name;
-            Description = description;
+            Information = information;
         }
 
-        public void Add(Contract fotoShoot)
+        public void AddPlatform()
         {
             throw new NotImplementedException();
         }
-        public void Remove(int id)
+
+        public void RemovePlatform()
         {
             throw new NotImplementedException();
         }
